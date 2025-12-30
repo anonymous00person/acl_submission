@@ -31,7 +31,7 @@ We recommend using a clean virtual environment.
 'pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118'
 'pip install -r requirements.txt
 
-### 2) Run the following command for evaluation (Qwen Coder2.5- 1.5B model- performed best)
+### 2) Run the following command for execution (Qwen Coder2.5- 1.5B model- performed best)
 'python scripts/eval.py --config configs/eval.yaml'
 
 ### 3) Aditionally for training (for our dataset already saved trained model under artifacts folder)
