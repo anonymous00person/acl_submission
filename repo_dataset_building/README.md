@@ -1,6 +1,6 @@
 # Repo-mined Java Vulnerability Dataset 
 
-This folder contains a lightweight, reviewer-friendly outline of how we built **Dataset 1 (Repo-mined)** used in our paper.  
+This folder contains a lightweight outline of how we built **Dataset 1 (Repo-mined)** used in our paper.  
 
 ---
 
