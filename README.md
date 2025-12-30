@@ -30,13 +30,16 @@ We recommend using a clean virtual environment.
 
 'pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118'
 'pip install -r requirements.txt
-### 2) Run the following command
-python scripts/eval.py --config configs/eval.yaml
 
-### Aditionally for training (for our dataset already saved trained model under artifacts folder)
-python scripts/train.py --config configs/train.yaml
+### 2) Run the following command for evaluation (Qwen Coder2.5- 1.5B model- performed best)
+'python scripts/eval.py --config configs/eval.yaml'
+
+### 3) Aditionally for training (for our dataset already saved trained model under artifacts folder)
+'python scripts/train.py --config configs/train.yaml'
+
+
 ---
 
 ## Notes
-Our experiments are conducted in the same environment and setup. Detailed experimental results are included in our paper.
+Our experiments are conducted in the same environment and setup . Detailed experimental results are included in our paper. 
 
