@@ -1,0 +1,6331 @@
+function,label
+"static int decode_create(struct xdr_stream *xdr, struct nfs4_change_info *cinfo)
+{
+	__be32 *p;
+	uint32_t bmlen;
+	int status;
+
+	status = decode_op_hdr(xdr, OP_CREATE);
+	if (status)
+		return status;
+	if ((status = decode_change_info(xdr, cinfo)))
+		return status;
+	READ_BUF(4);
+	READ32(bmlen);
+	READ_BUF(bmlen << 2);
+	return 0;
+}
+",0
+"static void conditionalAttr1AttributeSetter(v8::Local<v8::Value> jsValue, const v8::PropertyCallbackInfo<void>& info)
+{
+    ExceptionState exceptionState(ExceptionState::SetterContext, ""conditionalAttr1"", ""TestObject"", info.Holder(), info.GetIsolate());
+    TestObject* imp = V8TestObject::toNative(info.Holder());
+    V8TRYCATCH_EXCEPTION_VOID(int, cppValue, toInt32(jsValue, exceptionState), exceptionState);
+    imp->setConditionalAttr1(cppValue);
+}
+",0
+" void GpuVideoDecodeAccelerator::OnDecode(
+    base::SharedMemoryHandle handle, int32 id, int32 size) {
+   DCHECK(video_decode_accelerator_.get());
+   video_decode_accelerator_->Decode(media::BitstreamBuffer(id, handle, size));
+ }
+",1
+"void RenderFrameImpl::FrameFocused() {
+  Send(new FrameHostMsg_FrameFocused(routing_id_));
+}
+",0
+"void WallpaperManager::OnWallpaperDecoded(
+    const AccountId& account_id,
+    const wallpaper::WallpaperInfo& info,
+    bool update_wallpaper,
+    MovableOnDestroyCallbackHolder on_finish,
+    std::unique_ptr<user_manager::UserImage> user_image) {
+  DCHECK_CURRENTLY_ON(BrowserThread::UI);
+  TRACE_EVENT_ASYNC_END0(""ui"", ""LoadAndDecodeWallpaper"", this);
+
+  if (user_image->image().isNull()) {
+    wallpaper::WallpaperInfo default_info(
+         """", wallpaper::WALLPAPER_LAYOUT_CENTER_CROPPED, wallpaper::DEFAULT,
+         base::Time::Now().LocalMidnight());
+     SetUserWallpaperInfo(account_id, default_info, true);
+    if (update_wallpaper)
+      DoSetDefaultWallpaper(account_id, std::move(on_finish));
+     return;
+   }
+ 
+  wallpaper_cache_[account_id].second = user_image->image();
+
+  if (update_wallpaper)
+    SetWallpaper(user_image->image(), info);
+}
+",1
+"    StateBase* writeBlob(v8::Handle<v8::Value> value, StateBase* next)
+    {
+        Blob* blob = V8Blob::toNative(value.As<v8::Object>());
+        if (!blob)
+            return 0;
+         if (blob->hasBeenClosed())
+             return handleError(DataCloneError, ""A Blob object has been closed, and could therefore not be cloned."", next);
+         int blobIndex = -1;
+        m_blobDataHandles.add(blob->uuid(), blob->blobDataHandle());
+         if (appendBlobInfo(blob->uuid(), blob->type(), blob->size(), &blobIndex))
+             m_writer.writeBlobIndex(blobIndex);
+         else
+            m_writer.writeBlob(blob->uuid(), blob->type(), blob->size());
+        return 0;
+    }
+",1
+"METHODDEF(JDIMENSION)
+get_raw_row(j_compress_ptr cinfo, cjpeg_source_ptr sinfo)
+/* This version is for reading raw-byte-format files with maxval = MAXJSAMPLE.
+ * In this case we just read right into the JSAMPLE buffer!
+ * Note that same code works for PPM and PGM files.
+ */
+{
+  ppm_source_ptr source = (ppm_source_ptr)sinfo;
+
+  if (!ReadOK(source->pub.input_file, source->iobuffer, source->buffer_width))
+    ERREXIT(cinfo, JERR_INPUT_EOF);
+  return 1;
+}
+",0
+"PasswordGenerationUIData GetTestGenerationUIData2() {
+  PasswordForm form;
+  form.form_data = autofill::FormData();
+  form.form_data.action = GURL(""http://www.example2.com/accounts/Login"");
+  form.form_data.origin = GURL(""http://www.example2.com/accounts/LoginAuth"");
+  PasswordGenerationUIData data;
+  data.password_form = form;
+  data.generation_element = ASCIIToUTF16(""testelement2"");
+  data.max_length = 11;
+  return data;
+}
+",1
+"static int proc_key_users_open(struct inode *inode, struct file *file)
+{
+	return seq_open(file, &proc_key_users_ops);
+}
+",0
+"my_object_str_hash_len (MyObject *obj, GHashTable *table, guint *len, GError **error)
+{
+  *len = 0;
+  g_hash_table_foreach (table, hash_foreach, len);
+  return TRUE;
+}
+",1
+"   virtual void SetUp() {
+    fwd_txfm_ = GET_PARAM(0);
+
+     inv_txfm_ = GET_PARAM(1);
+     version_  = GET_PARAM(2);  // 0: high precision forward transform
+   }
+",1
+"static void checkPtrmap(
+  IntegrityCk *pCheck,   /* Integrity check context */
+  Pgno iChild,           /* Child page number */
+  u8 eType,              /* Expected pointer map type */
+  Pgno iParent           /* Expected pointer map parent page number */
+){
+  int rc;
+  u8 ePtrmapType;
+  Pgno iPtrmapParent;
+
+  rc = ptrmapGet(pCheck->pBt, iChild, &ePtrmapType, &iPtrmapParent);
+  if( rc!=SQLITE_OK ){
+    if( rc==SQLITE_NOMEM || rc==SQLITE_IOERR_NOMEM ) pCheck->mallocFailed = 1;
+    checkAppendMsg(pCheck, ""Failed to read ptrmap key=%d"", iChild);
+    return;
+  }
+
+  if( ePtrmapType!=eType || iPtrmapParent!=iParent ){
+    checkAppendMsg(pCheck,
+      ""Bad ptr map entry key=%d expected=(%d,%d) got=(%d,%d)"", 
+      iChild, eType, iParent, ePtrmapType, iPtrmapParent);
+  }
+}
+",0
+" queue_unlock(struct futex_q *q, struct futex_hash_bucket *hb)
+ {
+ 	spin_unlock(&hb->lock);
+	drop_futex_key_refs(&q->key);
+ }
+",1
+"char *path_name(const struct name_path *path, const char *name)
+{
+	const struct name_path *p;
+	char *n, *m;
+	int nlen = strlen(name);
+	int len = nlen + 1;
+
+	for (p = path; p; p = p->up) {
+		if (p->elem_len)
+			len += p->elem_len + 1;
+ 	}
+ 	n = xmalloc(len);
+ 	m = n + len - (nlen + 1);
+	strcpy(m, name);
+ 	for (p = path; p; p = p->up) {
+ 		if (p->elem_len) {
+ 			m -= p->elem_len + 1;
+			memcpy(m, p->elem, p->elem_len);
+			m[p->elem_len] = '/';
+		}
+	}
+	return n;
+}
+",1
+"void RenderWidgetHostImpl::DidNavigate(uint32_t next_source_id) {
+  current_content_source_id_ = next_source_id;
+  did_receive_first_frame_after_navigation_ = false;
+
+  if (enable_surface_synchronization_) {
+     visual_properties_ack_pending_ = false;
+    viz::LocalSurfaceId old_surface_id = view_->GetLocalSurfaceId();
+     if (view_)
+       view_->DidNavigate();
+    viz::LocalSurfaceId new_surface_id = view_->GetLocalSurfaceId();
+    if (old_surface_id == new_surface_id)
+      return;
+   } else {
+    if (last_received_content_source_id_ >= current_content_source_id_)
+      return;
+  }
+
+  if (!new_content_rendering_timeout_)
+    return;
+
+  new_content_rendering_timeout_->Start(new_content_rendering_delay_);
+}
+",1
+"   bool ReceiverWasAdded(const RtpTransceiverState& transceiver_state) {
+     uintptr_t receiver_id = RTCRtpReceiver::getId(
+         transceiver_state.receiver_state()->webrtc_receiver().get());
+     for (const auto& receiver : handler_->rtp_receivers_) {
+      if (receiver->Id() == receiver_id)
+        return false;
+    }
+    return true;
+  }
+",1
+"static void charstring_end(void)
+{
+  byte *bp;
+
+  sprintf(line, ""%d "", (int) (charstring_bp - charstring_buf));
+  eexec_string(line);
+  sprintf(line, ""%s "", cs_start);
+  eexec_string(line);
+  for (bp = charstring_buf; bp < charstring_bp; bp++)
+    eexec_byte(*bp);
+}
+",0
+"int invalidate_partition(struct gendisk *disk, int partno)
+{
+	int res = 0;
+	struct block_device *bdev = bdget_disk(disk, partno);
+	if (bdev) {
+		fsync_bdev(bdev);
+		res = __invalidate_device(bdev, true);
+		bdput(bdev);
+	}
+	return res;
+}
+",0
+"const base::FilePath& DriveFsHost::GetMountPath() const {
+  DCHECK(IsMounted());
+  return mount_state_->mount_path();
+}
+",0
+"void exit_creds(struct task_struct *tsk)
+{
+	struct cred *cred;
+
+	kdebug(""exit_creds(%u,%p,%p,{%d,%d})"", tsk->pid, tsk->real_cred, tsk->cred,
+	       atomic_read(&tsk->cred->usage),
+	       read_cred_subscribers(tsk->cred));
+
+	cred = (struct cred *) tsk->real_cred;
+	tsk->real_cred = NULL;
+	validate_creds(cred);
+	alter_cred_subscribers(cred, -1);
+	put_cred(cred);
+
+	cred = (struct cred *) tsk->cred;
+	tsk->cred = NULL;
+	validate_creds(cred);
+	alter_cred_subscribers(cred, -1);
+	put_cred(cred);
+
+	cred = (struct cred *) tsk->replacement_session_keyring;
+	if (cred) {
+		tsk->replacement_session_keyring = NULL;
+		validate_creds(cred);
+		put_cred(cred);
+	}
+}
+",0
+"long long mkvparser::ReadUInt(IMkvReader* pReader, long long pos, long& len) {
+  assert(pReader);
+  assert(pos >= 0);
+  int status;
+ 
+   len = 1;
+   unsigned char b;
+  status = pReader->Read(pos, 1, &b);
+ 
+   if (status < 0)  // error or underflow
+     return status;
+
+ if (status > 0) // interpreted as ""underflow""
+ return E_BUFFER_NOT_FULL;
+
+ if (b == 0) // we can't handle u-int values larger than 8 bytes
+ return E_FILE_FORMAT_INVALID;
+
+ unsigned char m = 0x80;
+
+ while (!(b & m)) {
+    m >>= 1;
+
+     ++len;
+   }
+ 
+   long long result = b & (~m);
+   ++pos;
+ 
+ for (int i = 1; i < len; ++i) {
+    status = pReader->Read(pos, 1, &b);
+
+ if (status < 0) {
+      len = 1;
+ return status;
+ }
+
+ if (status > 0) {
+      len = 1;
+ return E_BUFFER_NOT_FULL;
+ }
+
+    result <<= 8;
+    result |= b;
+
+ ++pos;
+ }
+
+
+   return result;
+ }
+",1
+"PasswordAutofillAgent::PasswordAutofillAgent(content::RenderFrame* render_frame)
+     : content::RenderFrameObserver(render_frame),
+       logging_state_active_(false),
+       was_username_autofilled_(false),
+      was_password_autofilled_(false),
+      weak_ptr_factory_(this) {
+   Send(new AutofillHostMsg_PasswordAutofillAgentConstructed(routing_id()));
+ }
+",1
+"static void ept_set_mmio_spte_mask(void)
+{
+	/*
+	 * EPT Misconfigurations can be generated if the value of bits 2:0
+	 * of an EPT paging-structure entry is 110b (write/execute).
+	 * Also, magic bits (0x3ull << 62) is set to quickly identify mmio
+	 * spte.
+	 */
+	kvm_mmu_set_mmio_spte_mask((0x3ull << 62) | 0x6ull);
+}
+",0
+"val_wrap_iov_args(
+    OM_uint32 *minor_status,
+    gss_ctx_id_t context_handle,
+    int conf_req_flag,
+    gss_qop_t qop_req,
+    int *conf_state,
+    gss_iov_buffer_desc *iov,
+    int iov_count)
+{
+
+    /* Initialize outputs. */
+
+    if (minor_status != NULL)
+	*minor_status = 0;
+
+    /* Validate arguments. */
+
+    if (minor_status == NULL)
+	return (GSS_S_CALL_INACCESSIBLE_WRITE);
+
+    if (context_handle == GSS_C_NO_CONTEXT)
+	return (GSS_S_CALL_INACCESSIBLE_READ | GSS_S_NO_CONTEXT);
+
+    if (iov == GSS_C_NO_IOV_BUFFER)
+	return (GSS_S_CALL_INACCESSIBLE_READ);
+
+    return (GSS_S_COMPLETE);
+}
+",0
+"void LocalFileSystem::deleteFileSystem(ExecutionContext* context, FileSystemType type, PassOwnPtr<AsyncFileSystemCallbacks> callbacks)
+{
+    RefPtrWillBeRawPtr<ExecutionContext> contextPtr(context);
+     ASSERT(context);
+     ASSERT_WITH_SECURITY_IMPLICATION(context->isDocument());
+ 
+    RefPtr<CallbackWrapper> wrapper = adoptRef(new CallbackWrapper(callbacks));
+     requestFileSystemAccessInternal(context,
+         bind(&LocalFileSystem::deleteFileSystemInternal, this, contextPtr, type, wrapper),
+         bind(&LocalFileSystem::fileSystemNotAllowedInternal, this, contextPtr, wrapper));
+}
+",1
+"static int ssh_channelcmp(void *av, void *bv)
+{
+    struct ssh_channel *a = (struct ssh_channel *) av;
+    struct ssh_channel *b = (struct ssh_channel *) bv;
+    if (a->localid < b->localid)
+	return -1;
+    if (a->localid > b->localid)
+	return +1;
+    return 0;
+}
+",0
+" SPL_METHOD(SplFileObject, next)
+ {
+ 	spl_filesystem_object *intern = (spl_filesystem_object*)zend_object_store_get_object(getThis() TSRMLS_CC);
+ 	if (zend_parse_parameters_none() == FAILURE) {
+ 		return;
+ 	}
+
+	spl_filesystem_file_free_line(intern TSRMLS_CC);
+	if (SPL_HAS_FLAG(intern->flags, SPL_FILE_OBJECT_READ_AHEAD)) {
+		spl_filesystem_file_read_line(getThis(), intern, 1 TSRMLS_CC);
+	}
+	intern->u.file.current_line_num++;
+} /* }}} */
+
+/* {{{ proto void SplFileObject::setFlags(int flags)
+",1
+"  DEFINE_INLINE_TRACE() { visitor->trace(arrayBuffer); }
+",0
+" bool PluginInstance::Start(const GURL& url,
+                            char** const param_names,
+                            char** const param_values,
+                           int param_count,
+                           bool load_manually) {
+  load_manually_ = load_manually;
+  unsigned short mode = load_manually_ ? NP_FULL : NP_EMBED;
+  npp_->ndata = this;
+
+  NPError err = NPP_New(mode, param_count,
+      const_cast<char **>(param_names), const_cast<char **>(param_values));
+  return err == NPERR_NO_ERROR;
+}
+",0
+" static int hns_xgmac_get_sset_count(int stringset)
+ {
+	if (stringset == ETH_SS_STATS)
+ 		return ARRAY_SIZE(g_xgmac_stats_string);
+ 
+ 	return 0;
+}
+",1
+"void RenderWidgetHostViewAura::ExtendSelectionAndDelete(
+    size_t before, size_t after) {
+  RenderFrameHostImpl* rfh = GetFocusedFrame();
+  if (rfh)
+    rfh->ExtendSelectionAndDelete(before, after);
+}
+",0
+" PP_Bool LaunchSelLdr(PP_Instance instance,
+                     const char* alleged_url,
+                     int socket_count,
+                      void* imc_handles) {
+   std::vector<nacl::FileDescriptor> sockets;
+   IPC::Sender* sender = content::RenderThread::Get();
+   if (sender == NULL)
+     sender = g_background_thread_sender.Pointer()->get();
+ 
+  IPC::ChannelHandle channel_handle;
+   if (!sender->Send(new ChromeViewHostMsg_LaunchNaCl(
+          GURL(alleged_url), socket_count, &sockets,
+          &channel_handle))) {
+     return PP_FALSE;
+  }
+  bool invalid_handle = channel_handle.name.empty();
+#if defined(OS_POSIX)
+  if (!invalid_handle)
+    invalid_handle = (channel_handle.socket.fd == -1);
+#endif
+  if (!invalid_handle)
+    g_channel_handle_map.Get()[instance] = channel_handle;
+ 
+   CHECK(static_cast<int>(sockets.size()) == socket_count);
+   for (int i = 0; i < socket_count; i++) {
+    static_cast<nacl::Handle*>(imc_handles)[i] =
+        nacl::ToNativeHandle(sockets[i]);
+  }
+
+   return PP_TRUE;
+ }
+",1
+"static int transport_read_nonblocking(rdpTransport* transport)
+{
+	int status;
+
+	status = transport_read(transport, transport->ReceiveBuffer);
+
+	if (status <= 0)
+		return status;
+
+	Stream_Seek(transport->ReceiveBuffer, status);
+
+	return status;
+}
+",0
+" static int set_register(pegasus_t *pegasus, __u16 indx, __u8 data)
+ {
+ 	int ret;
+ 
+ 	ret = usb_control_msg(pegasus->usb, usb_sndctrlpipe(pegasus->usb, 0),
+ 			      PEGASUS_REQ_SET_REG, PEGASUS_REQT_WRITE, data,
+			      indx, &data, 1, 1000);
+ 	if (ret < 0)
+ 		netif_dbg(pegasus, drv, pegasus->net,
+ 			  ""%s returned %d\n"", __func__, ret);
+ 	return ret;
+ }
+",1
+"int fastcall __lock_page_killable(struct page *page)
+{
+	DEFINE_WAIT_BIT(wait, &page->flags, PG_locked);
+
+	return __wait_on_bit_lock(page_waitqueue(page), &wait,
+					sync_page_killable, TASK_KILLABLE);
+}
+",0
+" void *arm_dma_alloc(struct device *dev, size_t size, dma_addr_t *handle,
+ 		    gfp_t gfp, struct dma_attrs *attrs)
+ {
+	pgprot_t prot = __get_dma_pgprot(attrs, pgprot_kernel);
+ 	void *memory;
+ 
+ 	if (dma_alloc_from_coherent(dev, size, handle, &memory))
+		return memory;
+
+	return __dma_alloc(dev, size, handle, gfp, prot, false,
+			   __builtin_return_address(0));
+}
+",1
+"static void calcstepsizes(uint_fast16_t refstepsize, int numrlvls,
+  uint_fast16_t *stepsizes)
+{
+	int bandno;
+	int numbands;
+	uint_fast16_t expn;
+	uint_fast16_t mant;
+	expn = JPC_QCX_GETEXPN(refstepsize);
+ 	mant = JPC_QCX_GETMANT(refstepsize);
+ 	numbands = 3 * numrlvls - 2;
+ 	for (bandno = 0; bandno < numbands; ++bandno) {
+////jas_eprintf(""DEBUG %d %d %d %d %d\n"", bandno, expn, numrlvls, bandno, ((numrlvls - 1) - (numrlvls - 1 - ((bandno > 0) ? ((bandno + 2) / 3) : (0)))));
+ 		stepsizes[bandno] = JPC_QCX_MANT(mant) | JPC_QCX_EXPN(expn +
+ 		  (numrlvls - 1) - (numrlvls - 1 - ((bandno > 0) ? ((bandno + 2) / 3) : (0))));
+ 	}
+}
+",1
+"static int adjust_insn_aux_data(struct bpf_verifier_env *env, u32 prog_len,
+				u32 off, u32 cnt)
+{
+	struct bpf_insn_aux_data *new_data, *old_data = env->insn_aux_data;
+
+	if (cnt == 1)
+		return 0;
+	new_data = vzalloc(sizeof(struct bpf_insn_aux_data) * prog_len);
+	if (!new_data)
+		return -ENOMEM;
+	memcpy(new_data, old_data, sizeof(struct bpf_insn_aux_data) * off);
+	memcpy(new_data + off + cnt - 1, old_data + off,
+	       sizeof(struct bpf_insn_aux_data) * (prog_len - off - cnt + 1));
+	env->insn_aux_data = new_data;
+	vfree(old_data);
+	return 0;
+}
+",0
+" void BufferQueueConsumer::dump(String8& result, const char* prefix) const {
+    mCore->dump(result, prefix);
+ }
+",1
+"_exsltDateTruncateDate (exsltDateValPtr dt, exsltDateType type)
+{
+    if (dt == NULL)
+        return 1;
+
+    if ((type & XS_TIME) != XS_TIME) {
+        dt->value.date.hour = 0;
+        dt->value.date.min  = 0;
+        dt->value.date.sec  = 0.0;
+     }
+ 
+     if ((type & XS_GDAY) != XS_GDAY)
+        dt->value.date.day = 0;
+ 
+     if ((type & XS_GMONTH) != XS_GMONTH)
+        dt->value.date.mon = 0;
+ 
+     if ((type & XS_GYEAR) != XS_GYEAR)
+         dt->value.date.year = 0;
+
+    dt->type = type;
+
+    return 0;
+}
+",1
+"static int xfrm_exp_policy_notify(struct xfrm_policy *xp, int dir, const struct km_event *c)
+{
+	struct net *net = xp_net(xp);
+	struct sk_buff *skb;
+
+	skb = nlmsg_new(xfrm_polexpire_msgsize(xp), GFP_ATOMIC);
+	if (skb == NULL)
+		return -ENOMEM;
+
+	if (build_polexpire(skb, xp, dir, c) < 0)
+		BUG();
+
+	return xfrm_nlmsg_multicast(net, skb, 0, XFRMNLGRP_EXPIRE);
+}
+",0
+" static enum AVPixelFormat h263_get_format(AVCodecContext *avctx)
+ {
+     /* MPEG-4 Studio Profile only, not supported by hardware */
+     if (avctx->bits_per_raw_sample > 8) {
+        av_assert1(avctx->profile == FF_PROFILE_MPEG4_SIMPLE_STUDIO);
+         return avctx->pix_fmt;
+     }
+ 
+    if (avctx->codec->id == AV_CODEC_ID_MSS2)
+        return AV_PIX_FMT_YUV420P;
+
+    if (CONFIG_GRAY && (avctx->flags & AV_CODEC_FLAG_GRAY)) {
+        if (avctx->color_range == AVCOL_RANGE_UNSPECIFIED)
+            avctx->color_range = AVCOL_RANGE_MPEG;
+        return AV_PIX_FMT_GRAY8;
+    }
+
+    return avctx->pix_fmt = ff_get_format(avctx, avctx->codec->pix_fmts);
+}
+",1
+"IPC::PlatformFileForTransit ProxyChannelDelegate::ShareHandleWithRemote(
+    base::PlatformFile handle,
+    const IPC::SyncChannel& channel,
+    bool should_close_source) {
+  return content::BrokerGetFileHandleForProcess(handle, channel.peer_pid(),
+                                                should_close_source);
+}
+",1
+"__u32 secure_ipv6_id(const __be32 daddr[4])
+{
+	const struct keydata *keyptr;
+	__u32 hash[4];
+	keyptr = get_keyptr();
+	hash[0] = (__force __u32)daddr[0];
+	hash[1] = (__force __u32)daddr[1];
+	hash[2] = (__force __u32)daddr[2];
+	hash[3] = (__force __u32)daddr[3];
+	return half_md4_transform(hash, keyptr->secret);
+}
+",1
+" void __ip_select_ident(struct iphdr *iph, int segs)
+ {
+ 	static u32 ip_idents_hashrnd __read_mostly;
+ 	u32 hash, id;
+ 
+ 	net_get_random_once(&ip_idents_hashrnd, sizeof(ip_idents_hashrnd));
+ 
+ 	hash = jhash_3words((__force u32)iph->daddr,
+ 			    (__force u32)iph->saddr,
+			    iph->protocol,
+ 			    ip_idents_hashrnd);
+ 	id = ip_idents_reserve(hash, segs);
+ 	iph->id = htons(id);
+}
+",1
+"des3_encrypt_ecb(const unsigned char *key, int keysize,
+		const unsigned char *input, int length, unsigned char *output)
+{
+	unsigned char iv[EVP_MAX_IV_LENGTH] = { 0 };
+	unsigned char bKey[24] = { 0 };
+
+	if (keysize == 16) {
+		memcpy(&bKey[0], key, 16);
+		memcpy(&bKey[16], key, 8);
+	}
+	else {
+		memcpy(&bKey[0], key, 24);
+	}
+
+	return openssl_enc(EVP_des_ede3(), bKey, iv, input, length, output);
+}
+",0
+"void MockWebRTCPeerConnectionHandler::setRemoteDescription(const WebRTCVoidRequest& request, const WebRTCSessionDescriptionDescriptor& remoteDescription)
+{
+    if (!remoteDescription.isNull() && remoteDescription.type() == ""answer"") {
+        m_remoteDescription = remoteDescription;
+        postTask(new RTCVoidRequestTask(this, request, true));
+     } else
+        postTask(new RTCVoidRequestTask(this, request, false));
+}
+",1
+"static void kvm_unpin_pages(struct kvm *kvm, pfn_t pfn, unsigned long npages)
+{
+	unsigned long i;
+	for (i = 0; i < npages; ++i)
+		kvm_release_pfn_clean(pfn + i);
+}
+",1
+"void CrosLibrary::TestApi::SetBrightnessLibrary(
+    BrightnessLibrary* library, bool own) {
+  library_->brightness_lib_.SetImpl(library, own);
+}
+",1
+" void ServiceWorkerPaymentInstrument::OnPaymentAppInvoked(
+     mojom::PaymentHandlerResponsePtr response) {
+  DCHECK(delegate_);
+   if (delegate_ != nullptr) {
+     delegate_->OnInstrumentDetailsReady(response->method_name,
+                                         response->stringified_details);
+    delegate_ = nullptr;
+  }
+}
+",1
+" image_transform_png_set_expand_add(image_transform *this,
+    PNG_CONST image_transform **that, png_byte colour_type, png_byte bit_depth)
+ {
+    UNUSED(bit_depth)
+ 
+ this->next = *that;
+ *that = this;
+
+ /* 'expand' should do nothing for RGBA or GA input - no tRNS and the bit
+    * depth is at least 8 already.
+    */
+ return (colour_type & PNG_COLOR_MASK_ALPHA) == 0;
+}
+",1
+"BrowserInit::LaunchWithProfile::~LaunchWithProfile() {
+}
+",0
+"static int l2tp_ip6_backlog_recv(struct sock *sk, struct sk_buff *skb)
+{
+	int rc;
+
+	/* Charge it to the socket, dropping if the queue is full. */
+	rc = sock_queue_rcv_skb(sk, skb);
+	if (rc < 0)
+		goto drop;
+
+	return 0;
+
+drop:
+	IP_INC_STATS(&init_net, IPSTATS_MIB_INDISCARDS);
+	kfree_skb(skb);
+	return -1;
+}
+",0
+"static int ne2000_buffer_full(NE2000State *s)
+ {
+     int avail, index, boundary;
+ 
+     index = s->curpag << 8;
+     boundary = s->boundary << 8;
+     if (index < boundary)
+        return 1;
+    return 0;
+}
+",1
+"int perf_event_refresh(struct perf_event *event, int refresh)
+{
+	/*
+	 * not supported on inherited events
+	 */
+	if (event->attr.inherit || !is_sampling_event(event))
+		return -EINVAL;
+
+	atomic_add(refresh, &event->event_limit);
+	perf_event_enable(event);
+
+	return 0;
+}
+",0
+"int ssl3_send_alert(SSL *s, int level, int desc)
+{
+    /* Map tls/ssl alert value to correct one */
+    desc = s->method->ssl3_enc->alert_value(desc);
+    if (s->version == SSL3_VERSION && desc == SSL_AD_PROTOCOL_VERSION)
+        desc = SSL_AD_HANDSHAKE_FAILURE; /* SSL 3.0 does not have
+                                          * protocol_version alerts */
+                                           * protocol_version alerts */
+     if (desc < 0)
+         return -1;
+    /* If a fatal one, remove from cache */
+    if ((level == 2) && (s->session != NULL))
+        SSL_CTX_remove_session(s->session_ctx, s->session);
+ 
+     s->s3->alert_dispatch = 1;
+     s->s3->send_alert[0] = level;
+     * else data is still being written out, we will get written some time in
+     * the future
+     */
+    return -1;
+}
+",1
+"ProcRenderCreateConicalGradient(ClientPtr client)
+{
+    PicturePtr pPicture;
+    int len;
+    int error = 0;
+    xFixed *stops;
+    xRenderColor *colors;
+
+    REQUEST(xRenderCreateConicalGradientReq);
+
+    REQUEST_AT_LEAST_SIZE(xRenderCreateConicalGradientReq);
+
+    LEGAL_NEW_RESOURCE(stuff->pid, client);
+
+    len = (client->req_len << 2) - sizeof(xRenderCreateConicalGradientReq);
+    if (stuff->nStops > UINT32_MAX / (sizeof(xFixed) + sizeof(xRenderColor)))
+        return BadLength;
+    if (len != stuff->nStops * (sizeof(xFixed) + sizeof(xRenderColor)))
+        return BadLength;
+
+    stops = (xFixed *) (stuff + 1);
+    colors = (xRenderColor *) (stops + stuff->nStops);
+
+    pPicture =
+        CreateConicalGradientPicture(stuff->pid, &stuff->center, stuff->angle,
+                                     stuff->nStops, stops, colors, &error);
+    if (!pPicture)
+        return error;
+    /* security creation/labeling check */
+    error = XaceHook(XACE_RESOURCE_ACCESS, client, stuff->pid, PictureType,
+                     pPicture, RT_NONE, NULL, DixCreateAccess);
+    if (error != Success)
+        return error;
+    if (!AddResource(stuff->pid, PictureType, (void *) pPicture))
+        return BadAlloc;
+    return Success;
+}
+",0
+" int mif_validate(jas_stream_t *in)
+ {
+	uchar buf[MIF_MAGICLEN];
+ 	uint_fast32_t magic;
+ 	int i;
+ 	int n;
+
+	assert(JAS_STREAM_MAXPUTBACK >= MIF_MAGICLEN);
+
+	/* Read the validation data (i.e., the data used for detecting
+	  the format). */
+	if ((n = jas_stream_read(in, buf, MIF_MAGICLEN)) < 0) {
+		return -1;
+	}
+
+	/* Put the validation data back onto the stream, so that the
+	  stream position will not be changed. */
+	for (i = n - 1; i >= 0; --i) {
+		if (jas_stream_ungetc(in, buf[i]) == EOF) {
+			return -1;
+		}
+	}
+
+	/* Was enough data read? */
+	if (n < MIF_MAGICLEN) {
+		return -1;
+	}
+
+	/* Compute the signature value. */
+	magic = (JAS_CAST(uint_fast32_t, buf[0]) << 24) |
+	  (JAS_CAST(uint_fast32_t, buf[1]) << 16) |
+	  (JAS_CAST(uint_fast32_t, buf[2]) << 8) |
+	  buf[3];
+
+	/* Ensure that the signature is correct for this format. */
+	if (magic != MIF_MAGIC) {
+		return -1;
+	}
+
+	return 0;
+}
+",1
+" void ChromeMockRenderThread::OnMsgOpenChannelToExtension(
+    int routing_id, const std::string& source_extension_id,
+     const std::string& target_extension_id,
+    const std::string& channel_name, int* port_id) {
+   *port_id = 0;
+ }
+",1
+"rdpsnddbg_process(STREAM s)
+{
+	unsigned int pkglen;
+ 	static char *rest = NULL;
+ 	char *buf;
+ 
+ 	pkglen = s->end - s->p;
+ 	/* str_handle_lines requires null terminated strings */
+ 	buf = (char *) xmalloc(pkglen + 1);
+	STRNCPY(buf, (char *) s->p, pkglen + 1);
+
+	str_handle_lines(buf, &rest, rdpsnddbg_line_handler, NULL);
+
+	xfree(buf);
+}
+",1
+"native_handle* Parcel::readNativeHandle() const
+{
+ int numFds, numInts;
+ status_t err;
+    err = readInt32(&numFds);
+ if (err != NO_ERROR) return 0;
+    err = readInt32(&numInts);
+ if (err != NO_ERROR) return 0;
+
+    native_handle* h = native_handle_create(numFds, numInts);
+ if (!h) {
+ return 0;
+ }
+
+ 
+     for (int i=0 ; err==NO_ERROR && i<numFds ; i++) {
+         h->data[i] = dup(readFileDescriptor());
+        if (h->data[i] < 0) err = BAD_VALUE;
+     }
+     err = read(h->data + numFds, sizeof(int)*numInts);
+     if (err != NO_ERROR) {
+        native_handle_close(h);
+        native_handle_delete(h);
+        h = 0;
+ }
+ return h;
+}
+",1
+"xfs_perag_set_reclaim_tag(
+	struct xfs_perag	*pag)
+{
+	struct xfs_mount	*mp = pag->pag_mount;
+
+	lockdep_assert_held(&pag->pag_ici_lock);
+	if (pag->pag_ici_reclaimable++)
+		return;
+
+	/* propagate the reclaim tag up into the perag radix tree */
+	spin_lock(&mp->m_perag_lock);
+	radix_tree_tag_set(&mp->m_perag_tree, pag->pag_agno,
+			   XFS_ICI_RECLAIM_TAG);
+	spin_unlock(&mp->m_perag_lock);
+
+	/* schedule periodic background inode reclaim */
+	xfs_reclaim_work_queue(mp);
+
+	trace_xfs_perag_set_reclaim(mp, pag->pag_agno, -1, _RET_IP_);
+}
+",0
+"void GLES2DecoderImpl::DoScheduleCALayerInUseQueryCHROMIUM(
+    GLsizei count,
+    const volatile GLuint* textures) {
+  std::vector<gl::GLSurface::CALayerInUseQuery> queries;
+  queries.reserve(count);
+  for (GLsizei i = 0; i < count; ++i) {
+    gl::GLImage* image = nullptr;
+    GLuint texture_id = textures[i];
+    if (texture_id) {
+      TextureRef* ref = texture_manager()->GetTexture(texture_id);
+      if (!ref) {
+        LOCAL_SET_GL_ERROR(GL_INVALID_VALUE,
+                           ""glScheduleCALayerInUseQueryCHROMIUM"",
+                           ""unknown texture"");
+        return;
+      }
+      Texture::ImageState image_state;
+      image = ref->texture()->GetLevelImage(ref->texture()->target(), 0,
+                                            &image_state);
+    }
+    gl::GLSurface::CALayerInUseQuery query;
+    query.image = image;
+    query.texture = texture_id;
+    queries.push_back(query);
+  }
+
+  surface_->ScheduleCALayerInUseQuery(std::move(queries));
+}
+",0
+"static int key_notify_policy_flush(const struct km_event *c)
+{
+	struct sk_buff *skb_out;
+	struct sadb_msg *hdr;
+
+	skb_out = alloc_skb(sizeof(struct sadb_msg) + 16, GFP_ATOMIC);
+	if (!skb_out)
+		return -ENOBUFS;
+	hdr = (struct sadb_msg *) skb_put(skb_out, sizeof(struct sadb_msg));
+	hdr->sadb_msg_type = SADB_X_SPDFLUSH;
+	hdr->sadb_msg_seq = c->seq;
+ 	hdr->sadb_msg_pid = c->portid;
+ 	hdr->sadb_msg_version = PF_KEY_V2;
+ 	hdr->sadb_msg_errno = (uint8_t) 0;
+ 	hdr->sadb_msg_len = (sizeof(struct sadb_msg) / sizeof(uint64_t));
+ 	pfkey_broadcast(skb_out, GFP_ATOMIC, BROADCAST_ALL, NULL, c->net);
+ 	return 0;
+
+}
+",1
+"static int crypto_report_akcipher(struct sk_buff *skb, struct crypto_alg *alg)
+ {
+ 	struct crypto_report_akcipher rakcipher;
+ 
+	strlcpy(rakcipher.type, ""akcipher"", sizeof(rakcipher.type));
+ 
+ 	if (nla_put(skb, CRYPTOCFGA_REPORT_AKCIPHER,
+ 		    sizeof(struct crypto_report_akcipher), &rakcipher))
+		goto nla_put_failure;
+	return 0;
+
+nla_put_failure:
+	return -EMSGSIZE;
+}
+",1
+"ossl_cipher_initialize(VALUE self, VALUE str)
+{
+     EVP_CIPHER_CTX *ctx;
+     const EVP_CIPHER *cipher;
+     char *name;
+    unsigned char dummy_key[EVP_MAX_KEY_LENGTH] = { 0 };
+ 
+     name = StringValueCStr(str);
+     GetCipherInit(self, ctx);
+    if (ctx) {
+	ossl_raise(rb_eRuntimeError, ""Cipher already inititalized!"");
+    }
+    AllocCipher(self, ctx);
+     if (!(cipher = EVP_get_cipherbyname(name))) {
+ 	ossl_raise(rb_eRuntimeError, ""unsupported cipher algorithm (%""PRIsVALUE"")"", str);
+     }
+    /*
+     * EVP_CipherInit_ex() allows to specify NULL to key and IV, however some
+     * ciphers don't handle well (OpenSSL's bug). [Bug #2768]
+     *
+     * The EVP which has EVP_CIPH_RAND_KEY flag (such as DES3) allows
+     * uninitialized key, but other EVPs (such as AES) does not allow it.
+     * Calling EVP_CipherUpdate() without initializing key causes SEGV so we
+     * set the data filled with ""\0"" as the key by default.
+     */
+    if (EVP_CipherInit_ex(ctx, cipher, NULL, dummy_key, NULL, -1) != 1)
+ 	ossl_raise(eCipherError, NULL);
+ 
+     return self;
+}
+",1
+"long Track::GetFirst(const BlockEntry*& pBlockEntry) const {
+ const Cluster* pCluster = m_pSegment->GetFirst();
+
+ for (int i = 0;;) {
+ if (pCluster == NULL) {
+      pBlockEntry = GetEOS();
+ return 1;
+ }
+
+ if (pCluster->EOS()) {
+ if (m_pSegment->DoneParsing()) {
+        pBlockEntry = GetEOS();
+ return 1;
+ }
+
+      pBlockEntry = 0;
+ return E_BUFFER_NOT_FULL;
+ }
+
+ long status = pCluster->GetFirst(pBlockEntry);
+
+ if (status < 0) // error
+ return status;
+
+ if (pBlockEntry == 0) { // empty cluster
+      pCluster = m_pSegment->GetNext(pCluster);
+ continue;
+ }
+
+ for (;;) {
+ const Block* const pBlock = pBlockEntry->GetBlock();
+      assert(pBlock);
+
+ const long long tn = pBlock->GetTrackNumber();
+
+ if ((tn == m_info.number) && VetEntry(pBlockEntry))
+ return 0;
+
+ const BlockEntry* pNextEntry;
+
+      status = pCluster->GetNext(pBlockEntry, pNextEntry);
+
+ if (status < 0) // error
+ return status;
+
+ if (pNextEntry == 0)
+ break;
+
+      pBlockEntry = pNextEntry;
+ }
+
+ ++i;
+
+ if (i >= 100)
+ break;
+
+    pCluster = m_pSegment->GetNext(pCluster);
+ }
+
+
+  pBlockEntry = GetEOS(); // so we can return a non-NULL value
+ return 1;
+}
+",0
+"conv_swap4bytes(const UChar* s, const UChar* end, UChar* conv)
+{
+  while (s < end) {
+    *conv++ = s[3];
+    *conv++ = s[2];
+    *conv++ = s[1];
+    *conv++ = s[0];
+    s += 4;
+  }
+}
+",0
+" static MagickBooleanType CheckMemoryOverflow(const size_t count,
+   const size_t quantum)
+ {
+  size_t
+    size;
+
+  size=count*quantum;
+  if ((count == 0) || (quantum != (size/count)))
+    {
+      errno=ENOMEM;
+      return(MagickTrue);
+    }
+  return(MagickFalse);
+}
+",0
+" static size_t safecat(char *buffer, size_t bufsize, size_t pos,
+   PNG_CONST char *cat)
+ {
+    while (pos < bufsize && cat != NULL && *cat != 0)
+       buffer[pos++] = *cat++;
+
+ if (pos >= bufsize)
+      pos = bufsize-1;
+
+   buffer[pos] = 0;
+ return pos;
+}
+",1
+"void AffineTransform::recompose(const DecomposedType& decomp)
+{
+    this->setA(decomp.remainderA);
+    this->setB(decomp.remainderB);
+    this->setC(decomp.remainderC);
+    this->setD(decomp.remainderD);
+    this->setE(decomp.translateX);
+    this->setF(decomp.translateY);
+    this->rotateRadians(decomp.angle);
+    this->scale(decomp.scaleX, decomp.scaleY);
+}
+",0
+"DateTimeFieldElement::DateTimeFieldElement(Document* document, FieldOwner& fieldOwner)
+    : HTMLElement(spanTag, document)
+    , m_fieldOwner(&fieldOwner)
+ {
+     setAttribute(roleAttr, ""spinbutton"");
+ }
+",1
+"static void update_open_stateflags(struct nfs4_state *state, mode_t open_flags)
+ {
+	switch (open_flags) {
+ 		case FMODE_WRITE:
+ 			state->n_wronly++;
+ 			break;
+		case FMODE_READ:
+			state->n_rdonly++;
+			break;
+ 		case FMODE_READ|FMODE_WRITE:
+ 			state->n_rdwr++;
+ 	}
+	nfs4_state_set_mode_locked(state, state->state | open_flags);
+ }
+",1
+"static ssize_t driver_override_show(struct device *dev,
+ 				    struct device_attribute *attr, char *buf)
+ {
+ 	struct platform_device *pdev = to_platform_device(dev);
+ 
+	return sprintf(buf, ""%s\n"", pdev->driver_override);
+ }
+",1
+"void InspectorResourceAgent::markResourceAsCached(unsigned long identifier)
+{
+    m_frontend->requestServedFromCache(IdentifiersFactory::requestId(identifier));
+}
+",0
+"int Textfield::OnDragUpdated(const ui::DropTargetEvent& event) {
+  DCHECK(CanDrop(event.data()));
+  gfx::RenderText* render_text = GetRenderText();
+  const gfx::Range& selection = render_text->selection();
+  drop_cursor_position_ = render_text->FindCursorPosition(event.location());
+  bool in_selection =
+      !selection.is_empty() &&
+      selection.Contains(gfx::Range(drop_cursor_position_.caret_pos()));
+  drop_cursor_visible_ = !in_selection;
+  OnCaretBoundsChanged();
+  SchedulePaint();
+
+  StopBlinkingCursor();
+
+  if (initiating_drag_) {
+    if (in_selection)
+      return ui::DragDropTypes::DRAG_NONE;
+    return event.IsControlDown() ? ui::DragDropTypes::DRAG_COPY
+                                 : ui::DragDropTypes::DRAG_MOVE;
+  }
+  return ui::DragDropTypes::DRAG_COPY | ui::DragDropTypes::DRAG_MOVE;
+}
+",0
+"static int des_setkey(struct crypto_tfm *tfm, const u8 *key,
+		      unsigned int keylen)
+{
+	struct des_ctx *dctx = crypto_tfm_ctx(tfm);
+	u32 *flags = &tfm->crt_flags;
+	u32 tmp[DES_EXPKEY_WORDS];
+	int ret;
+
+	/* Expand to tmp */
+	ret = des_ekey(tmp, key);
+
+	if (unlikely(ret == 0) && (*flags & CRYPTO_TFM_REQ_WEAK_KEY)) {
+		*flags |= CRYPTO_TFM_RES_WEAK_KEY;
+		return -EINVAL;
+	}
+
+	/* Copy to output */
+	memcpy(dctx->expkey, tmp, sizeof(dctx->expkey));
+
+	return 0;
+}
+",0
+"FileTransfer::AddDownloadFilenameRemap(char const *source_name,char const *target_name) {
+	if(!download_filename_remaps.IsEmpty()) {
+		download_filename_remaps += "";"";
+	}
+	download_filename_remaps += source_name;
+	download_filename_remaps += ""="";
+	download_filename_remaps += target_name;
+}
+",0
+"void UnloadController::TabDetachedAt(TabContents* contents, int index) {
+   TabDetachedImpl(contents);
+ }
+",1
+"static ssize_t sched_mc_power_savings_show(struct sysdev_class *class,
+					   struct sysdev_class_attribute *attr,
+					   char *page)
+{
+	return sprintf(page, ""%u\n"", sched_mc_power_savings);
+}
+",0
+" void WebPluginDelegateImpl::SendJavaScriptStream(const GURL& url,
+                                                  const std::string& result,
+                                                  bool success,
+                                                 bool notify_needed,
+                                                 intptr_t notify_data) {
+  instance()->SendJavaScriptStream(url, result, success, notify_needed,
+                                   notify_data);
+ }
+",1
+"static void disk_seqf_stop(struct seq_file *seqf, void *v)
+{
+	struct class_dev_iter *iter = seqf->private;
+
+	/* stop is called even after start failed :-( */
+ 	if (iter) {
+ 		class_dev_iter_exit(iter);
+ 		kfree(iter);
+ 	}
+ }
+",1
+"  CacheThread() : base::Thread(""CacheThread_BlockFile"") {
+    CHECK(
+        StartWithOptions(base::Thread::Options(base::MessageLoop::TYPE_IO, 0)));
+  }
+",0
+"static Bool leap_year(u32 year) {
+	year += 1900;
+	return (year % 4) == 0 && ((year % 100) != 0 || (year % 400) == 0) ? GF_TRUE : GF_FALSE;
+}
+",0
+"static inline bool use_goto_tb(DisasContext *s, target_ulong pc)
+{
+#ifndef CONFIG_USER_ONLY
+    return (pc & TARGET_PAGE_MASK) == (s->tb->pc & TARGET_PAGE_MASK) ||
+           (pc & TARGET_PAGE_MASK) == (s->pc_start & TARGET_PAGE_MASK);
+#else
+    return true;
+#endif
+}
+",0
+"long Chapters::Atom::ParseDisplay(
+    IMkvReader* pReader,
+    long long pos,
+    long long size)
+{
+    if (!ExpandDisplaysArray())
+        return -1;
+    Display& d = m_displays[m_displays_count++];
+    d.Init();
+    return d.Parse(pReader, pos, size);
+}
+",1
+"  void SetMetrics(OomInterventionMetrics metrics) {
+    metrics_ = std::make_unique<OomInterventionMetrics>();
+    *metrics_ = metrics;
+  }
+",0
+"static void withActiveWindowAndFirstWindowAttributeAttributeGetterCallback(v8::Local<v8::String>, const v8::PropertyCallbackInfo<v8::Value>& info)
+{
+    TRACE_EVENT_SET_SAMPLING_STATE(""Blink"", ""DOMGetter"");
+    TestObjectV8Internal::withActiveWindowAndFirstWindowAttributeAttributeGetter(info);
+    TRACE_EVENT_SET_SAMPLING_STATE(""V8"", ""V8Execution"");
+}
+",0
+"seamless_process(STREAM s)
+ {
+ 	unsigned int pkglen;
+ 	char *buf;
+ 
+ 	pkglen = s->end - s->p;
+ 	/* str_handle_lines requires null terminated strings */
+	buf = xmalloc(pkglen + 1);
+	STRNCPY(buf, (char *) s->p, pkglen + 1);
+	str_handle_lines(buf, &seamless_rest, seamless_line_handler, NULL);
+
+	xfree(buf);
+}
+",1
+"bool WebMediaPlayerMS::HasSingleSecurityOrigin() const {
+  DCHECK(thread_checker_.CalledOnValidThread());
+  return true;
+}
+",1
+"static void enforcedRangeLongLongAttrAttributeSetterCallback(v8::Local<v8::String>, v8::Local<v8::Value> jsValue, const v8::PropertyCallbackInfo<void>& info)
+{
+    TRACE_EVENT_SET_SAMPLING_STATE(""Blink"", ""DOMSetter"");
+    TestObjectV8Internal::enforcedRangeLongLongAttrAttributeSetter(jsValue, info);
+    TRACE_EVENT_SET_SAMPLING_STATE(""V8"", ""V8Execution"");
+}
+",0
+"static ssize_t ib_uverbs_comp_event_read(struct file *filp, char __user *buf,
+					 size_t count, loff_t *pos)
+{
+	struct ib_uverbs_completion_event_file *comp_ev_file =
+		filp->private_data;
+
+	return ib_uverbs_event_read(&comp_ev_file->ev_queue,
+				    comp_ev_file->uobj.ufile, filp,
+				    buf, count, pos,
+				    sizeof(struct ib_uverbs_comp_event_desc));
+}
+",0
+"aodv_extension(netdissect_options *ndo,
+               const struct aodv_ext *ep, u_int length)
+ {
+ 	const struct aodv_hello *ah;
+ 
+ 	switch (ep->type) {
+ 	case AODV_EXT_HELLO:
+ 		ah = (const struct aodv_hello *)(const void *)ep;
+ 		ND_TCHECK(*ah);
+ 		if (length < sizeof(struct aodv_hello))
+ 			goto trunc;
+ 		ND_PRINT((ndo, ""\n\text HELLO %ld ms"",
+ 		    (unsigned long)EXTRACT_32BITS(&ah->interval)));
+ 		break;
+
+	default:
+		ND_PRINT((ndo, ""\n\text %u %u"", ep->type, ep->length));
+		break;
+	}
+	return;
+
+trunc:
+	ND_PRINT((ndo, "" [|hello]""));
+}
+",1
+"map_id_range_down_base(unsigned extents, struct uid_gid_map *map, u32 id, u32 count)
+{
+	unsigned idx;
+	u32 first, last, id2;
+
+	id2 = id + count - 1;
+
+	/* Find the matching extent */
+	for (idx = 0; idx < extents; idx++) {
+		first = map->extent[idx].first;
+		last = first + map->extent[idx].count - 1;
+		if (id >= first && id <= last &&
+		    (id2 >= first && id2 <= last))
+			return &map->extent[idx];
+	}
+	return NULL;
+}
+",0
+"status_t OMXNodeInstance::allocateBufferWithBackup(
+        OMX_U32 portIndex, const sp<IMemory> &params,
+        OMX::buffer_id *buffer, OMX_U32 allottedSize) {
+ Mutex::Autolock autoLock(mLock);
+ if (allottedSize > params->size()) {
+
+         return BAD_VALUE;
+     }
+ 
+    BufferMeta *buffer_meta = new BufferMeta(params, true);
+ 
+     OMX_BUFFERHEADERTYPE *header;
+ 
+    OMX_ERRORTYPE err = OMX_AllocateBuffer(
+            mHandle, &header, portIndex, buffer_meta, allottedSize);
+ if (err != OMX_ErrorNone) {
+        CLOG_ERROR(allocateBufferWithBackup, err,
+                SIMPLE_BUFFER(portIndex, (size_t)allottedSize, params->pointer()));
+ delete buffer_meta;
+        buffer_meta = NULL;
+
+ *buffer = 0;
+
+ return StatusFromOMXError(err);
+ }
+
+    CHECK_EQ(header->pAppPrivate, buffer_meta);
+
+ *buffer = makeBufferID(header);
+
+    addActiveBuffer(portIndex, *buffer);
+
+    sp<GraphicBufferSource> bufferSource(getGraphicBufferSource());
+ if (bufferSource != NULL && portIndex == kPortIndexInput) {
+        bufferSource->addCodecBuffer(header);
+ }
+
+    CLOG_BUFFER(allocateBufferWithBackup, NEW_BUFFER_FMT(*buffer, portIndex, ""%zu@%p :> %u@%p"",
+            params->size(), params->pointer(), allottedSize, header->pBuffer));
+
+ return OK;
+}
+",1
+" static void ReconfigureImpl(Handle<JSObject> object,
+ Handle<FixedArrayBase> store, uint32_t entry,
+ Handle<Object> value,
+ PropertyAttributes attributes) {
+ Handle<SeededNumberDictionary> dictionary =
+ JSObject::NormalizeElements(object);
+ FixedArray::cast(*store)->set(1, *dictionary);
+ uint32_t length = static_cast<uint32_t>(store->length()) - 2;
+ if (entry >= length) {
+      entry = dictionary->FindEntry(entry - length) + length;
+ }
+ SlowSloppyArgumentsElementsAccessor::ReconfigureImpl(object, store, entry,
+                                                         value, attributes);
+ }
+",0
+"static unsigned int readuint(FILE * f, int bigendian)
+{
+    unsigned char c1, c2, c3, c4;
+    if (!fread(&c1, 1, 1, f)) {
+        fprintf(stderr,
+                ""\nError: fread return a number of element different from the expected.\n"");
+        return 0;
+    }
+    if (!fread(&c2, 1, 1, f)) {
+        fprintf(stderr,
+                ""\nError: fread return a number of element different from the expected.\n"");
+        return 0;
+    }
+    if (!fread(&c3, 1, 1, f)) {
+        fprintf(stderr,
+                ""\nError: fread return a number of element different from the expected.\n"");
+        return 0;
+    }
+    if (!fread(&c4, 1, 1, f)) {
+        fprintf(stderr,
+                ""\nError: fread return a number of element different from the expected.\n"");
+        return 0;
+    }
+    if (bigendian) {
+        return (unsigned int)(c1 << 24) + (unsigned int)(c2 << 16) + (unsigned int)(
+                   c3 << 8) + c4;
+    } else {
+        return (unsigned int)(c4 << 24) + (unsigned int)(c3 << 16) + (unsigned int)(
+                   c2 << 8) + c1;
+    }
+}
+",0
+"static long futex_wait_restart(struct restart_block *restart)
+{
+	u32 __user *uaddr = (u32 __user *)restart->futex.uaddr;
+	int fshared = 0;
+	ktime_t t, *tp = NULL;
+
+	if (restart->futex.flags & FLAGS_HAS_TIMEOUT) {
+		t.tv64 = restart->futex.time;
+		tp = &t;
+	}
+	restart->fn = do_no_restart_syscall;
+	if (restart->futex.flags & FLAGS_SHARED)
+		fshared = 1;
+	return (long)futex_wait(uaddr, fshared, restart->futex.val, tp,
+				restart->futex.bitset,
+				restart->futex.flags & FLAGS_CLOCKRT);
+}
+",0
+"void OfflinePageModelTaskified::OnTaskQueueIsIdle() {}
+",0
+"void GpuProcessHostUIShim::OnAcceleratedSurfaceNew(
+    const GpuHostMsg_AcceleratedSurfaceNew_Params& params) {
+  RenderWidgetHostViewPort* view = GetRenderWidgetHostViewFromSurfaceID(
+       params.surface_id);
+   if (!view)
+     return;
+   view->AcceleratedSurfaceNew(
+      params.width, params.height, params.surface_handle);
+ }
+",1
+"bool Browser::IsPopup(const TabContents* source) const {
+  return !!(type() & TYPE_POPUP);
+}
+",0
+"PassRefPtr<DocumentFragment> XSLTProcessor::transformToFragment(Node* sourceNode, Document* outputDoc)
+{
+    String resultMIMEType;
+    String resultString;
+    String resultEncoding;
+
+    if (outputDoc->isHTMLDocument())
+        resultMIMEType = ""text/html"";
+ 
+     if (!transformToString(sourceNode, resultMIMEType, resultString, resultEncoding))
+         return 0;
+    return createFragmentFromSource(resultString, resultMIMEType, outputDoc);
+ }
+",1
+"void CameraSource::signalBufferReturned(MediaBuffer *buffer) {
+    ALOGV(""signalBufferReturned: %p"", buffer->data());
+ Mutex::Autolock autoLock(mLock);
+
+     for (List<sp<IMemory> >::iterator it = mFramesBeingEncoded.begin();
+          it != mFramesBeingEncoded.end(); ++it) {
+         if ((*it)->pointer() ==  buffer->data()) {
+             releaseOneRecordingFrame((*it));
+             mFramesBeingEncoded.erase(it);
+             ++mNumFramesEncoded;
+            buffer->setObserver(0);
+            buffer->release();
+            mFrameCompleteCondition.signal();
+ return;
+ }
+ }
+    CHECK(!""signalBufferReturned: bogus buffer"");
+}
+",1
+"void WebContentsImpl::DidFailProvisionalLoadWithError(
+    RenderViewHost* render_view_host,
+    const ViewHostMsg_DidFailProvisionalLoadWithError_Params& params) {
+  VLOG(1) << ""Failed Provisional Load: "" << params.url.possibly_invalid_spec()
+          << "", error_code: "" << params.error_code
+          << "", error_description: "" << params.error_description
+          << "", is_main_frame: "" << params.is_main_frame
+          << "", showing_repost_interstitial: "" <<
+            params.showing_repost_interstitial
+          << "", frame_id: "" << params.frame_id;
+  GURL validated_url(params.url);
+  RenderProcessHost* render_process_host =
+      render_view_host->GetProcess();
+  RenderViewHost::FilterURL(render_process_host, false, &validated_url);
+
+  if (net::ERR_ABORTED == params.error_code) {
+    if (ShowingInterstitialPage()) {
+      LOG(WARNING) << ""Discarding message during interstitial."";
+       return;
+     }
+ 
+     render_manager_.RendererAbortedProvisionalLoad(render_view_host);
+   }
+ 
+   FOR_EACH_OBSERVER(WebContentsObserver,
+                     observers_,
+                     DidFailProvisionalLoad(params.frame_id,
+                                           params.is_main_frame,
+                                           validated_url,
+                                           params.error_code,
+                                           params.error_description,
+                                           render_view_host));
+}
+",1
+" PHP_FUNCTION(mcrypt_module_is_block_algorithm_mode)
+ {
+ 	MCRYPT_GET_MODE_DIR_ARGS(modes_dir)
+ 	if (mcrypt_module_is_block_algorithm_mode(module, dir) == 1) {
+ 		RETURN_TRUE;
+ 	} else {
+		RETURN_FALSE;
+	}
+}
+",1
+"int hashtable_set(hashtable_t *hashtable,
+                  const char *key, size_t serial,
+                  json_t *value)
+{
+    pair_t *pair;
+    bucket_t *bucket;
+     size_t hash, index;
+ 
+     /* rehash if the load ratio exceeds 1 */
+    if(hashtable->size >= num_buckets(hashtable))
+         if(hashtable_do_rehash(hashtable))
+             return -1;
+ 
+     hash = hash_str(key);
+    index = hash % num_buckets(hashtable);
+     bucket = &hashtable->buckets[index];
+     pair = hashtable_find_pair(hashtable, bucket, key, hash);
+ 
+    if(pair)
+    {
+        json_decref(pair->value);
+        pair->value = value;
+    }
+    else
+    {
+        /* offsetof(...) returns the size of pair_t without the last,
+           flexible member. This way, the correct amount is
+           allocated. */
+        pair = jsonp_malloc(offsetof(pair_t, key) + strlen(key) + 1);
+        if(!pair)
+            return -1;
+
+        pair->hash = hash;
+        pair->serial = serial;
+        strcpy(pair->key, key);
+        pair->value = value;
+        list_init(&pair->list);
+
+        insert_to_bucket(hashtable, bucket, &pair->list);
+
+        hashtable->size++;
+    }
+    return 0;
+}
+",1
+" set_text_distance(gs_point *pdist, double dx, double dy, const gs_matrix *pmat)
+ {
+    int code = gs_distance_transform_inverse(dx, dy, pmat, pdist);
+     double rounded;
+ 
+     if (code == gs_error_undefinedresult) {
+         /* The CTM is degenerate.
+            Can't know the distance in user space.
+    } else if (code < 0)
+        return code;
+    /* If the distance is very close to integers, round it. */
+    if (fabs(pdist->x - (rounded = floor(pdist->x + 0.5))) < 0.0005)
+        pdist->x = rounded;
+    if (fabs(pdist->y - (rounded = floor(pdist->y + 0.5))) < 0.0005)
+        pdist->y = rounded;
+    return 0;
+}
+",1
+" SPL_METHOD(GlobIterator, count)
+ {
+ 	spl_filesystem_object *intern = (spl_filesystem_object*)zend_object_store_get_object(getThis() TSRMLS_CC);
+ 	if (zend_parse_parameters_none() == FAILURE) {
+ 		return;
+ 	}
+
+	if (php_stream_is(intern->u.dir.dirp ,&php_glob_stream_ops)) {
+		RETURN_LONG(php_glob_stream_get_count(intern->u.dir.dirp, NULL));
+	} else {
+		/* should not happen */
+		php_error_docref(NULL TSRMLS_CC, E_ERROR, ""GlobIterator lost glob state"");
+	}
+}
+",1
+"MagickExport int ErrorBlob(const Image *image)
+{
+  BlobInfo
+    *magick_restrict blob_info;
+
+  assert(image != (Image *) NULL);
+  assert(image->signature == MagickCoreSignature);
+  if (image->debug != MagickFalse)
+    (void) LogMagickEvent(TraceEvent,GetMagickModule(),""..."");
+  assert(image->blob != (BlobInfo *) NULL);
+  assert(image->blob->type != UndefinedStream);
+  blob_info=image->blob;
+  switch (blob_info->type)
+  {
+    case UndefinedStream:
+    case StandardStream:
+      break;
+    case FileStream:
+    case PipeStream:
+    {
+      blob_info->error=ferror(blob_info->file_info.file);
+      break;
+    }
+    case ZipStream:
+    {
+#if defined(MAGICKCORE_ZLIB_DELEGATE)
+      (void) gzerror(blob_info->file_info.gzfile,&blob_info->error);
+#endif
+      break;
+    }
+    case BZipStream:
+    {
+#if defined(MAGICKCORE_BZLIB_DELEGATE)
+      (void) BZ2_bzerror(blob_info->file_info.bzfile,&blob_info->error);
+#endif
+      break;
+    }
+    case FifoStream:
+    {
+      blob_info->error=0;
+      break;
+    }
+    case BlobStream:
+      break;
+  }
+  return(blob_info->error);
+}
+",0
+"void Editor::RevealSelectionAfterEditingOperation(
+    const ScrollAlignment& alignment,
+    RevealExtentOption reveal_extent_option) {
+  if (prevent_reveal_selection_)
+    return;
+  if (!GetFrame().Selection().IsAvailable())
+    return;
+   GetFrame().Selection().RevealSelection(alignment, reveal_extent_option);
+ }
+",0
+"flush_signal_handlers(struct task_struct *t, int force_default)
+{
+	int i;
+	struct k_sigaction *ka = &t->sighand->action[0];
+	for (i = _NSIG ; i != 0 ; i--) {
+ 		if (force_default || ka->sa.sa_handler != SIG_IGN)
+ 			ka->sa.sa_handler = SIG_DFL;
+ 		ka->sa.sa_flags = 0;
+ 		sigemptyset(&ka->sa.sa_mask);
+ 		ka++;
+ 	}
+}
+",1
+"timeval_to_jiffies(const struct timeval *value)
+{
+	unsigned long sec = value->tv_sec;
+	long usec = value->tv_usec;
+
+	if (sec >= MAX_SEC_IN_JIFFIES){
+		sec = MAX_SEC_IN_JIFFIES;
+		usec = 0;
+	}
+	return (((u64)sec * SEC_CONVERSION) +
+		(((u64)usec * USEC_CONVERSION + USEC_ROUND) >>
+		 (USEC_JIFFIE_SC - SEC_JIFFIE_SC))) >> SEC_JIFFIE_SC;
+}
+",0
+"void GaiaCookieManagerService::ForceOnCookieChangedProcessing() {
+  GURL google_url = GaiaUrls::GetInstance()->google_url();
+  std::unique_ptr<net::CanonicalCookie> cookie(net::CanonicalCookie::Create(
+      google_url, kGaiaCookieName, std::string(), ""."" + google_url.host(),
+      std::string(), base::Time(), base::Time(), false, false,
+      net::CookieSameSite::DEFAULT_MODE, false, net::COOKIE_PRIORITY_DEFAULT));
+  OnCookieChanged(*cookie, net::CookieStore::ChangeCause::UNKNOWN_DELETION);
+}
+",0
+"struct sctp_association *sctp_id2assoc(struct sock *sk, sctp_assoc_t id)
+{
+	struct sctp_association *asoc = NULL;
+
+	/* If this is not a UDP-style socket, assoc id should be ignored. */
+	if (!sctp_style(sk, UDP)) {
+		/* Return NULL if the socket state is not ESTABLISHED. It
+		 * could be a TCP-style listening socket or a socket which
+		 * hasn't yet called connect() to establish an association.
+		 */
+		if (!sctp_sstate(sk, ESTABLISHED) && !sctp_sstate(sk, CLOSING))
+			return NULL;
+
+		/* Get the first and the only association from the list. */
+		if (!list_empty(&sctp_sk(sk)->ep->asocs))
+			asoc = list_entry(sctp_sk(sk)->ep->asocs.next,
+					  struct sctp_association, asocs);
+		return asoc;
+	}
+
+	/* Otherwise this is a UDP-style socket. */
+	if (!id || (id == (sctp_assoc_t)-1))
+		return NULL;
+
+	spin_lock_bh(&sctp_assocs_id_lock);
+	asoc = (struct sctp_association *)idr_find(&sctp_assocs_id, (int)id);
+	spin_unlock_bh(&sctp_assocs_id_lock);
+
+	if (!asoc || (asoc->base.sk != sk) || asoc->base.dead)
+		return NULL;
+
+	return asoc;
+}
+",0
+"static inline void vmxnet3_ring_init(PCIDevice *d,
+				     Vmxnet3Ring *ring,
+                                     hwaddr pa,
+                                     size_t size,
+                                     size_t cell_size,
+                                     bool zero_region)
+{
+    ring->pa = pa;
+    ring->size = size;
+    ring->cell_size = cell_size;
+    ring->gen = VMXNET3_INIT_GEN;
+    ring->next = 0;
+
+    if (zero_region) {
+        vmw_shmem_set(d, pa, 0, size * cell_size);
+    }
+}
+",0
+" ImageBitmapFactories::ImageBitmapLoader::ImageBitmapLoader(
+     ImageBitmapFactories& factory,
+     base::Optional<IntRect> crop_rect,
+     ScriptState* script_state,
+     const ImageBitmapOptions* options)
+    : loader_(
+           FileReaderLoader::Create(FileReaderLoader::kReadAsArrayBuffer, this)),
+       factory_(&factory),
+       resolver_(ScriptPromiseResolver::Create(script_state)),
+       crop_rect_(crop_rect),
+       options_(options) {}
+",1
+"v8::Local<v8::Object> V8InjectedScriptHost::create(v8::Local<v8::Context> context, V8InspectorImpl* inspector)
+ {
+     v8::Isolate* isolate = inspector->isolate();
+     v8::Local<v8::Object> injectedScriptHost = v8::Object::New(isolate);
+     v8::Local<v8::External> debuggerExternal = v8::External::New(isolate, inspector);
+     setFunctionProperty(context, injectedScriptHost, ""internalConstructorName"", V8InjectedScriptHost::internalConstructorNameCallback, debuggerExternal);
+     setFunctionProperty(context, injectedScriptHost, ""formatAccessorsAsProperties"", V8InjectedScriptHost::formatAccessorsAsProperties, debuggerExternal);
+    setFunctionProperty(context, injectedScriptHost, ""subtype"", V8InjectedScriptHost::subtypeCallback, debuggerExternal);
+    setFunctionProperty(context, injectedScriptHost, ""getInternalProperties"", V8InjectedScriptHost::getInternalPropertiesCallback, debuggerExternal);
+    setFunctionProperty(context, injectedScriptHost, ""objectHasOwnProperty"", V8InjectedScriptHost::objectHasOwnPropertyCallback, debuggerExternal);
+    setFunctionProperty(context, injectedScriptHost, ""bind"", V8InjectedScriptHost::bindCallback, debuggerExternal);
+    setFunctionProperty(context, injectedScriptHost, ""proxyTargetValue"", V8InjectedScriptHost::proxyTargetValueCallback, debuggerExternal);
+    return injectedScriptHost;
+}
+",1
+"void Tab::OnMouseReleased(const ui::MouseEvent& event) {
+  controller_->OnMouseEventInTab(this, event);
+
+  if (controller_->EndDrag(END_DRAG_COMPLETE))
+    return;
+
+  if (event.IsMiddleMouseButton()) {
+    if (HitTestPoint(event.location())) {
+      controller_->CloseTab(this, CLOSE_TAB_FROM_MOUSE);
+    } else if (closing_) {
+      gfx::Point location_in_parent = event.location();
+      ConvertPointToTarget(this, parent(), &location_in_parent);
+      Tab* closest_tab = controller_->GetTabAt(location_in_parent);
+      if (closest_tab)
+        controller_->CloseTab(closest_tab, CLOSE_TAB_FROM_MOUSE);
+    }
+  } else if (event.IsOnlyLeftMouseButton() && !event.IsShiftDown() &&
+             !IsSelectionModifierDown(event)) {
+    controller_->SelectTab(this, event);
+  }
+}
+",0
+"void OomInterventionImpl::ReportMemoryStats(
+    OomInterventionMetrics& current_memory) {
+  UMA_HISTOGRAM_MEMORY_MB(
+      ""Memory.Experimental.OomIntervention.RendererBlinkUsage"",
+      current_memory.current_blink_usage_kb / 1024);
+  UMA_HISTOGRAM_MEMORY_LARGE_MB(
+      ""Memory.Experimental.OomIntervention.""
+      ""RendererPrivateMemoryFootprint"",
+      current_memory.current_private_footprint_kb / 1024);
+  UMA_HISTOGRAM_MEMORY_MB(
+      ""Memory.Experimental.OomIntervention.RendererSwapFootprint"",
+      current_memory.current_swap_kb / 1024);
+  UMA_HISTOGRAM_MEMORY_LARGE_MB(
+      ""Memory.Experimental.OomIntervention.RendererVmSize"",
+      current_memory.current_vm_size_kb / 1024);
+
+  CrashMemoryMetricsReporterImpl::Instance().WriteIntoSharedMemory(
+      current_memory);
+}
+",0
+"void SyncBackendHost::Core::RouteJsEvent(
+    const std::string& name, const JsEventDetails& details) {
+  host_->frontend_loop_->PostTask(
+      FROM_HERE, NewRunnableMethod(
+          this, &Core::RouteJsEventOnFrontendLoop, name, details));
+}
+",0
+"static int __init big_key_crypto_init(void)
+{
+	int ret = -EINVAL;
+ 
+	/* init RNG */
+	big_key_rng = crypto_alloc_rng(big_key_rng_name, 0, 0);
+	if (IS_ERR(big_key_rng)) {
+		big_key_rng = NULL;
+		return -EFAULT;
+ 	}
+ 
+ 	/* seed RNG */
+	ret = crypto_rng_reset(big_key_rng, NULL, crypto_rng_seedsize(big_key_rng));
+	if (ret)
+		goto error;
+ 
+ 	/* init block cipher */
+	big_key_skcipher = crypto_alloc_skcipher(big_key_alg_name,
+						 0, CRYPTO_ALG_ASYNC);
+	if (IS_ERR(big_key_skcipher)) {
+		big_key_skcipher = NULL;
+		ret = -EFAULT;
+		goto error;
+ 	}
+ 
+ 	return 0;
+ 
+error:
+ 	crypto_free_rng(big_key_rng);
+	big_key_rng = NULL;
+ 	return ret;
+ }
+",1
+"xmlXPathNextPrecedingInternal(xmlXPathParserContextPtr ctxt,
+                               xmlNodePtr cur)
+ {
+     if ((ctxt == NULL) || (ctxt->context == NULL)) return(NULL);
+    if ((ctxt->context->node->type == XML_ATTRIBUTE_NODE) ||
+	(ctxt->context->node->type == XML_NAMESPACE_DECL))
+	return(NULL);
+     if (cur == NULL) {
+         cur = ctxt->context->node;
+         if (cur == NULL)
+             return (NULL);
+         ctxt->ancestor = cur->parent;
+     }
+     if ((cur->prev != NULL) && (cur->prev->type == XML_DTD_NODE))
+	cur = cur->prev;
+    while (cur->prev == NULL) {
+        cur = cur->parent;
+        if (cur == NULL)
+            return (NULL);
+        if (cur == ctxt->context->doc->children)
+            return (NULL);
+        if (cur != ctxt->ancestor)
+            return (cur);
+        ctxt->ancestor = cur->parent;
+    }
+    cur = cur->prev;
+    while (cur->last != NULL)
+        cur = cur->last;
+    return (cur);
+}
+",1
+"vhost_scsi_send_evt(struct vhost_scsi *vs,
+		   struct vhost_scsi_tpg *tpg,
+		   struct se_lun *lun,
+		   u32 event,
+		   u32 reason)
+{
+	struct vhost_scsi_evt *evt;
+
+	evt = vhost_scsi_allocate_evt(vs, event, reason);
+	if (!evt)
+		return;
+
+	if (tpg && lun) {
+		/* TODO: share lun setup code with virtio-scsi.ko */
+		/*
+		 * Note: evt->event is zeroed when we allocate it and
+ 		 * lun[4-7] need to be zero according to virtio-scsi spec.
+ 		 */
+ 		evt->event.lun[0] = 0x01;
+		evt->event.lun[1] = tpg->tport_tpgt & 0xFF;
+ 		if (lun->unpacked_lun >= 256)
+ 			evt->event.lun[2] = lun->unpacked_lun >> 8 | 0x40 ;
+ 		evt->event.lun[3] = lun->unpacked_lun & 0xFF;
+	}
+
+	llist_add(&evt->list, &vs->vs_event_list);
+	vhost_work_queue(&vs->dev, &vs->vs_event_work);
+}
+",1
+"error::Error GLES2DecoderPassthroughImpl::DoBindFragmentInputLocationCHROMIUM(
+    GLuint program,
+    GLint location,
+    const char* name) {
+  NOTIMPLEMENTED();
+  return error::kNoError;
+}
+",0
+"void bnep_net_setup(struct net_device *dev)
+{
+
+	memset(dev->broadcast, 0xff, ETH_ALEN);
+ 	dev->addr_len = ETH_ALEN;
+ 
+ 	ether_setup(dev);
+ 	dev->netdev_ops = &bnep_netdev_ops;
+ 
+ 	dev->watchdog_timeo  = HZ * 2;
+}
+",1
+"_zip_cdir_new(int nentry, struct zip_error *error)
+{
+    struct zip_cdir *cd;
+    
+    if ((cd=(struct zip_cdir *)malloc(sizeof(*cd))) == NULL) {
+	_zip_error_set(error, ZIP_ER_MEMORY, 0);
+        return NULL;
+     }
+ 
+    if ((cd->entry=(struct zip_dirent *)malloc(sizeof(*(cd->entry))*nentry))
+        == NULL) {
+        _zip_error_set(error, ZIP_ER_MEMORY, 0);
+        free(cd);
+	return NULL;
+    }
+
+    /* entries must be initialized by caller */
+
+    cd->nentry = nentry;
+    cd->size = cd->offset = 0;
+    cd->comment = NULL;
+    cd->comment_len = 0;
+
+    return cd;
+}
+",1
+"DOMWindow* Document::open(v8::Isolate* isolate,
+                          const USVStringOrTrustedURL& string_or_url,
+                          const AtomicString& name,
+                          const AtomicString& features,
+                          ExceptionState& exception_state) {
+  if (!domWindow()) {
+    exception_state.ThrowDOMException(DOMExceptionCode::kInvalidAccessError,
+                                      ""The document has no window associated."");
+    return nullptr;
+  }
+
+  return domWindow()->open(isolate, string_or_url, name, features,
+                           exception_state);
+}
+",0
+"  virtual void Observe(NotificationType type,
+                       const NotificationSource& source,
+                       const NotificationDetails& details) {
+    if (type == NotificationType::NAV_LIST_PRUNED) {
+      notification_count_++;
+      details_ = *(Details<NavigationController::PrunedDetails>(details).ptr());
+    }
+  }
+",0
+"PHP_FUNCTION(imagesetstyle)
+{
+	zval *IM, *styles;
+	gdImagePtr im;
+	int * stylearr;
+	int index;
+	HashPosition pos;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, ""ra"", &IM, &styles) == FAILURE)  {
+		return;
+	}
+
+	ZEND_FETCH_RESOURCE(im, gdImagePtr, &IM, -1, ""Image"", le_gd);
+
+	/* copy the style values in the stylearr */
+	stylearr = safe_emalloc(sizeof(int), zend_hash_num_elements(HASH_OF(styles)), 0);
+
+	zend_hash_internal_pointer_reset_ex(HASH_OF(styles), &pos);
+
+	for (index = 0;; zend_hash_move_forward_ex(HASH_OF(styles), &pos))	{
+		zval ** item;
+
+		if (zend_hash_get_current_data_ex(HASH_OF(styles), (void **) &item, &pos) == FAILURE) {
+ 			break;
+ 		}
+ 
+		convert_to_long_ex(item);
+		stylearr[index++] = Z_LVAL_PP(item);
+ 	}
+ 
+ 	gdImageSetStyle(im, stylearr, index);
+
+	efree(stylearr);
+
+	RETURN_TRUE;
+}
+",1
+"int lxc_clear_config_network(struct lxc_conf *c)
+{
+	struct lxc_list *it,*next;
+	lxc_list_for_each_safe(it, &c->network, next) {
+		lxc_remove_nic(it);
+	}
+	return 0;
+}
+",0
+"  StatisticsCB NewStatisticsCB() {
+    return base::Bind(&MockStatisticsCB::OnStatistics,
+                      base::Unretained(&statistics_cb_));
+   }
+",0
+" void EnableHighDPISupport() {
+   if (IsHighDPIEnabled() &&
+      (base::win::GetVersion() < base::win::VERSION_WIN8_1)) {
+    if (!SetProcessDpiAwarenessWrapper(PROCESS_SYSTEM_DPI_AWARE)) {
+      SetProcessDPIAwareWrapper();
+    }
+   }
+ }
+",1
+"unsigned long ring_buffer_size(struct ring_buffer *buffer, int cpu)
+{
+	/*
+	 * Earlier, this method returned
+	 *	BUF_PAGE_SIZE * buffer->nr_pages
+	 * Since the nr_pages field is now removed, we have converted this to
+	 * return the per cpu buffer value.
+	 */
+	if (!cpumask_test_cpu(cpu, buffer->cpumask))
+		return 0;
+
+	return BUF_PAGE_SIZE * buffer->buffers[cpu]->nr_pages;
+}
+",0
+" void CachingPermutedEntropyProvider::RegisterPrefs(
+     PrefRegistrySimple* registry) {
+  registry->RegisterStringPref(prefs::kVariationsPermutedEntropyCache,
+                               std::string());
+ }
+",1
+" FileStream::FileStream(base::File file,
+                        const scoped_refptr<base::TaskRunner>& task_runner)
+    : context_(base::MakeUnique<Context>(std::move(file), task_runner)) {}
+",1
+"void ptrace_triggered(struct perf_event *bp, int nmi,
+ 		      struct perf_sample_data *data, struct pt_regs *regs)
+ {
+ 	struct perf_event_attr attr;
+
+	/*
+	 * Disable the breakpoint request here since ptrace has defined a
+	 * one-shot behaviour for breakpoint exceptions in PPC64.
+	 * The SIGTRAP signal is generated automatically for us in do_dabr().
+	 * We don't have to do anything about that here
+	 */
+	attr = bp->attr;
+	attr.disabled = true;
+	modify_user_hw_breakpoint(bp, &attr);
+}
+",1
+"GBool ArthurOutputDev::beginType3Char(GfxState *state, double x, double y,
+				      double dx, double dy,
+				      CharCode code, Unicode *u, int uLen)
+{
+  return gFalse;
+}
+",0
+"  void Dispose() {
+    raw_data_ = nullptr;
+    delete this;
+  }
+",0
+"void GetIntersection (uint64 start1, uint32 length1, uint64 start2, uint64 end2, uint64 *intersectStart, uint32 *intersectLength)
+{
+	uint64 end1 = start1 + length1 - 1;
+	uint64 intersectEnd = (end1 <= end2) ? end1 : end2;
+
+	*intersectStart = (start1 >= start2) ? start1 : start2;
+	*intersectLength = (uint32) ((*intersectStart > intersectEnd) ? 0 : intersectEnd + 1 - *intersectStart);
+
+	if (*intersectLength == 0)
+		*intersectStart = start1;
+}
+",0
+"void PrintPreviewMessageHandler::OnInvalidPrinterSettings(int document_cookie) {
+  StopWorker(document_cookie);
+  PrintPreviewUI* print_preview_ui = GetPrintPreviewUI();
+  if (!print_preview_ui)
+    return;
+  print_preview_ui->OnInvalidPrinterSettings();
+}
+",0
+"void SplitString(const std::wstring& str,
+                 wchar_t c,
+                 std::vector<std::wstring>* r) {
+  SplitStringT(str, c, true, r);
+}
+",1
+"int ipmi_destroy_user(struct ipmi_user *user)
+ {
+ 	_ipmi_destroy_user(user);
+ 
+	cleanup_srcu_struct(&user->release_barrier);
+ 	kref_put(&user->refcount, free_user);
+ 
+ 	return 0;
+}
+",1
+"blink::WebPlugin* RenderFrameImpl::CreatePlugin(
+    const blink::WebPluginParams& params) {
+  blink::WebPlugin* plugin = nullptr;
+  if (GetContentClient()->renderer()->OverrideCreatePlugin(this, params,
+                                                           &plugin)) {
+    return plugin;
+  }
+
+  if (params.mime_type.ContainsOnlyASCII() &&
+      params.mime_type.Ascii() == kBrowserPluginMimeType) {
+    BrowserPluginDelegate* delegate =
+        GetContentClient()->renderer()->CreateBrowserPluginDelegate(
+            this, WebPluginInfo(), kBrowserPluginMimeType, GURL(params.url));
+    return BrowserPluginManager::Get()->CreateBrowserPlugin(
+        this, delegate->GetWeakPtr());
+  }
+
+#if BUILDFLAG(ENABLE_PLUGINS)
+  WebPluginInfo info;
+  std::string mime_type;
+  bool found = false;
+  Send(new FrameHostMsg_GetPluginInfo(
+      routing_id_, params.url, frame_->Top()->GetSecurityOrigin(),
+      params.mime_type.Utf8(), &found, &info, &mime_type));
+  if (!found)
+    return nullptr;
+
+  WebPluginParams params_to_use = params;
+  params_to_use.mime_type = WebString::FromUTF8(mime_type);
+  return CreatePlugin(info, params_to_use, nullptr /* throttler */);
+#else
+  return nullptr;
+#endif  // BUILDFLAG(ENABLE_PLUGINS)
+}
+",0
+"  write_message( RenderState  state )
+  {
+    ADisplay  adisplay = (ADisplay)state->display.disp;
+
+
+    if ( state->message == NULL )
+    {
+      FontFace  face = &state->faces[state->face_index];
+      int       idx, total;
+
+
+      idx   = face->index;
+      total = 1;
+      while ( total + state->face_index < state->num_faces &&
+              face[total].filepath == face[0].filepath     )
+        total++;
+
+      total += idx;
+ 
+       state->message = state->message0;
+       if ( total > 1 )
+        sprintf( state->message0, ""%s %d/%d @ %5.1fpt"",
+                  state->filename, idx + 1, total,
+                  state->char_size );
+       else
+        sprintf( state->message0, ""%s @ %5.1fpt"",
+                  state->filename,
+                  state->char_size );
+     }
+
+    grWriteCellString( adisplay->bitmap, 0, DIM_Y - 10, state->message,
+                       adisplay->fore_color );
+
+    state->message = NULL;
+  }
+",1
+" ServiceWorkerHandler::ServiceWorkerHandler()
+     : DevToolsDomainHandler(ServiceWorker::Metainfo::domainName),
+       enabled_(false),
+      process_(nullptr),
+       weak_factory_(this) {}
+",1
+"int Browser::GetContentRestrictionsForSelectedTab() {
+  int content_restrictions = 0;
+  TabContents* current_tab = GetSelectedTabContents();
+  if (current_tab) {
+    content_restrictions = current_tab->content_restrictions();
+    NavigationEntry* active_entry = current_tab->controller().GetActiveEntry();
+    if (!SavePackage::IsSavableURL(active_entry ? active_entry->url() : GURL()))
+      content_restrictions |= CONTENT_RESTRICTION_SAVE;
+  }
+  return content_restrictions;
+}
+",0
+" bool AudioHandler::VerifyMixerConnection() {
+  PulseAudioMixer::State mixer_state = mixer_->CheckState();
+  if (mixer_state == PulseAudioMixer::READY)
+     return true;
+   if (connected_) {
+     connected_ = false;
+    LOG(ERROR) << ""Lost connection to PulseAudio"";
+   } else {
+     LOG(ERROR) << ""Mixer not valid"";
+   }
+ 
+  if ((mixer_state == PulseAudioMixer::INITIALIZING) ||
+      (mixer_state == PulseAudioMixer::SHUTTING_DOWN))
+     return false;
+ 
+   if (reconnect_tries_ < kMaxReconnectTries) {
+     reconnect_tries_++;
+    VLOG(1) << ""Re-connecting to PulseAudio attempt "" << reconnect_tries_ << ""/""
+             << kMaxReconnectTries;
+    mixer_.reset(new PulseAudioMixer());
+    connected_ = mixer_->InitSync();
+     if (connected_) {
+       reconnect_tries_ = 0;
+       return true;
+     }
+    LOG(ERROR) << ""Unable to re-connect to PulseAudio"";
+   }
+   return false;
+ }
+",1
+" static void sgi_timer_get(struct k_itimer *timr, struct itimerspec *cur_setting)
+ {
+
+	if (timr->it.mmtimer.clock == TIMER_OFF) {
+		cur_setting->it_interval.tv_nsec = 0;
+		cur_setting->it_interval.tv_sec = 0;
+		cur_setting->it_value.tv_nsec = 0;
+		cur_setting->it_value.tv_sec =0;
+ 		return;
+ 	}
+ 
+	ns_to_timespec(cur_setting->it_interval, timr->it.mmtimer.incr * sgi_clock_period);
+	ns_to_timespec(cur_setting->it_value, (timr->it.mmtimer.expires - rtc_time())* sgi_clock_period);
+	return;
+ }
+",1
+" void PrintWebViewHelper::OnPrintForSystemDialog() {
+   blink::WebLocalFrame* frame = print_preview_context_.source_frame();
+   if (!frame) {
+     NOTREACHED();
+    return;
+  }
+  Print(frame, print_preview_context_.source_node(), false);
+}
+",1
+"void ewk_view_scroll(Evas_Object* ewkView, Evas_Coord deltaX, Evas_Coord deltaY, Evas_Coord scrollX, Evas_Coord scrollY, Evas_Coord scrollWidth, Evas_Coord scrollHeight, Evas_Coord centerX, Evas_Coord centerY, Evas_Coord centerWidth, Evas_Coord centerHeight, bool mainFrame)
+{
+    DBG(""ewkView=%p, delta: %d,%d, scroll: %d,%d+%dx%d, clip: %d,%d+%dx%d"",
+        ewkView, deltaX, deltaY, scrollX, scrollY, scrollWidth, scrollHeight, centerX, centerY, centerWidth, centerHeight);
+
+    if ((scrollX != centerX) || (scrollY != centerY) || (scrollWidth != centerWidth) || (scrollHeight != centerHeight))
+        WRN(""scroll region and clip are different! %d,%d+%dx%d and %d,%d+%dx%d"",
+            scrollX, scrollY, scrollWidth, scrollHeight, centerX, centerY, centerWidth, centerHeight);
+
+    EWK_VIEW_SD_GET_OR_RETURN(ewkView, smartData);
+    EWK_VIEW_PRIV_GET_OR_RETURN(smartData, priv);
+    EINA_SAFETY_ON_TRUE_RETURN(!deltaX && !deltaY);
+
+    _ewk_view_scroll_add(priv, deltaX, deltaY, scrollX, scrollY, scrollWidth, scrollHeight, mainFrame);
+
+    _ewk_view_smart_changed(smartData);
+}
+",0
+" static void array_cleanup( char* arr[] , int arr_size)
+ {
+ 	int i=0;
+	for( i=0; i< arr_size; i++ ){ 
+ 		if( arr[i*2] ){
+ 			efree( arr[i*2]);
+ 		}
+	}
+	efree(arr);
+}
+",1
+"static void perf_cgroup_attach(struct cgroup_taskset *tset)
+{
+	struct task_struct *task;
+	struct cgroup_subsys_state *css;
+
+	cgroup_taskset_for_each(task, css, tset)
+		task_function_call(task, __perf_cgroup_move, task);
+}
+",0
+"Node* Range::pastLastNode() const
+{
+    if (!m_start.container() || !m_end.container())
+        return 0;
+    if (m_end.container()->offsetInCharacters())
+        return m_end.container()->traverseNextSibling();
+    if (Node* child = m_end.container()->childNode(m_end.offset()))
+        return child;
+    return m_end.container()->traverseNextSibling();
+}
+",0
+"void PPB_Buffer_Proxy::OnMsgCreate(
+    PP_Instance instance,
+    uint32_t size,
+    HostResource* result_resource,
+    ppapi::proxy::SerializedHandle* result_shm_handle) {
+  result_shm_handle->set_null_shmem();
+   HostDispatcher* dispatcher = HostDispatcher::GetForInstance(instance);
+   if (!dispatcher)
+     return;
+ 
+   thunk::EnterResourceCreation enter(instance);
+   if (enter.failed())
+    return;
+  PP_Resource local_buffer_resource = enter.functions()->CreateBuffer(instance,
+                                                                      size);
+  if (local_buffer_resource == 0)
+    return;
+
+  thunk::EnterResourceNoLock<thunk::PPB_BufferTrusted_API> trusted_buffer(
+      local_buffer_resource, false);
+  if (trusted_buffer.failed())
+    return;
+  int local_fd;
+  if (trusted_buffer.object()->GetSharedMemory(&local_fd) != PP_OK)
+    return;
+
+  result_resource->SetHostResource(instance, local_buffer_resource);
+
+  base::PlatformFile platform_file =
+#if defined(OS_WIN)
+      reinterpret_cast<HANDLE>(static_cast<intptr_t>(local_fd));
+#elif defined(OS_POSIX)
+      local_fd;
+#else
+  #error Not implemented.
+#endif
+  result_shm_handle->set_shmem(
+      dispatcher->ShareHandleWithRemote(platform_file, false), size);
+}
+",1
+" base::string16 GetApplicationNameForProtocol(const GURL& url) {
+  base::string16 application_name;
+   if (base::win::GetVersion() >= base::win::VERSION_WIN8) {
+    application_name = GetAppForProtocolUsingAssocQuery(url);
+     if (!application_name.empty())
+       return application_name;
+   }
+
+  return GetAppForProtocolUsingRegistry(url);
+}
+",1
+"media::AudioParameters GetDeviceParametersOnDeviceThread(
+    media::AudioManager* audio_manager,
+    const std::string& unique_id) {
+  DCHECK(audio_manager->GetTaskRunner()->BelongsToCurrentThread());
+  return media::AudioDeviceDescription::IsDefaultDevice(unique_id)
+             ? audio_manager->GetDefaultOutputStreamParameters()
+             : audio_manager->GetOutputStreamParameters(unique_id);
+}
+",1
+"static int ghash_final(struct shash_desc *desc, u8 *dst)
+{
+	struct ghash_desc_ctx *dctx = shash_desc_ctx(desc);
+ 	struct ghash_ctx *ctx = crypto_shash_ctx(desc->tfm);
+ 	u8 *buf = dctx->buffer;
+ 
+ 	ghash_flush(ctx, dctx);
+ 	memcpy(dst, buf, GHASH_BLOCK_SIZE);
+ 
+	return 0;
+}
+",1
+"cJSON *cJSON_DetachItemFromArray( cJSON *array, int which )
+{
+	cJSON *c = array->child;
+	while ( c && which > 0 ) {
+		c = c->next;
+		--which;
+	}
+	if ( ! c )
+		return 0;
+	if ( c->prev )
+		c->prev->next = c->next;
+	if ( c->next ) c->next->prev = c->prev;
+	if ( c == array->child )
+		array->child = c->next;
+	c->prev = c->next = 0;
+	return c;
+}
+",1
+"xmlNsErr(xmlParserCtxtPtr ctxt, xmlParserErrors error,
+ const char *msg,
+ const xmlChar * info1, const xmlChar * info2,
+ const xmlChar * info3)
+{
+ if ((ctxt != NULL) && (ctxt->disableSAX != 0) &&
+ (ctxt->instate == XML_PARSER_EOF))
+ return;
+ if (ctxt != NULL)
+	ctxt->errNo = error;
+    __xmlRaiseError(NULL, NULL, NULL, ctxt, NULL, XML_FROM_NAMESPACE, error,
+                    XML_ERR_ERROR, NULL, 0, (const char *) info1,
+ (const char *) info2, (const char *) info3, 0, 0, msg,
+                    info1, info2, info3);
+ if (ctxt != NULL)
+	ctxt->nsWellFormed = 0;
+}
+",0
+"void ResourceMessageFilter::OnClipboardIsFormatAvailable(
+    Clipboard::FormatType format, Clipboard::Buffer buffer,
+    IPC::Message* reply) {
+  const bool result = GetClipboard()->IsFormatAvailable(format, buffer);
+  ViewHostMsg_ClipboardIsFormatAvailable::WriteReplyParams(reply, result);
+  Send(reply);
+}
+",0
+"static void enforcedRangeByteAttrAttributeSetter(v8::Local<v8::Value> jsValue, const v8::PropertyCallbackInfo<void>& info)
+{
+    ExceptionState exceptionState(ExceptionState::SetterContext, ""enforcedRangeByteAttr"", ""TestObject"", info.Holder(), info.GetIsolate());
+    TestObject* imp = V8TestObject::toNative(info.Holder());
+    V8TRYCATCH_EXCEPTION_VOID(int, cppValue, toInt8(jsValue, EnforceRange, exceptionState), exceptionState);
+    imp->setEnforcedRangeByteAttr(cppValue);
+}
+",0
+"void smp_send_pair_fail(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
+  p_cb->status = p_data->status;
+  p_cb->failure = p_data->status;
+
+  SMP_TRACE_DEBUG(""%s: status=%d failure=%d "", __func__, p_cb->status,
+                  p_cb->failure);
+
+ if (p_cb->status <= SMP_MAX_FAIL_RSN_PER_SPEC &&
+      p_cb->status != SMP_SUCCESS) {
+    smp_send_cmd(SMP_OPCODE_PAIRING_FAILED, p_cb);
+    p_cb->wait_for_authorization_complete = true;
+ }
+}
+",0
+"bool GLES2Decoder::GetServiceTextureId(uint32_t client_texture_id,
+                                       uint32_t* service_texture_id) {
+  return false;
+}
+",0
+"void Segment::PreloadCluster(Cluster* pCluster, ptrdiff_t idx)
+{
+    assert(pCluster);
+    assert(pCluster->m_index < 0);
+    assert(idx >= m_clusterCount);
+    const long count = m_clusterCount + m_clusterPreloadCount;
+    long& size = m_clusterSize;
+    assert(size >= count);
+    if (count >= size)
+    {
+        const long n = (size <= 0) ? 2048 : 2*size;
+        Cluster** const qq = new Cluster*[n];
+        Cluster** q = qq;
+        Cluster** p = m_clusters;
+        Cluster** const pp = p + count;
+        while (p != pp)
+            *q++ = *p++;
+        delete[] m_clusters;
+        m_clusters = qq;
+        size = n;
+    }
+     assert(m_clusters);
+ 
+    Cluster** const p = m_clusters + idx;
+ 
+    Cluster** q = m_clusters + count;
+    assert(q >= p);
+     assert(q < (m_clusters + size));
+ 
+    while (q > p)
+    {
+        Cluster** const qq = q - 1;
+        assert((*qq)->m_index < 0);
+ 
+        *q = *qq;
+        q = qq;
+     }
+ 
+    m_clusters[idx] = pCluster;
+    ++m_clusterPreloadCount;
+ }
+",1
+"  std::unique_ptr<net::URLRequest> CreateAndExecuteRequest(const GURL& url) {
+    std::unique_ptr<net::URLRequest> request(context_.CreateRequest(
+        url, net::IDLE, &delegate_, TRAFFIC_ANNOTATION_FOR_TESTS));
+    request->Start();
+    drp_test_context_->RunUntilIdle();
+    return request;
+  }
+",0
+"void sum_update(const char *p, int32 len)
+{
+	switch (cursum_type) {
+	  case CSUM_MD5:
+		md5_update(&md, (uchar *)p, len);
+		break;
+          case CSUM_MD4:
+          case CSUM_MD4_OLD:
+          case CSUM_MD4_BUSTED:
+                if (len + sumresidue < CSUM_CHUNK) {
+                        memcpy(md.buffer + sumresidue, p, len);
+                        sumresidue += len;
+		}
+
+		if (sumresidue) {
+			int32 i = CSUM_CHUNK - sumresidue;
+			memcpy(md.buffer + sumresidue, p, i);
+			mdfour_update(&md, (uchar *)md.buffer, CSUM_CHUNK);
+			len -= i;
+			p += i;
+		}
+
+		while (len >= CSUM_CHUNK) {
+			mdfour_update(&md, (uchar *)p, CSUM_CHUNK);
+			len -= CSUM_CHUNK;
+			p += CSUM_CHUNK;
+		}
+
+		sumresidue = len;
+		if (sumresidue)
+			memcpy(md.buffer, p, sumresidue);
+		break;
+	  case CSUM_NONE:
+		break;
+	}
+}
+",1
+"static int x509_check_wildcard( const char *cn, mbedtls_x509_buf *name )
+{
+    size_t i;
+    size_t cn_idx = 0, cn_len = strlen( cn );
+
+    if( name->len < 3 || name->p[0] != '*' || name->p[1] != '.' )
+        return( 0 );
+
+    for( i = 0; i < cn_len; ++i )
+    {
+        if( cn[i] == '.' )
+        {
+            cn_idx = i;
+            break;
+        }
+    }
+
+    if( cn_idx == 0 )
+        return( -1 );
+
+    if( cn_len - cn_idx == name->len - 1 &&
+        x509_memcasecmp( name->p + 1, cn + cn_idx, name->len - 1 ) == 0 )
+    {
+        return( 0 );
+    }
+
+    return( -1 );
+}
+",0
+"DOMHandler::DOMHandler()
+     : DevToolsDomainHandler(DOM::Metainfo::domainName),
+      host_(nullptr) {
+}
+",1
+"static ps_sd *ps_sd_new(ps_mm *data, const char *key)
+{
+	php_uint32 hv, slot;
+	ps_sd *sd;
+	int keylen;
+
+	keylen = strlen(key);
+
+	sd = mm_malloc(data->mm, sizeof(ps_sd) + keylen);
+        if (!sd) {
+                TSRMLS_FETCH();
+ 
+               php_error_docref(NULL TSRMLS_CC, E_WARNING, ""mm_malloc failed, avail %d, err %s"", mm_available(data->mm), mm_error());
+                return NULL;
+        }
+ 
+	hv = ps_sd_hash(key, keylen);
+	slot = hv & data->hash_max;
+
+	sd->ctime = 0;
+	sd->hv = hv;
+	sd->data = NULL;
+	sd->alloclen = sd->datalen = 0;
+
+	memcpy(sd->key, key, keylen + 1);
+
+	sd->next = data->hash[slot];
+	data->hash[slot] = sd;
+
+	data->hash_cnt++;
+
+	if (!sd->next) {
+		if (data->hash_cnt >= data->hash_max) {
+			hash_split(data);
+		}
+	}
+
+	ps_mm_debug((""inserting %s(%p) into slot %d\n"", key, sd, slot));
+
+	return sd;
+}
+",1
+"std::wstring DetermineChannel(const InstallConstants& mode,
+                              bool system_level,
+                              bool from_binaries,
+                              std::wstring* update_ap,
+                              std::wstring* update_cohort_name) {
+  if (!kUseGoogleUpdateIntegration)
+    return std::wstring();
+
+  std::wstring client_state(from_binaries
+                                ? GetBinariesClientStateKeyPath()
+                                : GetClientStateKeyPath(mode.app_guid));
+  std::wstring ap_value;
+  nt::QueryRegValueSZ(system_level ? nt::HKLM : nt::HKCU, nt::WOW6432,
+                      client_state.c_str(), kRegValueAp, &ap_value);
+  if (update_ap)
+    *update_ap = ap_value;
+
+  if (update_cohort_name) {
+    nt::QueryRegValueSZ(system_level ? nt::HKLM : nt::HKCU, nt::WOW6432,
+                        client_state.append(L""\\cohort"").c_str(), kRegValueName,
+                        update_cohort_name);
+  }
+
+  switch (mode.channel_strategy) {
+    case ChannelStrategy::UNSUPPORTED:
+      assert(false);
+      break;
+    case ChannelStrategy::ADDITIONAL_PARAMETERS:
+      return ChannelFromAdditionalParameters(mode, ap_value);
+    case ChannelStrategy::FIXED:
+      return mode.default_channel_name;
+  }
+
+  return std::wstring();
+}
+",0
+"OMX_ERRORTYPE SimpleSoftOMXComponent::internalSetParameter(
+        OMX_INDEXTYPE index, const OMX_PTR params) {
+ switch (index) {
+ case OMX_IndexParamPortDefinition:
+ {
+
+             OMX_PARAM_PORTDEFINITIONTYPE *defParams =
+                 (OMX_PARAM_PORTDEFINITIONTYPE *)params;
+ 
+             if (defParams->nPortIndex >= mPorts.size()) {
+                 return OMX_ErrorBadPortIndex;
+             }
+ if (defParams->nSize != sizeof(OMX_PARAM_PORTDEFINITIONTYPE)) {
+ return OMX_ErrorUnsupportedSetting;
+ }
+
+ PortInfo *port =
+ &mPorts.editItemAt(defParams->nPortIndex);
+
+ if (defParams->nBufferSize > port->mDef.nBufferSize) {
+                port->mDef.nBufferSize = defParams->nBufferSize;
+ }
+
+ if (defParams->nBufferCountActual < port->mDef.nBufferCountMin) {
+                ALOGW(""component requires at least %u buffers (%u requested)"",
+                        port->mDef.nBufferCountMin, defParams->nBufferCountActual);
+ return OMX_ErrorUnsupportedSetting;
+ }
+
+            port->mDef.nBufferCountActual = defParams->nBufferCountActual;
+ return OMX_ErrorNone;
+ }
+
+ default:
+ return OMX_ErrorUnsupportedIndex;
+ }
+}
+",1
+"void GLSurfaceOzoneSurfacelessSurfaceImpl::Destroy() {
+  if (!context_)
+    return;
+  scoped_refptr<gfx::GLContext> previous_context = gfx::GLContext::GetCurrent();
+  scoped_refptr<gfx::GLSurface> previous_surface;
+
+  bool was_current = previous_context && previous_context->IsCurrent(nullptr) &&
+                     gfx::GLSurface::GetCurrent() == this;
+  if (!was_current) {
+    previous_surface = gfx::GLSurface::GetCurrent();
+    context_->MakeCurrent(this);
+  }
+
+  glBindFramebufferEXT(GL_FRAMEBUFFER, 0);
+  if (fbo_) {
+    glDeleteTextures(arraysize(textures_), textures_);
+    for (auto& texture : textures_)
+      texture = 0;
+    glDeleteFramebuffersEXT(1, &fbo_);
+    fbo_ = 0;
+  }
+  for (auto image : images_) {
+    if (image)
+      image->Destroy(true);
+   }
+ 
+   if (!was_current) {
+    previous_context->MakeCurrent(previous_surface.get());
+  } else {
+    context_->ReleaseCurrent(this);
+   }
+ }
+",1
+" v8::Local<v8::Value> V8Debugger::functionLocation(v8::Local<v8::Context> context, v8::Local<v8::Function> function)
+{
+    int scriptId = function->ScriptId();
+    if (scriptId == v8::UnboundScript::kNoScriptId)
+        return v8::Null(m_isolate);
+    int lineNumber = function->GetScriptLineNumber();
+    int columnNumber = function->GetScriptColumnNumber();
+     if (lineNumber == v8::Function::kLineOffsetNotFound || columnNumber == v8::Function::kLineOffsetNotFound)
+         return v8::Null(m_isolate);
+     v8::Local<v8::Object> location = v8::Object::New(m_isolate);
+     if (!location->Set(context, toV8StringInternalized(m_isolate, ""scriptId""), toV8String(m_isolate, String16::fromInteger(scriptId))).FromMaybe(false))
+         return v8::Null(m_isolate);
+     if (!location->Set(context, toV8StringInternalized(m_isolate, ""lineNumber""), v8::Integer::New(m_isolate, lineNumber)).FromMaybe(false))
+        return v8::Null(m_isolate);
+    if (!location->Set(context, toV8StringInternalized(m_isolate, ""columnNumber""), v8::Integer::New(m_isolate, columnNumber)).FromMaybe(false))
+        return v8::Null(m_isolate);
+    if (!markAsInternal(context, location, V8InternalValueType::kLocation))
+        return v8::Null(m_isolate);
+    return location;
+}
+",1
+"ssh_packet_get_compress_state(struct sshbuf *m, struct ssh *ssh)
+{
+	struct session_state *state = ssh->state;
+	struct sshbuf *b;
+	int r;
+	if ((b = sshbuf_new()) == NULL)
+		return SSH_ERR_ALLOC_FAIL;
+	if (state->compression_in_started) {
+		if ((r = sshbuf_put_string(b, &state->compression_in_stream,
+		    sizeof(state->compression_in_stream))) != 0)
+			goto out;
+	} else if ((r = sshbuf_put_string(b, NULL, 0)) != 0)
+		goto out;
+	if (state->compression_out_started) {
+		if ((r = sshbuf_put_string(b, &state->compression_out_stream,
+		    sizeof(state->compression_out_stream))) != 0)
+			goto out;
+	} else if ((r = sshbuf_put_string(b, NULL, 0)) != 0)
+		goto out;
+	r = sshbuf_put_stringb(m, b);
+ out:
+	sshbuf_free(b);
+	return r;
+}
+",1
+"static bool tailmatch(const char *little, const char *bigone)
+ {
+  size_t littlelen = strlen(little);
+  size_t biglen = strlen(bigone);
+ 
+  if(littlelen > biglen)
+     return FALSE;
+ 
+  return Curl_raw_equal(little, bigone+biglen-littlelen) ? TRUE : FALSE;
+ }
+",1
+"void sco_connect_cfm(struct hci_conn *hcon, __u8 status)
+{
+	BT_DBG(""hcon %p bdaddr %pMR status %d"", hcon, &hcon->dst, status);
+	if (!status) {
+		struct sco_conn *conn;
+
+		conn = sco_conn_add(hcon);
+		if (conn)
+			sco_conn_ready(conn);
+	} else
+		sco_conn_del(hcon, bt_to_errno(status));
+}
+",0
+" SPL_METHOD(RecursiveDirectoryIterator, getSubPath)
+ {
+ 	spl_filesystem_object *intern = (spl_filesystem_object*)zend_object_store_get_object(getThis() TSRMLS_CC);
+ 	if (zend_parse_parameters_none() == FAILURE) {
+ 		return;
+ 	}
+
+	if (intern->u.dir.sub_path) {
+		RETURN_STRINGL(intern->u.dir.sub_path, intern->u.dir.sub_path_len, 1);
+	} else {
+		RETURN_STRINGL("""", 0, 1);
+	}
+}
+",1
+"CSSStyleSheet* Document::createEmptyCSSStyleSheet(
+    ScriptState* script_state,
+    ExceptionState& exception_state) {
+  return Document::createEmptyCSSStyleSheet(
+      script_state, CSSStyleSheetInit::Create(), exception_state);
+}
+",0
+"bool HpackDecoder::DecodeNextIndexedHeader(HpackInputStream* input_stream) {
+  uint32 index = 0;
+  if (!input_stream->DecodeNextUint32(&index))
+    return false;
+
+  HpackEntry* entry = header_table_.GetByIndex(index);
+   if (entry == NULL)
+     return false;
+ 
+  HandleHeaderRepresentation(entry->name(), entry->value());
+  return true;
+ }
+",1
+"static void init_once(void *foo)
+{
+	struct ext4_inode_info *ei = (struct ext4_inode_info *) foo;
+
+ 	INIT_LIST_HEAD(&ei->i_orphan);
+ 	init_rwsem(&ei->xattr_sem);
+ 	init_rwsem(&ei->i_data_sem);
+ 	inode_init_once(&ei->vfs_inode);
+ }
+",1
+"static void put_crypt_info(struct fscrypt_info *ci)
+{
+ 	if (!ci)
+ 		return;
+ 
+	key_put(ci->ci_keyring_key);
+ 	crypto_free_skcipher(ci->ci_ctfm);
+ 	kmem_cache_free(fscrypt_info_cachep, ci);
+ }
+",1
+"static int store_xauthority(void) {
+	fs_build_mnt_dir();
+ 
+ 	char *src;
+ 	char *dest = RUN_XAUTHORITY_FILE;
+ 	FILE *fp = fopen(dest, ""w"");
+ 	if (fp) {
+ 		fprintf(fp, ""\n"");
+		SET_PERMS_STREAM(fp, getuid(), getgid(), 0600);
+		fclose(fp);
+	}
+	
+	if (asprintf(&src, ""%s/.Xauthority"", cfg.homedir) == -1)
+		errExit(""asprintf"");
+	
+	struct stat s;
+	if (stat(src, &s) == 0) {
+		if (is_link(src)) {
+			fprintf(stderr, ""Warning: invalid .Xauthority file\n"");
+			return 0;
+		}
+
+		copy_file_as_user(src, dest, getuid(), getgid(), 0600);
+		fs_logger2(""clone"", dest);
+		return 1; // file copied
+	}
+	
+	return 0;
+}
+",1
+"void V8Window::namedPropertyGetterCustom(v8::Local<v8::Name> name, const v8::PropertyCallbackInfo<v8::Value>& info)
+{
+    if (!name->IsString())
+        return;
+
+    auto nameString = name.As<v8::String>();
+    LocalDOMWindow* window = toLocalDOMWindow(V8Window::toImpl(info.Holder()));
+    if (!window)
+        return;
+
+    LocalFrame* frame = window->frame();
+    if (!frame)
+        return;
+
+    AtomicString propName = toCoreAtomicString(nameString);
+    Frame* child = frame->tree().scopedChild(propName);
+    if (child) {
+        v8SetReturnValueFast(info, child->domWindow(), window);
+        return;
+    }
+
+     if (!info.Holder()->GetRealNamedProperty(nameString).IsEmpty())
+         return;
+ 
+     Document* doc = frame->document();
+ 
+    if (doc && doc->isHTMLDocument()) {
+        if (toHTMLDocument(doc)->hasNamedItem(propName) || doc->hasElementWithId(propName)) {
+            RefPtrWillBeRawPtr<HTMLCollection> items = doc->windowNamedItems(propName);
+            if (!items->isEmpty()) {
+                if (items->hasExactlyOneItem()) {
+                    v8SetReturnValueFast(info, items->item(0), window);
+                    return;
+                }
+                v8SetReturnValueFast(info, items.release(), window);
+                return;
+            }
+        }
+    }
+}
+",1
+"void ChromeInvalidationClient::ReissueRegistrations(
+    invalidation::InvalidationClient* client,
+     const std::string& prefix,
+     int prefix_length) {
+   DCHECK(CalledOnValidThread());
+   DVLOG(1) << ""AllRegistrationsLost"";
+   registration_manager_->MarkAllRegistrationsLost();
+ }
+",1
+"GDataEntry* GDataEntry::FromDocumentEntry(
+    GDataDirectory* parent,
+    DocumentEntry* doc,
+    GDataDirectoryService* directory_service) {
+  DCHECK(doc);
+  if (doc->is_folder())
+    return GDataDirectory::FromDocumentEntry(parent, doc, directory_service);
+  else if (doc->is_hosted_document() || doc->is_file())
+    return GDataFile::FromDocumentEntry(parent, doc, directory_service);
+  return NULL;
+}
+",1
+" static __u8 *ch_report_fixup(struct hid_device *hdev, __u8 *rdesc,
+ 		unsigned int *rsize)
+ {
+	if (*rsize >= 17 && rdesc[11] == 0x3c && rdesc[12] == 0x02) {
+ 		hid_info(hdev, ""fixing up Cherry Cymotion report descriptor\n"");
+ 		rdesc[11] = rdesc[16] = 0xff;
+ 		rdesc[12] = rdesc[17] = 0x03;
+	}
+	return rdesc;
+}
+",1
+"GF_Err tfdt_Read(GF_Box *s,GF_BitStream *bs)
+{
+	GF_TFBaseMediaDecodeTimeBox *ptr = (GF_TFBaseMediaDecodeTimeBox *)s;
+
+	if (ptr->version==1) {
+		ptr->baseMediaDecodeTime = gf_bs_read_u64(bs);
+		ISOM_DECREASE_SIZE(ptr, 8);
+	} else {
+		ptr->baseMediaDecodeTime = (u32) gf_bs_read_u32(bs);
+		ISOM_DECREASE_SIZE(ptr, 4);
+	}
+	return GF_OK;
+}
+",0
+"const std::string& WebContentsImpl::GetUserAgentOverride() const {
+  return renderer_preferences_.user_agent_override;
+}
+",0
+"static inline int nfs4_lock_type(struct file_lock *fl, int block)
+{
+	if ((fl->fl_type & (F_RDLCK|F_WRLCK|F_UNLCK)) == F_RDLCK)
+		return block ? NFS4_READW_LT : NFS4_READ_LT;
+	return block ? NFS4_WRITEW_LT : NFS4_WRITE_LT;
+}
+",0
+"XGetModifierMapping(register Display *dpy)
+{
+    xGetModifierMappingReply rep;
+    register xReq *req;
+    unsigned long nbytes;
+    XModifierKeymap *res;
+
+    LockDisplay(dpy);
+     GetEmptyReq(GetModifierMapping, req);
+     (void) _XReply (dpy, (xReply *)&rep, 0, xFalse);
+ 
+    if (rep.length < (INT_MAX >> 2)) {
+ 	nbytes = (unsigned long)rep.length << 2;
+ 	res = Xmalloc(sizeof (XModifierKeymap));
+ 	if (res)
+    } else
+	res = NULL;
+    if ((! res) || (! res->modifiermap)) {
+	Xfree(res);
+	res = (XModifierKeymap *) NULL;
+	_XEatDataWords(dpy, rep.length);
+    } else {
+	_XReadPad(dpy, (char *) res->modifiermap, (long) nbytes);
+	res->max_keypermod = rep.numKeyPerModifier;
+    }
+
+    UnlockDisplay(dpy);
+    SyncHandle();
+    return (res);
+}
+",1
+"static jboolean enableNative(JNIEnv* env, jobject obj) {
+     ALOGV(""%s:"",__FUNCTION__);
+ 
+     jboolean result = JNI_FALSE;
+     if (!sBluetoothInterface) return result;
+    int ret = sBluetoothInterface->enable();
+     result = (ret == BT_STATUS_SUCCESS || ret == BT_STATUS_DONE) ? JNI_TRUE : JNI_FALSE;
+     return result;
+ }
+",1
+"void WebPluginImpl::didFinishLoadingFrameRequest(
+     const WebURL& url, void* notify_data) {
+   if (delegate_) {
+     delegate_->DidFinishLoadWithReason(
+        url, NPRES_DONE, reinterpret_cast<intptr_t>(notify_data));
+   }
+ }
+",1
+"static inline int vmcs12_write_any(struct kvm_vcpu *vcpu,
+				   unsigned long field, u64 field_value){
+	short offset = vmcs_field_to_offset(field);
+	char *p = ((char *) get_vmcs12(vcpu)) + offset;
+	if (offset < 0)
+		return offset;
+
+	switch (vmcs_field_width(field)) {
+	case VMCS_FIELD_WIDTH_U16:
+		*(u16 *)p = field_value;
+		return 0;
+	case VMCS_FIELD_WIDTH_U32:
+		*(u32 *)p = field_value;
+		return 0;
+	case VMCS_FIELD_WIDTH_U64:
+		*(u64 *)p = field_value;
+		return 0;
+	case VMCS_FIELD_WIDTH_NATURAL_WIDTH:
+		*(natural_width *)p = field_value;
+		return 0;
+	default:
+		WARN_ON(1);
+		return -ENOENT;
+	}
+
+}
+",0
+" void RTCSessionDescriptionRequestImpl::requestFailed(const String& error)
+ {
+     if (m_errorCallback)
+        m_errorCallback->handleEvent(error);
+ 
+     clear();
+ }
+",1
+"PrintPreviewHandler::PrintPreviewHandler()
+    : print_backend_(printing::PrintBackend::CreateInstance(NULL)),
+      regenerate_preview_request_count_(0),
+      manage_printers_dialog_request_count_(0),
+      manage_cloud_printers_dialog_request_count_(0),
+      reported_failed_preview_(false),
+      has_logged_printers_count_(false) {
+  ReportUserActionHistogram(PREVIEW_STARTED);
+}
+",0
+"void RenderViewImpl::OnSelectPopupMenuItems(
+    bool canceled,
+    const std::vector<int>& selected_indices) {
+  if (!external_popup_menu_.get())
+    return;
+
+  external_popup_menu_->DidSelectItems(canceled, selected_indices);
+  external_popup_menu_.reset();
+}
+",0
+"static int shm_fsync(struct file *file, loff_t start, loff_t end, int datasync)
+{
+	struct shm_file_data *sfd = shm_file_data(file);
+
+	if (!sfd->file->f_op->fsync)
+		return -EINVAL;
+	return sfd->file->f_op->fsync(sfd->file, start, end, datasync);
+}
+",0
+"void RenderView::printPage(WebFrame* frame) {
+  DCHECK(frame);
+  Print(frame, true);
+}
+",0
+"static float CL_DemoFrameDurationSDev( void )
+{
+	int i;
+	int numFrames;
+	float mean = 0.0f;
+	float variance = 0.0f;
+
+	if( ( clc.timeDemoFrames - 1 ) > MAX_TIMEDEMO_DURATIONS )
+		numFrames = MAX_TIMEDEMO_DURATIONS;
+	else
+		numFrames = clc.timeDemoFrames - 1;
+
+	for( i = 0; i < numFrames; i++ )
+		mean += clc.timeDemoDurations[ i ];
+	mean /= numFrames;
+
+	for( i = 0; i < numFrames; i++ )
+	{
+		float x = clc.timeDemoDurations[ i ];
+
+		variance += ( ( x - mean ) * ( x - mean ) );
+	}
+	variance /= numFrames;
+
+	return sqrt( variance );
+}
+",0
+"static inline void invalidate_cursor1(CirrusVGAState *s)
+{
+    if (s->last_hw_cursor_size) {
+        vga_invalidate_scanlines(&s->vga,
+                                 s->last_hw_cursor_y + s->last_hw_cursor_y_start,
+                                 s->last_hw_cursor_y + s->last_hw_cursor_y_end);
+    }
+}
+",0
+"const Chapters::Display* Chapters::Atom::GetDisplay(int index) const
+{
+    if (index < 0)
+        return NULL;
+    if (index >= m_displays_count)
+        return NULL;
+    return m_displays + index;
+}
+",1
+"static int xc2028_get_reg(struct xc2028_data *priv, u16 reg, u16 *val)
+{
+	unsigned char buf[2];
+	unsigned char ibuf[2];
+
+	tuner_dbg(""%s %04x called\n"", __func__, reg);
+
+	buf[0] = reg >> 8;
+	buf[1] = (unsigned char) reg;
+
+	if (i2c_send_recv(priv, buf, 2, ibuf, 2) != 2)
+		return -EIO;
+
+	*val = (ibuf[1]) | (ibuf[0] << 8);
+	return 0;
+}
+",0
+"static ZIPARCHIVE_METHOD(addEmptyDir)
+{
+	struct zip *intern;
+	zval *self = getThis();
+	char *dirname;
+	size_t   dirname_len;
+	int idx;
+	struct zip_stat sb;
+	char *s;
+
+	if (!self) {
+		RETURN_FALSE;
+	}
+
+	ZIP_FROM_OBJECT(intern, self);
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS(), ""s"",
+				&dirname, &dirname_len) == FAILURE) {
+		return;
+	}
+
+	if (dirname_len<1) {
+		RETURN_FALSE;
+	}
+
+	if (dirname[dirname_len-1] != '/') {
+		s=(char *)emalloc(dirname_len+2);
+		strcpy(s, dirname);
+		s[dirname_len] = '/';
+		s[dirname_len+1] = '\0';
+	} else {
+		s = dirname;
+	}
+
+	idx = zip_stat(intern, s, 0, &sb);
+	if (idx >= 0) {
+		RETVAL_FALSE;
+	} else {
+		if (zip_add_dir(intern, (const char *)s) == -1) {
+			RETVAL_FALSE;
+		}
+		zip_error_clear(intern);
+		RETVAL_TRUE;
+	}
+
+	if (s != dirname) {
+		efree(s);
+	}
+}
+",0
+"void RenderFrameHostImpl::OnJavaScriptExecuteResponse(
+    int id, const base::ListValue& result) {
+  const base::Value* result_value;
+  if (!result.Get(0, &result_value)) {
+    NOTREACHED() << ""Got bad arguments for OnJavaScriptExecuteResponse"";
+    return;
+  }
+
+  auto it = javascript_callbacks_.find(id);
+  if (it != javascript_callbacks_.end()) {
+    it->second.Run(result_value);
+    javascript_callbacks_.erase(it);
+  } else {
+    NOTREACHED() << ""Received script response for unknown request"";
+  }
+}
+",0
+"std::string GLES2Util::GetQualifiedEnumString(const EnumToString* table,
+                                              size_t count,
+                                              uint32_t value) {
+  for (const EnumToString* end = table + count; table < end; ++table) {
+    if (table->value == value) {
+      return table->name;
+    }
+  }
+  return GetStringEnum(value);
+}
+",0
+"   void FireInvalidateAll() {
+    invalidation::AckHandle ack_handle(""fakedata"");
+    EXPECT_CALL(mock_invalidation_client_, Acknowledge(ack_handle));
+    client_.InvalidateAll(&mock_invalidation_client_, ack_handle);
+   }
+",1
+"store_current_palette(png_store *ps, int *npalette)
+{
+ /* This is an internal error (the call has been made outside a read
+
+     * operation.)
+     */
+    if (ps->current == NULL)
+       store_log(ps, ps->pread, ""no current stream for palette"", 1);
+ 
+    /* The result may be null if there is no palette. */
+    *npalette = ps->current->npalette;
+ return ps->current->palette;
+}
+",1
+"bool LayoutSVGTransformableContainer::calculateLocalTransform()
+ {
+     SVGGraphicsElement* element = toSVGGraphicsElement(this->element());
+     ASSERT(element);
+
+    SVGUseElement* useElement = nullptr;
+    if (isSVGUseElement(*element)) {
+        useElement = toSVGUseElement(element);
+    } else if (isSVGGElement(*element) && toSVGGElement(element)->inUseShadowTree()) {
+        SVGElement* correspondingElement = element->correspondingElement();
+        if (isSVGUseElement(correspondingElement))
+            useElement = toSVGUseElement(correspondingElement);
+    }
+
+    if (useElement) {
+        SVGLengthContext lengthContext(useElement);
+         FloatSize translation(
+             useElement->x()->currentValue()->value(lengthContext),
+             useElement->y()->currentValue()->value(lengthContext));
+         if (translation != m_additionalTranslation)
+            m_needsTransformUpdate = true;
+         m_additionalTranslation = translation;
+     }
+ 
+     if (!m_needsTransformUpdate)
+        return false;
+ 
+     m_localTransform = element->calculateAnimatedLocalTransform();
+     m_localTransform.translate(m_additionalTranslation.width(), m_additionalTranslation.height());
+     m_needsTransformUpdate = false;
+    return true;
+ }
+",1
+"int GetSystemMetricsInDIP(int metric) {
+  return static_cast<int>(GetSystemMetrics(metric) /
+      GetDeviceScaleFactor() + 0.5);
+}
+",0
+"bt_status_t btif_storage_add_bonded_device(bt_bdaddr_t *remote_bd_addr,
+                                           LINK_KEY link_key,
+ uint8_t key_type,
+ uint8_t pin_length)
+{
+ bdstr_t bdstr;
+    bdaddr_to_string(remote_bd_addr, bdstr, sizeof(bdstr));
+
+     int ret = btif_config_set_int(bdstr, ""LinkKeyType"", (int)key_type);
+     ret &= btif_config_set_int(bdstr, ""PinLength"", (int)pin_length);
+     ret &= btif_config_set_bin(bdstr, ""LinkKey"", link_key, sizeof(LINK_KEY));
+     /* write bonded info immediately */
+     btif_config_flush();
+     return ret ? BT_STATUS_SUCCESS : BT_STATUS_FAIL;
+}
+",1
+"CJSON_PUBLIC(cJSON *) cJSON_CreateIntArray(const int *numbers, int count)
+{
+    size_t i = 0;
+    cJSON *n = NULL;
+    cJSON *p = NULL;
+    cJSON *a = NULL;
+
+    if ((count < 0) || (numbers == NULL))
+    {
+        return NULL;
+    }
+
+    a = cJSON_CreateArray();
+    for(i = 0; a && (i < (size_t)count); i++)
+    {
+        n = cJSON_CreateNumber(numbers[i]);
+        if (!n)
+        {
+            cJSON_Delete(a);
+            return NULL;
+        }
+        if(!i)
+        {
+            a->child = n;
+        }
+        else
+        {
+            suffix_object(p, n);
+        }
+        p = n;
+    }
+
+    return a;
+}
+",0
+"bool UnprivilegedProcessDelegate::CreateConnectedIpcChannel(
+    const std::string& channel_name,
+    IPC::Listener* delegate,
+    ScopedHandle* client_out,
+    scoped_ptr<IPC::ChannelProxy>* server_out) {
+  scoped_ptr<IPC::ChannelProxy> server;
+  if (!CreateIpcChannel(channel_name, kDaemonIpcSecurityDescriptor,
+                        io_task_runner_, delegate, &server)) {
+    return false;
+  }
+  std::string pipe_name(kChromePipeNamePrefix);
+  pipe_name.append(channel_name);
+  SECURITY_ATTRIBUTES security_attributes;
+  security_attributes.nLength = sizeof(security_attributes);
+  security_attributes.lpSecurityDescriptor = NULL;
+  security_attributes.bInheritHandle = TRUE;
+  ScopedHandle client;
+  client.Set(CreateFile(UTF8ToUTF16(pipe_name).c_str(),
+                        GENERIC_READ | GENERIC_WRITE,
+                        0,
+                        &security_attributes,
+                        OPEN_EXISTING,
+                        SECURITY_SQOS_PRESENT | SECURITY_IDENTIFICATION |
+                            FILE_FLAG_OVERLAPPED,
+                        NULL));
+  if (!client.IsValid())
+    return false;
+  *client_out = client.Pass();
+  *server_out = server.Pass();
+  return true;
+}
+",1
+" FileEntrySync* DirectoryEntrySync::getFile(const String& path, const Dictionary& options, ExceptionState& exceptionState)
+ {
+     FileSystemFlags flags(options);
+    RefPtr<EntrySyncCallbackHelper> helper = EntrySyncCallbackHelper::create();
+     m_fileSystem->getFile(this, path, flags, helper->successCallback(), helper->errorCallback(), DOMFileSystemBase::Synchronous);
+     return static_cast<FileEntrySync*>(helper->getResult(exceptionState));
+ }
+",1
+"xmlFatalErrMsg(xmlParserCtxtPtr ctxt, xmlParserErrors error,
+ const char *msg)
+{
+ if ((ctxt != NULL) && (ctxt->disableSAX != 0) &&
+ (ctxt->instate == XML_PARSER_EOF))
+ return;
+ if (ctxt != NULL)
+	ctxt->errNo = error;
+    __xmlRaiseError(NULL, NULL, NULL, ctxt, NULL, XML_FROM_PARSER, error,
+                    XML_ERR_FATAL, NULL, 0, NULL, NULL, NULL, 0, 0, ""%s"", msg);
+ if (ctxt != NULL) {
+	ctxt->wellFormed = 0;
+ if (ctxt->recovery == 0)
+	    ctxt->disableSAX = 1;
+ }
+}
+",0
+"void CloseFds(const std::vector<int>& fds) {
+  for (const auto& it : fds) {
+    PCHECK(0 == IGNORE_EINTR(close(it)));
+  }
+}
+",0
+"long Cluster::CreateBlock(
+    long long id,
+    long long pos,   //absolute pos of payload
+    long long size,
+    long long discard_padding)
+{
+    assert((id == 0x20) || (id == 0x23));  //BlockGroup or SimpleBlock
+    if (m_entries_count < 0)  //haven't parsed anything yet
+    {
+        assert(m_entries == NULL);
+        assert(m_entries_size == 0);
+        m_entries_size = 1024;
+        m_entries = new BlockEntry*[m_entries_size];
+        m_entries_count = 0;
+    }
+    else
+    {
+        assert(m_entries);
+        assert(m_entries_size > 0);
+        assert(m_entries_count <= m_entries_size);
+        if (m_entries_count >= m_entries_size)
+        {
+            const long entries_size = 2 * m_entries_size;
+            BlockEntry** const entries = new BlockEntry*[entries_size];
+            assert(entries);
+            BlockEntry** src = m_entries;
+            BlockEntry** const src_end = src + m_entries_count;
+            BlockEntry** dst = entries;
+            while (src != src_end)
+                *dst++ = *src++;
+            delete[] m_entries;
+            m_entries = entries;
+            m_entries_size = entries_size;
+        }
+     }
+ 
+    if (id == 0x20)  //BlockGroup ID
+        return CreateBlockGroup(pos, size, discard_padding);
+    else  //SimpleBlock ID
+        return CreateSimpleBlock(pos, size);
+ }
+",1
+"device_constructor (GType type,
+                    guint n_construct_properties,
+                    GObjectConstructParam *construct_properties)
+{
+  Device *device;
+  DeviceClass *klass;
+
+  klass = DEVICE_CLASS (g_type_class_peek (TYPE_DEVICE));
+
+  device = DEVICE (G_OBJECT_CLASS (device_parent_class)->constructor (type,
+                                                                      n_construct_properties,
+                                                                      construct_properties));
+  return G_OBJECT (device);
+}
+",0
+"static void display_motd() {
+	FILE *fp;
+	int c;
+
+	if ((fp = fopen(""/etc/motd"", ""r""))) {
+		while ((c = getc(fp)) != EOF) {
+			putchar(c);
+		}
+		fclose(fp);
+	}
+}
+",0
+"bool ATSParser::PTSTimeDeltaEstablished() {
+ if (mPrograms.isEmpty()) {
+ return false;
+ }
+
+ return mPrograms.editItemAt(0)->PTSTimeDeltaEstablished();
+}
+",0
+"void InterstitialPageImpl::InterstitialPageRVHDelegateView::ShowPopupMenu(
+    RenderFrameHost* render_frame_host,
+    const gfx::Rect& bounds,
+    int item_height,
+    double item_font_size,
+    int selected_item,
+    const std::vector<MenuItem>& items,
+    bool right_aligned,
+    bool allow_multiple_selection) {
+  NOTREACHED() << ""InterstitialPage does not support showing popup menus."";
+}
+",0
+"fn_printzp(netdissect_options *ndo,
+           register const u_char *s, register u_int n,
+           register const u_char *ep)
+{
+	register int ret;
+	register u_char c;
+
+	ret = 1;			/* assume truncated */
+	while (n > 0 && (ep == NULL || s < ep)) {
+		n--;
+		c = *s++;
+		if (c == '\0') {
+			ret = 0;
+			break;
+		}
+		if (!ND_ISASCII(c)) {
+			c = ND_TOASCII(c);
+			ND_PRINT((ndo, ""M-""));
+		}
+		if (!ND_ISPRINT(c)) {
+			c ^= 0x40;	/* DEL to ?, others to alpha */
+			ND_PRINT((ndo, ""^""));
+		}
+		ND_PRINT((ndo, ""%c"", c));
+	}
+	return (n == 0) ? 0 : ret;
+}
+",0
+" static int sgi_clock_set(clockid_t clockid, struct timespec *tp)
+ {
+ 
+ 	u64 nsec;
+	u64 rem;
+ 
+ 	nsec = rtc_time() * sgi_clock_period;
+ 
+	sgi_clock_offset.tv_sec = tp->tv_sec - div_long_long_rem(nsec, NSEC_PER_SEC, &rem);
+ 
+ 	if (rem <= tp->tv_nsec)
+ 		sgi_clock_offset.tv_nsec = tp->tv_sec - rem;
+	else {
+		sgi_clock_offset.tv_nsec = tp->tv_sec + NSEC_PER_SEC - rem;
+		sgi_clock_offset.tv_sec--;
+	}
+	return 0;
+}
+",1
+"    StateBase* handleError(Status errorStatus, const String& message, StateBase* state)
+    {
+        ASSERT(errorStatus != Success);
+        m_status = errorStatus;
+        m_errorMessage = message;
+        while (state) {
+            StateBase* tmp = state->nextState();
+            delete state;
+            state = tmp;
+        }
+        return new ErrorState;
+    }
+",0
+"static char *rfc2047_decode_word(const char *s, size_t len, enum ContentEncoding enc)
+{
+  const char *it = s;
+  const char *end = s + len;
+
+  if (enc == ENCQUOTEDPRINTABLE)
+  {
+    struct Buffer buf = { 0 };
+    for (; it < end; ++it)
+    {
+      if (*it == '_')
+      {
+        mutt_buffer_addch(&buf, ' ');
+      }
+      else if ((*it == '=') && (!(it[1] & ~127) && hexval(it[1]) != -1) &&
+               (!(it[2] & ~127) && hexval(it[2]) != -1))
+      {
+        mutt_buffer_addch(&buf, (hexval(it[1]) << 4) | hexval(it[2]));
+        it += 2;
+      }
+      else
+      {
+        mutt_buffer_addch(&buf, *it);
+      }
+    }
+    mutt_buffer_addch(&buf, '\0');
+    return buf.data;
+   }
+   else if (enc == ENCBASE64)
+   {
+    char *out = mutt_mem_malloc(3 * len / 4 + 1);
+    int dlen = mutt_b64_decode(out, it);
+     if (dlen == -1)
+     {
+       FREE(&out);
+      return NULL;
+    }
+    out[dlen] = '\0';
+    return out;
+  }
+
+  assert(0); /* The enc parameter has an invalid value */
+  return NULL;
+}
+",1
+"size_t compile_tree(struct filter_op **fop)
+{
+   int i = 1;
+    struct filter_op *array = NULL;
+    struct unfold_elm *ue;
+ 
+   BUG_IF(tree_root == NULL);
+   
+    fprintf(stdout, "" Unfolding the meta-tree "");
+    fflush(stdout);
+     
+   /* start the recursion on the tree */
+   unfold_blk(&tree_root);
+
+   fprintf(stdout, "" done.\n\n"");
+
+   /* substitute the virtual labels with real offsets */
+   labels_to_offsets();
+   
+   /* convert the tailq into an array */
+   TAILQ_FOREACH(ue, &unfolded_tree, next) {
+
+      /* label == 0 means a real instruction */
+      if (ue->label == 0) {
+         SAFE_REALLOC(array, i * sizeof(struct filter_op));
+         memcpy(&array[i - 1], &ue->fop, sizeof(struct filter_op));
+         i++;
+      }
+   }
+   
+   /* always append the exit function to a script */
+   SAFE_REALLOC(array, i * sizeof(struct filter_op));
+   array[i - 1].opcode = FOP_EXIT;
+   
+   /* return the pointer to the array */
+   *fop = array;
+   
+   return (i);
+}
+",1
+"static int dynamicGetbuf(gdIOCtxPtr ctx, void *buf, int len)
+{
+	int rlen, remain;
+	dpIOCtxPtr dctx;
+	dynamicPtr *dp;
+
+	dctx = (dpIOCtxPtr) ctx;
+	dp = dctx->dp;
+
+	remain = dp->logicalSize - dp->pos;
+ 	if(remain >= len) {
+ 		rlen = len;
+ 	} else {
+		if(remain == 0) {
+ 			/* 2.0.34: EOF is incorrect. We use 0 for
+ 			 * errors and EOF, just like fileGetbuf,
+ 			 * which is a simple fread() wrapper.
+			 * TBB. Original bug report: Daniel Cowgill. */
+			return 0; /* NOT EOF */
+		}
+
+		rlen = remain;
+	}
+
+	memcpy(buf, (void *) ((char *)dp->data + dp->pos), rlen);
+	dp->pos += rlen;
+
+	return rlen;
+}
+",1
+"int xt_compat_check_entry_offsets(const void *base,
+ 				  unsigned int target_offset,
+ 				  unsigned int next_offset)
+ {
+ 	const struct compat_xt_entry_target *t;
+ 	const char *e = base;
+ 
+ 	if (target_offset + sizeof(*t) > next_offset)
+ 		return -EINVAL;
+ 
+	t = (void *)(e + target_offset);
+	if (t->u.target_size < sizeof(*t))
+		return -EINVAL;
+
+	if (target_offset + t->u.target_size > next_offset)
+		return -EINVAL;
+
+	if (strcmp(t->u.user.name, XT_STANDARD_TARGET) == 0 &&
+	    target_offset + sizeof(struct compat_xt_standard_target) != next_offset)
+		return -EINVAL;
+
+	return 0;
+}
+",1
+"void DiceResponseHandler::DeleteTokenFetcher(DiceTokenFetcher* token_fetcher) {
+  for (auto it = token_fetchers_.begin(); it != token_fetchers_.end(); ++it) {
+    if (it->get() == token_fetcher) {
+      token_fetchers_.erase(it);
+      return;
+    }
+  }
+  NOTREACHED();
+}
+",0
+" void CastCastView::ButtonPressed(views::Button* sender,
+                                  const ui::Event& event) {
+   DCHECK(sender == stop_button_);
+  StopCast();
+ }
+",1
+"static int muscle_card_extract_key(sc_card_t *card, sc_cardctl_muscle_key_info_t *info)
+{
+	/* CURRENTLY DONT SUPPORT EXTRACTING PRIVATE KEYS... */
+	switch(info->keyType) {
+	case 1: /* RSA */
+		return msc_extract_rsa_public_key(card,
+			info->keyLocation,
+			&info->modLength,
+			&info->modValue,
+			&info->expLength,
+			&info->expValue);
+	default:
+		return SC_ERROR_NOT_SUPPORTED;
+	}
+}
+",0
+" void DistillerNativeJavaScript::EnsureServiceConnected() {
+  if (!distiller_js_service_) {
+     render_frame_->GetServiceRegistry()->ConnectToRemoteService(
+         mojo::GetProxy(&distiller_js_service_));
+   }
+ }
+",1
+"getnetnum(
+	const char *num,
+	sockaddr_u *addr,
+	int complain,
+	enum gnn_type a_type	/* ignored */
+	)
+{
+	NTP_REQUIRE(AF_UNSPEC == AF(addr) ||
+		    AF_INET == AF(addr) ||
+		    AF_INET6 == AF(addr));
+
+	if (!is_ip_address(num, AF(addr), addr))
+		return 0;
+
+	if (IS_IPV6(addr) && !ipv6_works)
+		return -1;
+
+# ifdef ISC_PLATFORM_HAVESALEN
+	addr->sa.sa_len = SIZEOF_SOCKADDR(AF(addr));
+# endif
+	SET_PORT(addr, NTP_PORT);
+
+	DPRINTF(2, (""getnetnum given %s, got %s\n"", num, stoa(addr)));
+
+	return 1;
+}
+",0
+"unsigned long iov_iter_alignment(const struct iov_iter *i)
+{
+	const struct iovec *iov = i->iov;
+	unsigned long res;
+	size_t size = i->count;
+	size_t n;
+
+	if (!size)
+		return 0;
+
+	res = (unsigned long)iov->iov_base + i->iov_offset;
+	n = iov->iov_len - i->iov_offset;
+	if (n >= size)
+		return res | size;
+	size -= n;
+	res |= n;
+	while (size > (++iov)->iov_len) {
+		res |= (unsigned long)iov->iov_base | iov->iov_len;
+		size -= iov->iov_len;
+	}
+	res |= (unsigned long)iov->iov_base | size;
+	return res;
+}
+",0
+"void Vp9Parser::ReadSegmentationMap() {
+   for (size_t i = 0; i < Vp9Segmentation::kNumTreeProbs; i++) {
+    segmentation_.tree_probs[i] =
+         reader_.ReadBool() ? reader_.ReadLiteral(8) : kVp9MaxProb;
+   }
+ 
+   for (size_t i = 0; i < Vp9Segmentation::kNumPredictionProbs; i++)
+    segmentation_.pred_probs[i] = kVp9MaxProb;
+ 
+  segmentation_.temporal_update = reader_.ReadBool();
+  if (segmentation_.temporal_update) {
+     for (size_t i = 0; i < Vp9Segmentation::kNumPredictionProbs; i++) {
+       if (reader_.ReadBool())
+        segmentation_.pred_probs[i] = reader_.ReadLiteral(8);
+     }
+   }
+ }
+",1
+"void TypingCommand::insertText(Document& document,
+                               const String& text,
+                               Options options,
+                               TextCompositionType composition,
+                               const bool isIncrementalInsertion) {
+  LocalFrame* frame = document.frame();
+  DCHECK(frame);
+
+  if (!text.isEmpty())
+     document.frame()->spellChecker().updateMarkersForWordsAffectedByEditing(
+         isSpaceOrNewline(text[0]));
+ 
+  insertText(document, text,
+             frame->selection().computeVisibleSelectionInDOMTreeDeprecated(),
+             options, composition, isIncrementalInsertion);
+ }
+",1
+"static int srpt_ch_qp_rtr(struct srpt_rdma_ch *ch, struct ib_qp *qp)
+{
+	struct ib_qp_attr qp_attr;
+	int attr_mask;
+	int ret;
+
+	qp_attr.qp_state = IB_QPS_RTR;
+	ret = ib_cm_init_qp_attr(ch->cm_id, &qp_attr, &attr_mask);
+	if (ret)
+		goto out;
+
+	qp_attr.max_dest_rd_atomic = 4;
+
+	ret = ib_modify_qp(qp, &qp_attr, attr_mask);
+
+out:
+	return ret;
+}
+",0
+"void SSLClientSocketOpenSSL::OnSendComplete(int result) {
+  if (next_handshake_state_ == STATE_HANDSHAKE) {
+    OnHandshakeIOComplete(result);
+    return;
+  }
+
+  int rv_read = ERR_IO_PENDING;
+  int rv_write = ERR_IO_PENDING;
+  bool network_moved;
+  do {
+    if (user_read_buf_.get())
+      rv_read = DoPayloadRead();
+    if (user_write_buf_.get())
+      rv_write = DoPayloadWrite();
+    network_moved = DoTransportIO();
+  } while (rv_read == ERR_IO_PENDING && rv_write == ERR_IO_PENDING &&
+           (user_read_buf_.get() || user_write_buf_.get()) && network_moved);
+
+  base::WeakPtr<SSLClientSocketOpenSSL> guard(weak_factory_.GetWeakPtr());
+  if (user_read_buf_.get() && rv_read != ERR_IO_PENDING)
+    DoReadCallback(rv_read);
+
+  if (!guard.get())
+    return;
+
+  if (user_write_buf_.get() && rv_write != ERR_IO_PENDING)
+    DoWriteCallback(rv_write);
+}
+",0
+"PaletteTool::~PaletteTool() {}
+",0
+"static void addr_hash_set(u32 *mask, const u8 *addr)
+{
+	int n = ether_crc(ETH_ALEN, addr) >> 26;
+	mask[n >> 5] |= (1 << (n & 31));
+}
+",0
+"WebContents* GetEmbedderForGuest(content::WebContents* guest) {
+  CHECK(guest);
+  return static_cast<content::WebContentsImpl*>(guest)->GetOuterWebContents();
+}
+",0
+"ACodec::UninitializedState::UninitializedState(ACodec *codec)
+ : BaseState(codec) {
+}
+",0
+" std::string MasterPreferences::GetCompressedVariationsSeed() const {
+  return ExtractPrefString(prefs::kVariationsCompressedSeed);
+ }
+",1
+" void ExtensionViewGuest::DidNavigateMainFrame(
+     const content::LoadCommittedDetails& details,
+     const content::FrameNavigateParams& params) {
+  if (attached() && (params.url.GetOrigin() != url_.GetOrigin())) {
+     bad_message::ReceivedBadMessage(web_contents()->GetRenderProcessHost(),
+                                     bad_message::EVG_BAD_ORIGIN);
+   }
+}
+",1
+"bool XSSAuditor::filterFrameToken(const FilterTokenRequest& request)
+{
+    ASSERT(request.token.type() == HTMLToken::StartTag);
+    ASSERT(hasName(request.token, iframeTag) || hasName(request.token, frameTag));
+
+    bool didBlockScript = eraseAttributeIfInjected(request, srcdocAttr, String(), ScriptLikeAttribute);
+    if (isContainedInRequest(decodedSnippetForName(request)))
+        didBlockScript |= eraseAttributeIfInjected(request, srcAttr, String(), SrcLikeAttribute);
+
+    return didBlockScript;
+}
+",0
+"static int ps_files_valid_key(const char *key)
+{
+       size_t len;
+       const char *p;
+       char c;
+       int ret = 1;
+       for (p = key; (c = *p); p++) {
+               /* valid characters are a..z,A..Z,0..9 */
+               if (!((c >= 'a' && c <= 'z')
+                               || (c >= 'A' && c <= 'Z')
+                               || (c >= '0' && c <= '9')
+                               || c == ','
+                               || c == '-')) {
+                       ret = 0;
+                       break;
+               }
+       }
+       len = p - key;
+       /* Somewhat arbitrary length limit here, but should be way more than
+          anyone needs and avoids file-level warnings later on if we exceed MAX_PATH */
+       if (len == 0 || len > 128) {
+               ret = 0;
+       }
+       return ret;
+}
+",1
+"qedi_dbg_notice(struct qedi_dbg_ctx *qedi, const char *func, u32 line,
+		const char *fmt, ...)
+ {
+ 	va_list va;
+ 	struct va_format vaf;
+	char nfunc[32];
+	memset(nfunc, 0, sizeof(nfunc));
+	memcpy(nfunc, func, sizeof(nfunc) - 1);
+ 
+ 	va_start(va, fmt);
+ 
+	vaf.fmt = fmt;
+	vaf.va = &va;
+
+	if (!(qedi_dbg_log & QEDI_LOG_NOTICE))
+		goto ret;
+ 
+ 	if (likely(qedi) && likely(qedi->pdev))
+ 		pr_notice(""[%s]:[%s:%d]:%d: %pV"",
+			  dev_name(&qedi->pdev->dev), nfunc, line,
+ 			  qedi->host_no, &vaf);
+ 	else
+		pr_notice(""[0000:00:00.0]:[%s:%d]: %pV"", nfunc, line, &vaf);
+ 
+ ret:
+ 	va_end(va);
+}
+",1
+"process(struct magic_set *ms, const char *inname, int wid)
+{
+	const char *type;
+	int std_in = strcmp(inname, ""-"") == 0;
+
+	if (wid > 0 && !bflag) {
+		(void)printf(""%s"", std_in ? ""/dev/stdin"" : inname);
+		if (nulsep)
+			(void)putc('\0', stdout);
+		(void)printf(""%s"", separator);
+		(void)printf(""%*s "",
+		    (int) (nopad ? 0 : (wid - file_mbswidth(inname))), """");
+	}
+
+	type = magic_file(ms, std_in ? NULL : inname);
+	if (type == NULL) {
+		(void)printf(""ERROR: %s\n"", magic_error(ms));
+		return 1;
+	} else {
+		(void)printf(""%s\n"", type);
+		return 0;
+	}
+}
+",0
+" void DOMStorageContextWrapper::Shutdown() {
+  DCHECK(context_.get());
+  mojo_task_runner_->PostTask(
+      FROM_HERE, base::BindOnce(&LocalStorageContextMojo::ShutdownAndDelete,
+                                base::Unretained(mojo_state_)));
+  mojo_state_ = nullptr;
+   if (mojo_session_state_) {
+     mojo_task_runner_->PostTask(
+         FROM_HERE, base::BindOnce(&SessionStorageContextMojo::ShutdownAndDelete,
+                                   base::Unretained(mojo_session_state_)));
+     mojo_session_state_ = nullptr;
+   }
+   memory_pressure_listener_.reset();
+  context_->task_runner()->PostShutdownBlockingTask(
+      FROM_HERE, DOMStorageTaskRunner::PRIMARY_SEQUENCE,
+      base::BindOnce(&DOMStorageContextImpl::Shutdown, context_));
+ }
+",1
+"QQuickWebViewPrivate::~QQuickWebViewPrivate()
+{
+    webPageProxy->close();
+}
+",0
+"void ContentSecurityPolicy::BindToExecutionContext(
+    ExecutionContext* execution_context) {
+  execution_context_ = execution_context;
+  ApplyPolicySideEffectsToExecutionContext();
+}
+",0
+"static int parse_token(char **name, char **value, char **cp)
+{
+	char *end;
+
+	if (!name || !value || !cp)
+		return -BLKID_ERR_PARAM;
+
+	if (!(*value = strchr(*cp, '=')))
+		return 0;
+
+	**value = '\0';
+	*name = strip_line(*cp);
+ 	*value = skip_over_blank(*value + 1);
+ 
+ 	if (**value == '""') {
+		end = strchr(*value + 1, '""');
+		if (!end) {
+ 			DBG(READ, ul_debug(""unbalanced quotes at: %s"", *value));
+ 			*cp = *value;
+ 			return -BLKID_ERR_CACHE;
+ 		}
+ 		(*value)++;
+ 		*end = '\0';
+		end++;
+ 	} else {
+ 		end = skip_over_word(*value);
+ 		if (*end) {
+			*end = '\0';
+			end++;
+		}
+	}
+	*cp = end;
+
+	return 1;
+}
+",1
+"void RenderBox::paintRootBoxFillLayers(const PaintInfo& paintInfo)
+{
+    if (paintInfo.skipRootBackground())
+        return;
+
+    RenderObject* rootBackgroundRenderer = rendererForRootBackground();
+
+    const FillLayer* bgLayer = rootBackgroundRenderer->style()->backgroundLayers();
+    Color bgColor = rootBackgroundRenderer->resolveColor(CSSPropertyBackgroundColor);
+
+    paintFillLayers(paintInfo, bgColor, bgLayer, view()->backgroundRect(this), BackgroundBleedNone, CompositeSourceOver, rootBackgroundRenderer);
+}
+",0
+"hash_foreach_mangle_dict_of_strings (gpointer key, gpointer val, gpointer user_data)
+{
+  GHashTable *out = (GHashTable*) user_data;
+  GHashTable *in_dict = (GHashTable *) val;
+  HashAndString *data = g_new0 (HashAndString, 1);
+  data->string = (gchar*) key;
+  data->hash = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                            g_free, g_free);
+  g_hash_table_foreach (in_dict, hash_foreach_prepend_string, data);
+  g_hash_table_insert(out, g_strdup ((gchar*) key), data->hash);
+}
+",1
+"    StringCapturingFunction(ScriptState* scriptState, String* value)
+        : ScriptFunction(scriptState)
+        , m_value(value)
+    {
+    }
+",0
+"void ExtensionTtsController::Stop() {
+  if (current_utterance_ && !current_utterance_->extension_id().empty()) {
+    current_utterance_->profile()->GetExtensionEventRouter()->
+        DispatchEventToExtension(
+            current_utterance_->extension_id(),
+            events::kOnStop,
+            ""[]"",
+            current_utterance_->profile(),
+            GURL());
+  } else {
+    GetPlatformImpl()->clear_error();
+    GetPlatformImpl()->StopSpeaking();
+   }
+ 
+  if (current_utterance_)
+    current_utterance_->set_error(kSpeechInterruptedError);
+  FinishCurrentUtterance();
+  ClearUtteranceQueue();
+}
+",1
+"static ssize_t ReadBlobBlock(Image *image,unsigned char *data)
+{
+  ssize_t
+    count;
+
+  unsigned char
+    block_count;
+
+  assert(image != (Image *) NULL);
+  assert(image->signature == MagickSignature);
+  assert(data != (unsigned char *) NULL);
+  count=ReadBlob(image,1,&block_count);
+  if (count != 1)
+    return(0);
+  count=ReadBlob(image,(size_t) block_count,data);
+  if (count != (ssize_t) block_count)
+    return(0);
+  return(count);
+}
+",0
+" WebPluginResourceClient* WebPluginDelegateImpl::CreateResourceClient(
+    unsigned long resource_id, const GURL& url, bool notify_needed,
+    intptr_t notify_data, intptr_t existing_stream) {
+  if (existing_stream) {
+    NPAPI::PluginStream* plugin_stream =
+        reinterpret_cast<NPAPI::PluginStream*>(existing_stream);
+    return plugin_stream->AsResourceClient();
+  }
+ 
+  std::string mime_type;
+  NPAPI::PluginStreamUrl *stream = instance()->CreateStream(
+      resource_id, url, mime_type, notify_needed,
+      reinterpret_cast<void*>(notify_data));
+  return stream;
+ }
+",1
+" void WtsSessionProcessDelegate::Core::KillProcess(DWORD exit_code) {
+   DCHECK(main_task_runner_->BelongsToCurrentThread());
+ 
+   channel_.reset();
+ 
+   if (launch_elevated_) {
+     if (job_.IsValid()) {
+      TerminateJobObject(job_, exit_code);
+    }
+  } else {
+    if (worker_process_.IsValid()) {
+      TerminateProcess(worker_process_, exit_code);
+    }
+  }
+}
+",1
+"bool SendNativeKeyEventJSONRequest(
+    AutomationMessageSender* sender,
+    int browser_index,
+    int tab_index,
+    ui::KeyboardCode key_code,
+    int modifiers,
+    std::string* error_msg) {
+  DictionaryValue dict;
+  dict.SetString(""command"", ""SendOSLevelKeyEventToTab"");
+  dict.SetInteger(""windex"", browser_index);
+  dict.SetInteger(""tab_index"", tab_index);
+  dict.SetInteger(""keyCode"", key_code);
+  dict.SetInteger(""modifiers"", modifiers);
+  DictionaryValue reply_dict;
+  return SendAutomationJSONRequest(sender, dict, &reply_dict, error_msg);
+}
+",0
+"static void copy_asoundrc(void) {
+	char *src = RUN_ASOUNDRC_FILE ;
+ 	char *dest;
+ 	if (asprintf(&dest, ""%s/.asoundrc"", cfg.homedir) == -1)
+ 		errExit(""asprintf"");
+ 	if (is_link(dest)) {
+ 		fprintf(stderr, ""Error: %s is a symbolic link\n"", dest);
+ 		exit(1);
+ 	}
+ 
+	pid_t child = fork();
+	if (child < 0)
+		errExit(""fork"");
+	if (child == 0) {
+		drop_privs(0);
+		int rv = copy_file(src, dest);
+		if (rv)
+			fprintf(stderr, ""Warning: cannot transfer .asoundrc in private home directory\n"");
+		else {
+			fs_logger2(""clone"", dest);
+		}
+		_exit(0);
+	}
+	waitpid(child, NULL, 0);
+	if (chown(dest, getuid(), getgid()) < 0)
+		errExit(""chown"");
+	if (chmod(dest, S_IRUSR | S_IWUSR) < 0)
+		errExit(""chmod"");
+ 
+ 	unlink(src);
+}
+",1
+"uint32 PluginInstance::ScheduleTimer(uint32 interval,
+                                     NPBool repeat,
+                                     void (*func)(NPP id, uint32 timer_id)) {
+  uint32 timer_id;
+  timer_id = next_timer_id_;
+  ++next_timer_id_;
+  DCHECK(next_timer_id_ != 0);
+
+  TimerInfo info;
+  info.interval = interval;
+  info.repeat = repeat;
+   timers_[timer_id] = info;
+ 
+  message_loop_->PostDelayedTask(FROM_HERE,
+                                 NewRunnableMethod(this,
+                                                   &PluginInstance::OnTimerCall,
+                                                   func,
+                                                   npp_,
+                                                   timer_id),
+                                 interval);
+   return timer_id;
+ }
+",1
+"static noinline void key_gc_unused_keys(struct list_head *keys)
+{
+	while (!list_empty(keys)) {
+		struct key *key =
+			list_entry(keys->next, struct key, graveyard_link);
+		list_del(&key->graveyard_link);
+
+		kdebug(""- %u"", key->serial);
+		key_check(key);
+
+		security_key_free(key);
+
+		/* deal with the user's key tracking and quota */
+		if (test_bit(KEY_FLAG_IN_QUOTA, &key->flags)) {
+			spin_lock(&key->user->lock);
+			key->user->qnkeys--;
+			key->user->qnbytes -= key->quotalen;
+			spin_unlock(&key->user->lock);
+		}
+
+		atomic_dec(&key->user->nkeys);
+ 		if (test_bit(KEY_FLAG_INSTANTIATED, &key->flags))
+ 			atomic_dec(&key->user->nikeys);
+ 
+		key_user_put(key->user);
+ 		/* now throw away the key memory */
+ 		if (key->type->destroy)
+ 			key->type->destroy(key);
+ 
+ 		kfree(key->description);
+ 
+ #ifdef KEY_DEBUGGING
+		key->magic = KEY_DEBUG_MAGIC_X;
+#endif
+		kmem_cache_free(key_jar, key);
+	}
+}
+",1
+" int re_yyget_lineno  (yyscan_t yyscanner)
+ {
+     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
+         if (! YY_CURRENT_BUFFER)
+             return 0;
+     
+    return yylineno;
+}
+",1
+"void PreconnectManager::Start(const GURL& url,
+                              std::vector<PreconnectRequest> requests) {
+  DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
+  const std::string host = url.host();
+  if (preresolve_info_.find(host) != preresolve_info_.end())
+    return;
+
+  auto iterator_and_whether_inserted = preresolve_info_.emplace(
+      host, std::make_unique<PreresolveInfo>(url, requests.size()));
+  PreresolveInfo* info = iterator_and_whether_inserted.first->second.get();
+ 
+   for (auto request_it = requests.begin(); request_it != requests.end();
+        ++request_it) {
+    DCHECK(request_it->origin.GetOrigin() == request_it->origin);
+     PreresolveJobId job_id = preresolve_jobs_.Add(
+         std::make_unique<PreresolveJob>(std::move(*request_it), info));
+     queued_jobs_.push_back(job_id);
+  }
+
+  TryToLaunchPreresolveJobs();
+}
+",1
+"void CCLayerTreeHostTest::endTest()
+ {
+     if (!isMainThread())
+        CCMainThread::postTask(createMainThreadTask(this, &CCLayerTreeHostTest::endTest));
+     else {
+        if (m_beginning)
+            m_endWhenBeginReturns = true;
+        else
+            onEndTest(static_cast<void*>(this));
+    }
+}
+",1
+" PassRefPtr<DocumentFragment> Range::createContextualFragment(const String& markup, ExceptionCode& ec)
+ {
+     if (!m_start.container()) {
+        ec = INVALID_STATE_ERR;
+        return 0;
+    }
+
+    Node* element = m_start.container()->isElementNode() ? m_start.container() : m_start.container()->parentNode();
+    if (!element || !element->isHTMLElement()) {
+        ec = NOT_SUPPORTED_ERR;
+         return 0;
+     }
+ 
+    RefPtr<DocumentFragment> fragment = createDocumentFragmentForElement(markup, toElement(element), AllowScriptingContentAndDoNotMarkAlreadyStarted);
+ 
+     if (!fragment) {
+         ec = NOT_SUPPORTED_ERR;
+        return 0;
+    }
+
+    return fragment.release();
+}
+",1
+"ofproto_port_get_stp_stats(struct ofproto *ofproto, ofp_port_t ofp_port,
+                           struct ofproto_port_stp_stats *s)
+{
+    struct ofport *ofport = ofproto_get_port(ofproto, ofp_port);
+    if (!ofport) {
+        VLOG_WARN_RL(&rl, ""%s: cannot get STP stats on nonexistent ""
+                     ""port %""PRIu32, ofproto->name, ofp_port);
+        return ENODEV;
+    }
+
+    return (ofproto->ofproto_class->get_stp_port_stats
+            ? ofproto->ofproto_class->get_stp_port_stats(ofport, s)
+            : EOPNOTSUPP);
+}
+",0
+"format_STACK_POP(const struct ofpact_stack *a, struct ds *s)
+{
+    nxm_format_stack_pop(a, s);
+}
+",0
+" static void ReconfigureImpl(Handle<JSObject> object,
+ Handle<FixedArrayBase> store, uint32_t entry,
+ Handle<Object> value,
+ PropertyAttributes attributes) {
+    UNREACHABLE();
+ }
+",0
+" bool BluetoothDeviceChromeOS::ExpectingConfirmation() const {
+  return !confirmation_callback_.is_null();
+ }
+",1
+"static int mwifiex_update_vs_ie(const u8 *ies, int ies_len,
+				struct mwifiex_ie **ie_ptr, u16 mask,
+				unsigned int oui, u8 oui_type)
+{
+	struct ieee_types_header *vs_ie;
+	struct mwifiex_ie *ie = *ie_ptr;
+	const u8 *vendor_ie;
+
+	vendor_ie = cfg80211_find_vendor_ie(oui, oui_type, ies, ies_len);
+	if (vendor_ie) {
+		if (!*ie_ptr) {
+			*ie_ptr = kzalloc(sizeof(struct mwifiex_ie),
+					  GFP_KERNEL);
+			if (!*ie_ptr)
+				return -ENOMEM;
+			ie = *ie_ptr;
+ 		}
+ 
+ 		vs_ie = (struct ieee_types_header *)vendor_ie;
+ 		memcpy(ie->ie_buffer + le16_to_cpu(ie->ie_length),
+ 		       vs_ie, vs_ie->len + 2);
+ 		le16_unaligned_add_cpu(&ie->ie_length, vs_ie->len + 2);
+		ie->mgmt_subtype_mask = cpu_to_le16(mask);
+		ie->ie_index = cpu_to_le16(MWIFIEX_AUTO_IDX_MASK);
+	}
+
+	*ie_ptr = ie;
+	return 0;
+}
+",1
+"void StartupBrowserCreator::AddFirstRunTab(const GURL& url) {
+  first_run_tabs_.push_back(url);
+}
+",0
+"void RenderFrameImpl::BubbleLogicalScrollInParentFrame(
+    blink::WebScrollDirection direction,
+    blink::WebScrollGranularity granularity) {
+  DCHECK(IsLocalRoot());
+  DCHECK(!IsMainFrame());
+  Send(new FrameHostMsg_BubbleLogicalScrollInParentFrame(routing_id_, direction,
+                                                         granularity));
+}
+",0
+"static void lsi_bad_selection(LSIState *s, uint32_t id)
+{
+    trace_lsi_bad_selection(id);
+    lsi_script_scsi_interrupt(s, 0, LSI_SIST1_STO);
+    lsi_disconnect(s);
+}
+",0
+"static void *__alloc_from_pool(size_t size, struct page **ret_page, gfp_t flags)
+{
+	unsigned long val;
+	void *ptr = NULL;
+
+	if (!atomic_pool) {
+		WARN(1, ""coherent pool not initialised!\n"");
+		return NULL;
+	}
+
+	val = gen_pool_alloc(atomic_pool, size);
+	if (val) {
+		phys_addr_t phys = gen_pool_virt_to_phys(atomic_pool, val);
+ 
+ 		*ret_page = phys_to_page(phys);
+ 		ptr = (void *)val;
+		if (flags & __GFP_ZERO)
+			memset(ptr, 0, size);
+ 	}
+ 
+ 	return ptr;
+}
+",1
+"static int command_read(struct pci_dev *dev, int offset, u16 *value, void *data)
+ {
+	int i;
+	int ret;
+	ret = xen_pcibk_read_config_word(dev, offset, value, data);
+	if (!pci_is_enabled(dev))
+		return ret;
+	for (i = 0; i < PCI_ROM_RESOURCE; i++) {
+		if (dev->resource[i].flags & IORESOURCE_IO)
+			*value |= PCI_COMMAND_IO;
+		if (dev->resource[i].flags & IORESOURCE_MEM)
+			*value |= PCI_COMMAND_MEMORY;
+ 	}
+ 
+ 	return ret;
+ }
+",1
+"void d_instantiate(struct dentry *entry, struct inode * inode)
+{
+	BUG_ON(!hlist_unhashed(&entry->d_u.d_alias));
+	if (inode) {
+		security_d_instantiate(entry, inode);
+		spin_lock(&inode->i_lock);
+		__d_instantiate(entry, inode);
+		spin_unlock(&inode->i_lock);
+	}
+}
+",0
+"static int cx24116_sleep(struct dvb_frontend *fe)
+{
+	struct cx24116_state *state = fe->demodulator_priv;
+	struct cx24116_cmd cmd;
+	int ret;
+
+	dprintk(""%s()\n"", __func__);
+
+	/* Firmware CMD 36: Power config */
+	cmd.args[0x00] = CMD_TUNERSLEEP;
+	cmd.args[0x01] = 1;
+	cmd.len = 0x02;
+	ret = cx24116_cmd_execute(fe, &cmd);
+	if (ret != 0)
+		return ret;
+
+	/* Power off (Shutdown clocks) */
+	cx24116_writereg(state, 0xea, 0xff);
+	cx24116_writereg(state, 0xe1, 1);
+	cx24116_writereg(state, 0xe0, 1);
+
+	return 0;
+}
+",0
+"static void strictFunctionMethod(const v8::FunctionCallbackInfo<v8::Value>& info)
+{
+    ExceptionState exceptionState(ExceptionState::ExecutionContext, ""strictFunction"", ""TestObject"", info.Holder(), info.GetIsolate());
+    if (UNLIKELY(info.Length() < 3)) {
+        exceptionState.throwTypeError(ExceptionMessages::notEnoughArguments(3, info.Length()));
+        exceptionState.throwIfNeeded();
+        return;
+    }
+    TestObject* imp = V8TestObject::toNative(info.Holder());
+    V8TRYCATCH_FOR_V8STRINGRESOURCE_VOID(V8StringResource<>, str, info[0]);
+    V8TRYCATCH_VOID(float, a, static_cast<float>(info[1]->NumberValue()));
+    V8TRYCATCH_EXCEPTION_VOID(int, b, toInt32(info[2], exceptionState), exceptionState);
+    bool result = imp->strictFunction(str, a, b, exceptionState);
+    if (exceptionState.throwIfNeeded())
+        return;
+    v8SetReturnValueBool(info, result);
+}
+",0
+"void CompositorImpl::DidInitializeLayerTreeFrameSink() {
+  layer_tree_frame_sink_request_pending_ = false;
+  has_layer_tree_frame_sink_ = true;
+  for (auto& frame_sink_id : pending_child_frame_sink_ids_)
+    AddChildFrameSink(frame_sink_id);
+
+  pending_child_frame_sink_ids_.clear();
+}
+",0
+"const char *string_of_NPNVariable(int variable)
+{
+  const char *str;
+
+  switch (variable) {
+#define _(VAL) case VAL: str = #VAL; break;
+	_(NPNVxDisplay);
+	_(NPNVxtAppContext);
+	_(NPNVnetscapeWindow);
+	_(NPNVjavascriptEnabledBool);
+	_(NPNVasdEnabledBool);
+	_(NPNVisOfflineBool);
+	_(NPNVserviceManager);
+	_(NPNVDOMElement);
+	_(NPNVDOMWindow);
+	_(NPNVToolkit);
+	_(NPNVSupportsXEmbedBool);
+ 	_(NPNVWindowNPObject);
+ 	_(NPNVPluginElementNPObject);
+ 	_(NPNVSupportsWindowless);
+ #undef _
+   default:
+ 	switch (variable & 0xff) {
+#define _(VAL, VAR) case VAL: str = #VAR; break
+	  _(10, NPNVserviceManager);
+	  _(11, NPNVDOMElement);
+	  _(12, NPNVDOMWindow);
+	  _(13, NPNVToolkit);
+#undef _
+	default:
+	  str = ""<unknown variable>"";
+	  break;
+	}
+	break;
+  }
+
+  return str;
+}
+",1
+"    LineLayoutState(bool fullLayout, LayoutUnit& repaintLogicalTop, LayoutUnit& repaintLogicalBottom, RenderFlowThread* flowThread)
+        : m_lastFloat(0)
+        , m_endLine(0)
+        , m_floatIndex(0)
+        , m_endLineLogicalTop(0)
+        , m_endLineMatched(false)
+        , m_checkForFloatsFromLastLine(false)
+        , m_isFullLayout(fullLayout)
+        , m_repaintLogicalTop(repaintLogicalTop)
+        , m_repaintLogicalBottom(repaintLogicalBottom)
+        , m_adjustedLogicalLineTop(0)
+        , m_usesRepaintBounds(false)
+        , m_flowThread(flowThread)
+    { }
+",0
+"void WebContentsImpl::RenderViewForInterstitialPageCreated(
+    RenderViewHost* render_view_host) {
+  FOR_EACH_OBSERVER(WebContentsObserver, observers_,
+                    RenderViewForInterstitialPageCreated(render_view_host));
+}
+",0
+"static int crypto_report_cipher(struct sk_buff *skb, struct crypto_alg *alg)
+ {
+ 	struct crypto_report_cipher rcipher;
+ 
+	snprintf(rcipher.type, CRYPTO_MAX_ALG_NAME, ""%s"", ""cipher"");
+ 
+ 	rcipher.blocksize = alg->cra_blocksize;
+ 	rcipher.min_keysize = alg->cra_cipher.cia_min_keysize;
+	rcipher.max_keysize = alg->cra_cipher.cia_max_keysize;
+
+	if (nla_put(skb, CRYPTOCFGA_REPORT_CIPHER,
+		    sizeof(struct crypto_report_cipher), &rcipher))
+		goto nla_put_failure;
+	return 0;
+
+nla_put_failure:
+	return -EMSGSIZE;
+}
+",1
+"SAPI_API int sapi_add_header_ex(char *header_line, uint header_line_len, zend_bool duplicate, zend_bool replace TSRMLS_DC)
+{
+	sapi_header_line ctr = {0};
+	int r;
+	
+	ctr.line = header_line;
+	ctr.line_len = header_line_len;
+
+	r = sapi_header_op(replace ? SAPI_HEADER_REPLACE : SAPI_HEADER_ADD,
+			&ctr TSRMLS_CC);
+
+	if (!duplicate)
+		efree(header_line);
+
+	return r;
+}
+",0
+"void servers_init(void)
+{
+	settings_add_bool(""server"", ""resolve_prefer_ipv6"", FALSE);
+	settings_add_bool(""server"", ""resolve_reverse_lookup"", FALSE);
+	lookup_servers = servers = NULL;
+
+	signal_add(""chat protocol deinit"", (SIGNAL_FUNC) sig_chat_protocol_deinit);
+
+	servers_reconnect_init();
+	servers_setup_init();
+}
+",0
+"  Ins_OR( INS_ARG )
+  {
+    DO_OR
+  }
+",0
+"SProcXFixesCreatePointerBarrier(ClientPtr client)
+{
+    REQUEST(xXFixesCreatePointerBarrierReq);
+    int i;
+     int i;
+     CARD16 *in_devices = (CARD16 *) &stuff[1];
+ 
+     swaps(&stuff->length);
+     swaps(&stuff->num_devices);
+     REQUEST_FIXED_SIZE(xXFixesCreatePointerBarrierReq, pad_to_int32(stuff->num_devices));
+    swaps(&stuff->x1);
+    swaps(&stuff->y1);
+    swaps(&stuff->x2);
+    swaps(&stuff->y2);
+    swapl(&stuff->directions);
+    for (i = 0; i < stuff->num_devices; i++) {
+        swaps(in_devices + i);
+    }
+
+    return ProcXFixesVector[stuff->xfixesReqType] (client);
+}
+",1
+" void PrintPreviewUI::ClearAllPreviewData() {
+  print_preview_data_service()->RemoveEntry(preview_ui_addr_str_);
+ }
+",1
+"RenderProcessHostImpl::TakeMetricsAllocator() {
+  return std::move(metrics_allocator_);
+}
+",0
+"static int sysMapFD(int fd, MemMapping* pMap)
+{
+ off_t start;
+ size_t length;
+ void* memPtr;
+
+    assert(pMap != NULL);
+
+ if (getFileStartAndLength(fd, &start, &length) < 0)
+ return -1;
+
+    memPtr = mmap(NULL, length, PROT_READ, MAP_PRIVATE, fd, start);
+ if (memPtr == MAP_FAILED) {
+        LOGW(""mmap(%d, R, PRIVATE, %d, %d) failed: %s\n"", (int) length,
+            fd, (int) start, strerror(errno));
+ return -1;
+ }
+
+    pMap->addr = memPtr;
+
+     pMap->length = length;
+     pMap->range_count = 1;
+     pMap->ranges = malloc(sizeof(MappedRange));
+     pMap->ranges[0].addr = memPtr;
+     pMap->ranges[0].length = length;
+ 
+ return 0;
+}
+",1
+" e1000e_ring_empty(E1000ECore *core, const E1000E_RingInfo *r)
+ {
+    return core->mac[r->dh] == core->mac[r->dt];
+ }
+",1
+" static void php_snmp_object_free_storage(void *object TSRMLS_DC)
+ {
+        php_snmp_object *intern = (php_snmp_object *)object;
+        if (!intern) {
+                return;
+        }
+
+        netsnmp_session_free(&(intern->session));
+ 
+        zend_object_std_dtor(&intern->zo TSRMLS_CC);
+        efree(intern);
+ }
+",1
+"static void LaunchDownloadOverwriteInfoBar(
+    JNIEnv* env,
+    const JavaParamRef<jclass>& clazz,
+    const JavaParamRef<jobject>& delegate,
+    const JavaParamRef<jobject>& tab,
+    const JavaParamRef<jobject>& download_info,
+    const JavaParamRef<jstring>& jfile_name,
+    const JavaParamRef<jstring>& jdir_name,
+    const JavaParamRef<jstring>& jdir_full_path) {
+  TabAndroid* tab_android = TabAndroid::GetNativeTab(env, tab);
+
+  std::string file_name =
+      base::android::ConvertJavaStringToUTF8(env, jfile_name);
+  std::string dir_name = base::android::ConvertJavaStringToUTF8(env, jdir_name);
+  std::string dir_full_path =
+      base::android::ConvertJavaStringToUTF8(env, jdir_full_path);
+
+  chrome::android::AndroidDownloadManagerOverwriteInfoBarDelegate::Create(
+      InfoBarService::FromWebContents(tab_android->web_contents()), file_name,
+      dir_name, dir_full_path, delegate, download_info);
+}
+",0
+" virtual void allocateBuffers(bool async, uint32_t width, uint32_t height,
+ PixelFormat format, uint32_t usage) {
+ Parcel data, reply;
+        data.writeInterfaceToken(IGraphicBufferProducer::getInterfaceDescriptor());
+        data.writeInt32(static_cast<int32_t>(async));
+        data.writeUint32(width);
+        data.writeUint32(height);
+        data.writeInt32(static_cast<int32_t>(format));
+        data.writeUint32(usage);
+ status_t result = remote()->transact(ALLOCATE_BUFFERS, data, &reply);
+ if (result != NO_ERROR) {
+            ALOGE(""allocateBuffers failed to transact: %d"", result);
+ }
+ }
+",0
+"void RenderFrameImpl::DidChangeCpuTiming(base::TimeDelta time) {
+  for (auto& observer : observers_)
+    observer.DidChangeCpuTiming(time);
+}
+",0
+"GURL DevToolsWindow::GetDevToolsURL(Profile* profile,
+                                    const GURL& base_url,
+                                    bool shared_worker_frontend,
+                                    bool v8_only_frontend,
+                                    const std::string& remote_frontend,
+                                    bool can_dock) {
+  if (base_url.SchemeIs(""data""))
+    return base_url;
+
+  std::string frontend_url(
+      !remote_frontend.empty() ?
+          remote_frontend :
+          base_url.is_empty() ? chrome::kChromeUIDevToolsURL : base_url.spec());
+  std::string url_string(
+      frontend_url +
+      ((frontend_url.find(""?"") == std::string::npos) ? ""?"" : ""&""));
+  if (shared_worker_frontend)
+    url_string += ""&isSharedWorker=true"";
+  if (v8_only_frontend)
+    url_string += ""&v8only=true"";
+  if (remote_frontend.size()) {
+    url_string += ""&remoteFrontend=true"";
+  } else {
+    url_string += ""&remoteBase="" + DevToolsUI::GetRemoteBaseURL().spec();
+   }
+   if (can_dock)
+     url_string += ""&can_dock=true"";
+  return GURL(url_string);
+ }
+",1
+"void FS_ClearPakReferences( int flags ) {
+	searchpath_t *search;
+
+	if ( !flags ) {
+		flags = -1;
+	}
+	for ( search = fs_searchpaths; search; search = search->next ) {
+		if ( search->pack ) {
+			search->pack->referenced &= ~flags;
+		}
+	}
+}
+",0
+"static ssize_t handle_readlink(FsContext *fs_ctx, V9fsPath *fs_path,
+                               char *buf, size_t bufsz)
+{
+    int fd, ret;
+    struct handle_data *data = (struct handle_data *)fs_ctx->private;
+
+    fd = open_by_handle(data->mountfd, fs_path->data, O_PATH);
+    if (fd < 0) {
+        return fd;
+    }
+    ret = readlinkat(fd, """", buf, bufsz);
+    close(fd);
+    return ret;
+}
+",0
+"  void WaitForCopySourceReady() {
+    while (!GetRenderWidgetHostViewPort()->IsSurfaceAvailableForCopy())
+      GiveItSomeTime();
+  }
+",0
+"int __remove_suid(struct dentry *dentry, int kill)
+{
+	struct iattr newattrs;
+
+	newattrs.ia_valid = ATTR_FORCE | kill;
+	return notify_change(dentry, &newattrs);
+}
+",0
+"static void br_multicast_del_pg(struct net_bridge *br,
+				struct net_bridge_port_group *pg)
+{
+	struct net_bridge_mdb_htable *mdb;
+	struct net_bridge_mdb_entry *mp;
+	struct net_bridge_port_group *p;
+	struct net_bridge_port_group __rcu **pp;
+
+	mdb = mlock_dereference(br->mdb, br);
+
+	mp = br_mdb_ip_get(mdb, &pg->addr);
+	if (WARN_ON(!mp))
+		return;
+
+	for (pp = &mp->ports;
+	     (p = mlock_dereference(*pp, br)) != NULL;
+	     pp = &p->next) {
+		if (p != pg)
+			continue;
+
+		rcu_assign_pointer(*pp, p->next);
+		hlist_del_init(&p->mglist);
+ 		del_timer(&p->timer);
+ 		call_rcu_bh(&p->rcu, br_multicast_free_pg);
+ 
+		if (!mp->ports && !mp->mglist &&
+ 		    netif_running(br->dev))
+ 			mod_timer(&mp->timer, jiffies);
+ 
+		return;
+	}
+
+	WARN_ON(1);
+}
+",1
+"TestBrowserWindow::~TestBrowserWindow() {}
+",0
+"string16 ExtensionInstallUI::Prompt::GetHeading(std::string extension_name)
+    const {
+   if (type_ == INLINE_INSTALL_PROMPT) {
+     return UTF8ToUTF16(extension_name);
+   } else {
+    return l10n_util::GetStringFUTF16(
+        kHeadingIds[type_], UTF8ToUTF16(extension_name));
+  }
+}
+",1
+" do_prefetch_tables (const void *gcmM, size_t gcmM_size)
+ {
+   prefetch_table(gcmM, gcmM_size);
+  prefetch_table(gcmR, sizeof(gcmR));
+ }
+",1
+" void jas_matrix_divpow2(jas_matrix_t *matrix, int n)
+ {
+	int i;
+	int j;
+ 	jas_seqent_t *rowstart;
+	int rowstep;
+ 	jas_seqent_t *data;
+ 
+ 	if (jas_matrix_numrows(matrix) > 0 && jas_matrix_numcols(matrix) > 0) {
+		assert(matrix->rows_);
+		rowstep = jas_matrix_rowstep(matrix);
+		for (i = matrix->numrows_, rowstart = matrix->rows_[0]; i > 0; --i,
+		  rowstart += rowstep) {
+			for (j = matrix->numcols_, data = rowstart; j > 0; --j,
+			  ++data) {
+				*data = (*data >= 0) ? ((*data) >> n) :
+				  (-((-(*data)) >> n));
+			}
+		}
+	}
+}
+",1
+" static sk_sp<SkImage> unPremulSkImageToPremul(SkImage* input) {
+  SkImageInfo info = SkImageInfo::Make(input->width(), input->height(),
+                                       kN32_SkColorType, kPremul_SkAlphaType);
+  RefPtr<Uint8Array> dstPixels = copySkImageData(input, info);
+  if (!dstPixels)
+     return nullptr;
+   return newSkImageFromRaster(
+       info, std::move(dstPixels),
+      static_cast<size_t>(input->width()) * info.bytesPerPixel());
+ }
+",1
+"     void makeCurrent()
+     {
+#if PLATFORM(QT)
+        m_detachedContext = QOpenGLContext::currentContext();
+        if (m_detachedContext)
+            m_detachedSurface = m_detachedContext->surface();
+        if (m_surface && m_glContext)
+            m_glContext->makeCurrent(m_surface.get());
+#elif PLATFORM(EFL)
+         m_detachedContext = glXGetCurrentContext();
+         m_detachedSurface = glXGetCurrentDrawable();
+         if (m_surface && m_glContext)
+             glXMakeCurrent(m_display, m_surface, m_glContext);
+#endif
+     }
+",1
+"Platform::IntPoint InRegionScrollableArea::calculateMaximumScrollPosition(const Platform::IntSize& viewportSize, const Platform::IntSize& contentsSize, float overscrollLimitFactor) const
+{
+    ASSERT(!allowsOverscroll());
+    return Platform::IntPoint(std::max(contentsSize.width() - viewportSize.width(), 0) + overscrollLimitFactor,
+                              std::max(contentsSize.height() - viewportSize.height(), 0) + overscrollLimitFactor);
+}
+",1
+"armv6_pmcr_has_overflowed(unsigned long pmcr)
+{
+	return pmcr & ARMV6_PMCR_OVERFLOWED_MASK;
+}
+",0
+" void AppCacheGroup::RemoveCache(AppCache* cache) {
+   DCHECK(cache->associated_hosts().empty());
+   if (cache == newest_complete_cache_) {
+    CancelUpdate();
+     AppCache* tmp_cache = newest_complete_cache_;
+     newest_complete_cache_ = nullptr;
+     tmp_cache->set_owning_group(nullptr);  // may cause this group to be deleted
+   } else {
+     scoped_refptr<AppCacheGroup> protect(this);
+
+    Caches::iterator it =
+        std::find(old_caches_.begin(), old_caches_.end(), cache);
+    if (it != old_caches_.end()) {
+      AppCache* tmp_cache = *it;
+      old_caches_.erase(it);
+      tmp_cache->set_owning_group(nullptr);  // may cause group to be released
+    }
+
+    if (!is_obsolete() && old_caches_.empty() &&
+        !newly_deletable_response_ids_.empty()) {
+      storage_->DeleteResponses(manifest_url_, newly_deletable_response_ids_);
+      newly_deletable_response_ids_.clear();
+    }
+  }
+}
+",1
+"void IndexedDBCursor::RemoveCursorFromTransaction() {
+  if (transaction_)
+    transaction_->UnregisterOpenCursor(this);
+}
+",1
+"static int search_old_relocation(struct reloc_struct_t *reloc_table, ut32 addr_to_patch, int n_reloc) {
+ 	int i;
+ 	for (i = 0; i < n_reloc; i++) {
+ 		if (addr_to_patch == reloc_table[i].data_offset) {
+			return i;
+		}
+	}
+	return -1;
+}
+",1
+"ssh_packet_backup_state(struct ssh *ssh,
+    struct ssh *backup_state)
+{
+	struct ssh *tmp;
+
+	close(ssh->state->connection_in);
+	ssh->state->connection_in = -1;
+	close(ssh->state->connection_out);
+	ssh->state->connection_out = -1;
+	if (backup_state)
+		tmp = backup_state;
+	else
+		tmp = ssh_alloc_session_state();
+	backup_state = ssh;
+	ssh = tmp;
+}
+",0
+"INST_HANDLER (lac) {	// LAC Z, Rd
+	int d = ((buf[0] >> 4) & 0xf) | ((buf[1] & 0x1) << 4);
+
+	__generic_ld_st (op, ""ram"", 'z', 1, 0, 0, 0);	// 0: Read (RAMPZ:Z)
+	ESIL_A (""r%d,0xff,^,&,"", d);			// 0: (Z) & ~Rd
+	ESIL_A (""DUP,r%d,=,"", d);			// Rd = [0]
+	__generic_ld_st (op, ""ram"", 'z', 1, 0, 0, 1);	// Store in RAM
+}
+",0
+"static void renew_lease(const struct nfs_server *server, unsigned long timestamp)
+{
+	struct nfs_client *clp = server->nfs_client;
+
+	if (!nfs4_has_session(clp))
+		do_renew_lease(clp, timestamp);
+}
+",0
+"void QQuickWebViewPrivate::setNeedsDisplay()
+{
+    Q_Q(QQuickWebView);
+    if (renderToOffscreenBuffer()) {
+        QImage dummyImage(1, 1, QImage::Format_ARGB32);
+        QPainter painter(&dummyImage);
+        q->page()->d->paint(&painter);
+        return;
+    }
+
+    q->page()->update();
+}
+",0
+"Eina_Bool ewk_view_back(Evas_Object* ewkView)
+{
+    EWK_VIEW_SD_GET_OR_RETURN(ewkView, smartData, false);
+    return ewk_frame_back(smartData->main_frame);
+}
+",0
+"gpgsm_reset (void *engine)
+{
+  engine_gpgsm_t gpgsm = engine;
+
+  /* IF we have an active connection we must send a reset because we
+     need to reset the list of signers.  Note that RESET does not
+     reset OPTION commands. */
+  return (gpgsm->assuan_ctx
+          ? gpgsm_assuan_simple_command (gpgsm->assuan_ctx, ""RESET"",
+                                         NULL, NULL)
+          : 0);
+}
+",0
+"void ArcVoiceInteractionFrameworkService::ToggleSessionFromUserInteraction() {
+  DCHECK_CURRENTLY_ON(content::BrowserThread::UI);
+
+  if (!InitiateUserInteraction(true /* is_toggle */))
+    return;
+
+  mojom::VoiceInteractionFrameworkInstance* framework_instance =
+      ARC_GET_INSTANCE_FOR_METHOD(
+          arc_bridge_service_->voice_interaction_framework(),
+          ToggleVoiceInteractionSession);
+  DCHECK(framework_instance);
+  framework_instance->ToggleVoiceInteractionSession(IsHomescreenActive());
+}
+",0
+"bool CanUseExistingResource(const net::HttpResponseInfo* http_info) {
+  if (!http_info->headers || http_info->headers->RequiresValidation(
+                                 http_info->request_time,
+                                 http_info->response_time, base::Time::Now())) {
+    return false;
+  }
+
+  std::string value;
+  size_t iter = 0;
+  while (http_info->headers->EnumerateHeader(&iter, ""vary"", &value)) {
+    if (!base::EqualsCaseInsensitiveASCII(value, ""Accept-Encoding"") &&
+        !base::EqualsCaseInsensitiveASCII(value, ""Origin"")) {
+      return false;
+    }
+  }
+  return true;
+}
+",0
+"ShelfLayoutManager* GetShelfLayoutManager() {
+  return AshTestBase::GetPrimaryShelf()->shelf_layout_manager();
+}
+",0
+"  void VerifyPrintPreviewInvalidPrinterSettings(bool settings_invalid) {
+    bool print_preview_invalid_printer_settings =
+        (render_thread_->sink().GetUniqueMessageMatching(
+            PrintHostMsg_PrintPreviewInvalidPrinterSettings::ID) != NULL);
+    EXPECT_EQ(settings_invalid, print_preview_invalid_printer_settings);
+  }
+",0
+"void RenderBox::panScroll(const IntPoint& source)
+{
+    if (layer())
+        layer()->panScrollFromPoint(source);
+}
+",0
+"  virtual void SetUpCommandLine(CommandLine* command_line) {
+    GpuFeatureTest::SetUpCommandLine(command_line);
+    command_line->AppendSwitch(switches::kDisableExperimentalWebGL);
+  }
+",0
+"static int set_file_offset(stb_vorbis *f, unsigned int loc)
+{
+   #ifndef STB_VORBIS_NO_PUSHDATA_API
+   if (f->push_mode) return 0;
+   #endif
+   f->eof = 0;
+   if (USE_MEMORY(f)) {
+      if (f->stream_start + loc >= f->stream_end || f->stream_start + loc < f->stream_start) {
+         f->stream = f->stream_end;
+         f->eof = 1;
+         return 0;
+      } else {
+         f->stream = f->stream_start + loc;
+         return 1;
+      }
+   }
+   #ifndef STB_VORBIS_NO_STDIO
+   if (loc + f->f_start < loc || loc >= 0x80000000) {
+      loc = 0x7fffffff;
+      f->eof = 1;
+   } else {
+      loc += f->f_start;
+   }
+   if (!fseek(f->f, loc, SEEK_SET))
+      return 1;
+   f->eof = 1;
+   fseek(f->f, f->f_start, SEEK_END);
+   return 0;
+   #endif
+}
+",0
+"unsigned venc_dev::venc_flush( unsigned port)
+{
+ struct v4l2_encoder_cmd enc;
+    DEBUG_PRINT_LOW(""in %s"", __func__);
+
+    enc.cmd = V4L2_ENC_QCOM_CMD_FLUSH;
+    enc.flags = V4L2_QCOM_CMD_FLUSH_OUTPUT | V4L2_QCOM_CMD_FLUSH_CAPTURE;
+
+ if (ioctl(m_nDriver_fd, VIDIOC_ENCODER_CMD, &enc)) {
+        DEBUG_PRINT_ERROR(""Flush Port (%d) Failed "", port);
+ return -1;
+ }
+
+ return 0;
+
+}
+",0
+"bool AutocompleteEditModel::AcceptCurrentInstantPreview() {
+  return InstantController::CommitIfCurrent(controller_->GetInstant());
+}
+",0
+"static int read_int32_info (WavpackStream *wps, WavpackMetadata *wpmd)
+{
+    int bytecnt = wpmd->byte_length;
+    char *byteptr = (char *)wpmd->data;
+
+    if (bytecnt != 4)
+        return FALSE;
+
+    wps->int32_sent_bits = *byteptr++;
+    wps->int32_zeros = *byteptr++;
+    wps->int32_ones = *byteptr++;
+    wps->int32_dups = *byteptr;
+
+    return TRUE;
+}
+",0
+"static void webkitWebViewBaseContainerAdd(GtkContainer* container, GtkWidget* widget)
+{
+    WebKitWebViewBase* webView = WEBKIT_WEB_VIEW_BASE(container);
+    WebKitWebViewBasePrivate* priv = webView->priv;
+
+    if (WEBKIT_IS_WEB_VIEW_BASE(widget)
+         && WebInspectorProxy::isInspectorPage(WEBKIT_WEB_VIEW_BASE(widget)->priv->pageProxy.get())) {
+         ASSERT(!priv->inspectorView);
+         priv->inspectorView = widget;
+        priv->inspectorViewHeight = gMinimumAttachedInspectorHeight;
+     } else {
+         GtkAllocation childAllocation;
+         gtk_widget_get_allocation(widget, &childAllocation);
+        priv->children.set(widget, childAllocation);
+    }
+
+    gtk_widget_set_parent(widget, GTK_WIDGET(container));
+}
+",1
+"NaClProcessHost::NaClProcessHost(const GURL& manifest_url, bool off_the_record)
+    : manifest_url_(manifest_url),
+#if defined(OS_WIN)
+      process_launched_by_broker_(false),
+#elif defined(OS_LINUX)
+      wait_for_nacl_gdb_(false),
+#endif
+      reply_msg_(NULL),
+#if defined(OS_WIN)
+      debug_exception_handler_requested_(false),
+#endif
+      internal_(new NaClInternal()),
+      ALLOW_THIS_IN_INITIALIZER_LIST(weak_factory_(this)),
+      enable_exception_handling_(false),
+      off_the_record_(off_the_record) {
+  process_.reset(content::BrowserChildProcessHost::Create(
+      content::PROCESS_TYPE_NACL_LOADER, this));
+
+  process_->SetName(net::FormatUrl(manifest_url_, std::string()));
+
+  if (CommandLine::ForCurrentProcess()->HasSwitch(
+          switches::kEnableNaClExceptionHandling) ||
+       getenv(""NACL_UNTRUSTED_EXCEPTION_HANDLING"") != NULL) {
+     enable_exception_handling_ = true;
+   }
+  enable_ipc_proxy_ = CommandLine::ForCurrentProcess()->HasSwitch(
+      switches::kEnableNaClIPCProxy);
+ }
+",1
+"static int addrconf_ifid_gre(u8 *eui, struct net_device *dev)
+{
+	return __ipv6_isatap_ifid(eui, *(__be32 *)dev->dev_addr);
+}
+",0
+"static v8::Handle<v8::Value> enabledAtRuntimeMethod2Callback(const v8::Arguments& args)
+ {
+     INC_STATS(""DOM.TestObj.enabledAtRuntimeMethod2"");
+     if (args.Length() < 1)
+        return V8Proxy::throwNotEnoughArgumentsError();
+     TestObj* imp = V8TestObj::toNative(args.Holder());
+     EXCEPTION_BLOCK(int, intArg, V8int::HasInstance(MAYBE_MISSING_PARAMETER(args, 0, DefaultIsUndefined)) ? V8int::toNative(v8::Handle<v8::Object>::Cast(MAYBE_MISSING_PARAMETER(args, 0, DefaultIsUndefined))) : 0);
+     imp->enabledAtRuntimeMethod2(intArg);
+    return v8::Handle<v8::Value>();
+}
+",1
+"void PlatformSensorProviderLinux::FreeResources() {
+  DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
+  DCHECK(file_task_runner_);
+  Shutdown();
+  file_task_runner_->PostTask(
+      FROM_HERE, base::Bind(&PlatformSensorProviderLinux::StopPollingThread,
+                            base::Unretained(this)));
+}
+",0
+"static int midi_setup_channel_pressure(struct _mdi *mdi, uint8_t channel,
+                                       uint8_t pressure) {
+    MIDI_EVENT_DEBUG(__FUNCTION__,channel, pressure);
+    _WM_CheckEventMemoryPool(mdi);
+    mdi->events[mdi->event_count].do_event = *_WM_do_channel_pressure;
+    mdi->events[mdi->event_count].event_data.channel = channel;
+    mdi->events[mdi->event_count].event_data.data.value = pressure;
+    mdi->events[mdi->event_count].samples_to_next = 0;
+    mdi->event_count++;
+    return (0);
+}
+",0
+" void MediaInterfaceProxy::CreateCdm(
+     media::mojom::ContentDecryptionModuleRequest request) {
+   DCHECK(thread_checker_.CalledOnValidThread());
+  GetMediaInterfaceFactory()->CreateCdm(std::move(request));
+ }
+",1
+"static ssize_t eth_rx(NetClientState *nc, const uint8_t *buf, size_t size)
+{
+    struct xlx_ethlite *s = qemu_get_nic_opaque(nc);
+    unsigned int rxbase = s->rxbuf * (0x800 / 4);
+
+    /* DA filter.  */
+    if (!(buf[0] & 0x80) && memcmp(&s->conf.macaddr.a[0], buf, 6))
+        return size;
+
+    if (s->regs[rxbase + R_RX_CTRL0] & CTRL_S) {
+        D(qemu_log(""ethlite lost packet %x\n"", s->regs[R_RX_CTRL0]));
+        return -1;
+     }
+ 
+     D(qemu_log(""%s %zd rxbase=%x\n"", __func__, size, rxbase));
+     memcpy(&s->regs[rxbase + R_RX_BUF0], buf, size);
+ 
+     s->regs[rxbase + R_RX_CTRL0] |= CTRL_S;
+    /* If c_rx_pingpong was set flip buffers.  */
+    s->rxbuf ^= s->c_rx_pingpong;
+    return size;
+}
+",1
+"NetworkThrottleManagerImpl::NetworkThrottleManagerImpl()
+     : lifetime_median_estimate_(PercentileEstimator::kMedianPercentile,
+                                 kInitialMedianInMs),
+       outstanding_recomputation_timer_(
+          base::MakeUnique<base::Timer>(false /* retain_user_task */,
+                                         false /* is_repeating */)),
+       tick_clock_(new base::DefaultTickClock()),
+       weak_ptr_factory_(this) {}
+",1
+" SPL_METHOD(SplFileObject, getMaxLineLen)
+ {
+ 	spl_filesystem_object *intern = (spl_filesystem_object*)zend_object_store_get_object(getThis() TSRMLS_CC);
+ 	if (zend_parse_parameters_none() == FAILURE) {
+ 		return;
+ 	}
+
+	RETURN_LONG((long)intern->u.file.max_line_len);
+} /* }}} */
+
+/* {{{ proto bool SplFileObject::hasChildren()
+",1
+" static int getStrrtokenPos(char* str, int savedPos)
+ {
+ 	int result =-1;
+ 	int i;
+ 	for(i=savedPos-1; i>=0; i--) {
+ 		if(isIDSeparator(*(str+i)) ){
+ 			/* delimiter found; check for singleton */
+			if(i>=2 && isIDSeparator(*(str+i-2)) ){
+				/* a singleton; so send the position of token before the singleton */
+				result = i-2;
+			} else {
+				result = i;
+			}
+			break;
+		}
+	}
+	if(result < 1){
+		/* Just in case inavlid locale e.g. '-x-xyz' or '-sl_Latn' */
+		result =-1;
+	}
+	return result;
+}
+",1
+"static void emitnumber(JF, double num)
+{
+	if (num == 0) {
+		emit(J, F, OP_NUMBER_0);
+		if (signbit(num))
+			emit(J, F, OP_NEG);
+	} else if (num == 1) {
+		emit(J, F, OP_NUMBER_1);
+	} else if (num == (js_Instruction)num) {
+		emit(J, F, OP_NUMBER_POS);
+		emitraw(J, F, (js_Instruction)num);
+	} else if (num < 0 && -num == (js_Instruction)(-num)) {
+		emit(J, F, OP_NUMBER_NEG);
+		emitraw(J, F, (js_Instruction)(-num));
+	} else {
+		emit(J, F, OP_NUMBER);
+		emitraw(J, F, addnumber(J, F, num));
+	}
+}
+",0
+"cib_remote_dispatch(gpointer user_data)
+ {
+     cib_t *cib = user_data;
+     cib_remote_opaque_t *private = cib->variant_opaque;
+ 
+     xmlNode *msg = NULL;
+    const char *type = NULL;
+ 
+     crm_info(""Message on callback channel"");
+    msg = crm_recv_remote_msg(private->callback.session, private->callback.encrypted);
+ 
+    type = crm_element_value(msg, F_TYPE);
+    crm_trace(""Activating %s callbacks..."", type);
+ 
+    if (safe_str_eq(type, T_CIB)) {
+        cib_native_callback(cib, msg, 0, 0);
+ 
+    } else if (safe_str_eq(type, T_CIB_NOTIFY)) {
+        g_list_foreach(cib->notify_list, cib_native_notify, msg);
+ 
+    } else {
+        crm_err(""Unknown message type: %s"", type);
+    }
+ 
+    if (msg != NULL) {
+         free_xml(msg);
+        return 0;
+     }
+    return -1;
+ }
+",1
+"void SelectionEditor::DidSplitTextNode(const Text& old_node) {
+  if (selection_.IsNone() || !old_node.isConnected()) {
+    DidFinishDOMMutation();
+    return;
+  }
+  const Position& new_base =
+      UpdatePostionAfterAdoptingTextNodeSplit(selection_.base_, old_node);
+  const Position& new_extent =
+      UpdatePostionAfterAdoptingTextNodeSplit(selection_.extent_, old_node);
+  DidFinishTextChange(new_base, new_extent);
+}
+",0
+"void PaintLayerScrollableArea::UpdateCompositingLayersAfterScroll() {
+  PaintLayerCompositor* compositor = GetLayoutBox()->View()->Compositor();
+  if (!compositor->InCompositingMode())
+    return;
+
+  if (UsesCompositedScrolling()) {
+     DCHECK(Layer()->HasCompositedLayerMapping());
+     ScrollingCoordinator* scrolling_coordinator = GetScrollingCoordinator();
+     bool handled_scroll =
+        Layer()->IsRootLayer() && scrolling_coordinator &&
+         scrolling_coordinator->UpdateCompositedScrollOffset(this);
+ 
+     if (!handled_scroll) {
+      if (!RuntimeEnabledFeatures::BlinkGenPropertyTreesEnabled()) {
+        Layer()->GetCompositedLayerMapping()->SetNeedsGraphicsLayerUpdate(
+            kGraphicsLayerUpdateSubtree);
+      }
+      compositor->SetNeedsCompositingUpdate(
+          kCompositingUpdateAfterGeometryChange);
+    }
+
+    if (Layer()->IsRootLayer()) {
+      LocalFrame* frame = GetLayoutBox()->GetFrame();
+      if (frame && frame->View() &&
+          frame->View()->HasViewportConstrainedObjects()) {
+        Layer()->SetNeedsCompositingInputsUpdate();
+      }
+    }
+  } else {
+    Layer()->SetNeedsCompositingInputsUpdate();
+  }
+}
+",1
+"static void parse_error(struct filter_parse_error *pe, int err, int pos)
+{
+	pe->lasterr = err;
+	pe->lasterr_pos = pos;
+}
+",0
+"void FrameLoader::Trace(blink::Visitor* visitor) {
+  visitor->Trace(frame_);
+   visitor->Trace(progress_tracker_);
+   visitor->Trace(document_loader_);
+   visitor->Trace(provisional_document_loader_);
+ }
+",1
+"nm_ip4_config_get_ifindex (const NMIP4Config *config)
+{
+	return NM_IP4_CONFIG_GET_PRIVATE (config)->ifindex;
+}
+",0
+"inline bool SearchBuffer::isBadMatch(const UChar* match, size_t matchLength) const
+{
+    if (!m_targetRequiresKanaWorkaround)
+        return false;
+
+    normalizeCharacters(match, matchLength, m_normalizedMatch);
+
+    const UChar* a = m_normalizedTarget.begin();
+    const UChar* aEnd = m_normalizedTarget.end();
+
+    const UChar* b = m_normalizedMatch.begin();
+    const UChar* bEnd = m_normalizedMatch.end();
+
+    while (true) {
+        while (a != aEnd && !isKanaLetter(*a))
+            ++a;
+        while (b != bEnd && !isKanaLetter(*b))
+            ++b;
+
+        if (a == aEnd || b == bEnd) {
+            ASSERT(a == aEnd);
+            ASSERT(b == bEnd);
+            return false;
+        }
+
+        if (isSmallKanaLetter(*a) != isSmallKanaLetter(*b))
+            return true;
+        if (composedVoicedSoundMark(*a) != composedVoicedSoundMark(*b))
+            return true;
+        ++a;
+        ++b;
+
+        while (1) {
+            if (!(a != aEnd && isCombiningVoicedSoundMark(*a))) {
+                if (b != bEnd && isCombiningVoicedSoundMark(*b))
+                    return true;
+                break;
+            }
+            if (!(b != bEnd && isCombiningVoicedSoundMark(*b)))
+                return true;
+            if (*a != *b)
+                return true;
+            ++a;
+            ++b;
+        }
+    }
+}
+",0
+"static zend_always_inline uint32_t zend_array_dup_elements(HashTable *source, HashTable *target, int static_keys, int with_holes)
+{
+	uint32_t idx = 0;
+	Bucket *p = source->arData;
+	Bucket *q = target->arData;
+	Bucket *end = p + source->nNumUsed;
+
+	do {
+		if (!zend_array_dup_element(source, target, idx, p, q, 0, static_keys, with_holes)) {
+			uint32_t target_idx = idx;
+
+			idx++; p++;
+			while (p != end) {
+				if (zend_array_dup_element(source, target, target_idx, p, q, 0, static_keys, with_holes)) {
+					if (source->nInternalPointer == idx) {
+						target->nInternalPointer = target_idx;
+					}
+					target_idx++; q++;
+				}
+				idx++; p++;
+			}
+			return target_idx;
+		}
+		idx++; p++; q++;
+	} while (p != end);
+	return idx;
+}
+",0
+" int SoundPool::load(int fd, int64_t offset, int64_t length, int priority __unused)
+ {
+     ALOGV(""load: fd=%d, offset=%"" PRId64 "", length=%"" PRId64 "", priority=%d"",
+             fd, offset, length, priority);
+    Mutex::Autolock lock(&mLock);
+    sp<Sample> sample = new Sample(++mNextSampleID, fd, offset, length);
+    mSamples.add(sample->sampleID(), sample);
+    doLoad(sample);
+    return sample->sampleID();
+}
+",1
+"static EAS_I16 ConvertLFOPhaseIncrement (EAS_I32 pitchCents)
+{
+
+ /* check range */
+ if (pitchCents > MAX_LFO_FREQUENCY_IN_PITCHCENTS)
+        pitchCents = MAX_LFO_FREQUENCY_IN_PITCHCENTS;
+ if (pitchCents < MIN_LFO_FREQUENCY_IN_PITCHCENTS)
+        pitchCents = MIN_LFO_FREQUENCY_IN_PITCHCENTS;
+
+ /* double the rate and divide by frame rate by subtracting in log domain */
+    pitchCents = pitchCents - dlsLFOFrequencyConvert;
+
+ /* convert to phase increment */
+ return (EAS_I16) EAS_Calculate2toX(pitchCents);
+}
+",0
+"static void LongOrNullAttributeAttributeSetter(
+    v8::Local<v8::Value> v8_value, const v8::FunctionCallbackInfo<v8::Value>& info) {
+  v8::Isolate* isolate = info.GetIsolate();
+  ALLOW_UNUSED_LOCAL(isolate);
+
+  v8::Local<v8::Object> holder = info.Holder();
+  ALLOW_UNUSED_LOCAL(holder);
+
+  TestObject* impl = V8TestObject::ToImpl(holder);
+ 
+   ExceptionState exception_state(isolate, ExceptionState::kSetterContext, ""TestObject"", ""longOrNullAttribute"");
+ 
+  int32_t cpp_value = NativeValueTraits<IDLLong>::NativeValue(info.GetIsolate(), v8_value, exception_state);
+   if (exception_state.HadException())
+     return;
+ 
+  bool is_null = IsUndefinedOrNull(v8_value);
+   impl->setLongOrNullAttribute(cpp_value, is_null);
+ }
+",1
+"service_is_single_onion_poisoned(const rend_service_t *service)
+{
+  char *poison_fname = NULL;
+  file_status_t fstatus;
+
+  /* Passing a NULL service is a bug */
+  if (BUG(!service)) {
+    return 0;
+  }
+
+  if (rend_service_is_ephemeral(service)) {
+    return 0;
+  }
+
+  poison_fname = rend_service_sos_poison_path(service);
+
+  fstatus = file_status(poison_fname);
+  tor_free(poison_fname);
+
+  /* If this fname is occupied, the hidden service has been poisoned.
+   * fstatus can be FN_ERROR if the service directory does not exist, in that
+   * case, there is obviously no private key. */
+  if (fstatus == FN_FILE || fstatus == FN_EMPTY) {
+    return 1;
+  }
+
+  return 0;
+}
+",0
+"jas_matrix_t *jas_seq2d_create(int xstart, int ystart, int xend, int yend)
+ {
+ 	jas_matrix_t *matrix;
+ 	assert(xstart <= xend && ystart <= yend);
+	if (!(matrix = jas_matrix_create(yend - ystart, xend - xstart))) {
+		return 0;
+	}
+	matrix->xstart_ = xstart;
+	matrix->ystart_ = ystart;
+	matrix->xend_ = xend;
+	matrix->yend_ = yend;
+ 	return matrix;
+ }
+",1
+"static int nfs_idmap_read_and_verify_message(struct idmap_msg *im,
+		struct idmap_msg *upcall,
+		struct key *key, struct key *authkey)
+{
+	char id_str[NFS_UINT_MAXLEN];
+	size_t len;
+	int ret = -ENOKEY;
+
+	/* ret = -ENOKEY */
+	if (upcall->im_type != im->im_type || upcall->im_conv != im->im_conv)
+		goto out;
+	switch (im->im_conv) {
+	case IDMAP_CONV_NAMETOID:
+		if (strcmp(upcall->im_name, im->im_name) != 0)
+			break;
+		/* Note: here we store the NUL terminator too */
+		len = sprintf(id_str, ""%d"", im->im_id) + 1;
+		ret = nfs_idmap_instantiate(key, authkey, id_str, len);
+		break;
+	case IDMAP_CONV_IDTONAME:
+		if (upcall->im_id != im->im_id)
+			break;
+		len = strlen(im->im_name);
+		ret = nfs_idmap_instantiate(key, authkey, im->im_name, len);
+		break;
+	default:
+		ret = -EINVAL;
+	}
+out:
+	return ret;
+}
+",0
+"AP_DECLARE(int) ap_some_auth_required(request_rec *r)
+{
+    /* Is there a require line configured for the type of *this* req? */
+    if (ap__authz_ap_some_auth_required) {
+        return ap__authz_ap_some_auth_required(r);
+    }
+    else
+        return 0;
+}
+",0
+"     CCLayerTreeHostTest()
+         : m_beginning(false)
+         , m_endWhenBeginReturns(false)
+        , m_running(false)
+         , m_timedOut(false)
+     {
+         m_webThread = adoptPtr(webKitPlatformSupport()->createThread(""CCLayerTreeHostTest""));
+         WebCompositor::setThread(m_webThread.get());
+#if USE(THREADED_COMPOSITING)
+        m_settings.enableCompositorThread = true;
+#else
+        m_settings.enableCompositorThread = false;
+ #endif
+     }
+",1
+"bool SendGoBackJSONRequest(
+    AutomationMessageSender* sender,
+    int browser_index,
+    int tab_index,
+    std::string* error_msg) {
+  DictionaryValue dict;
+  dict.SetString(""command"", ""GoBack"");
+  dict.SetInteger(""windex"", browser_index);
+  dict.SetInteger(""tab_index"", tab_index);
+  DictionaryValue reply_dict;
+  return SendAutomationJSONRequest(sender, dict, &reply_dict, error_msg);
+}
+",0
+"WebMediaPlayer* RenderView::createMediaPlayer(
+    WebFrame* frame, WebMediaPlayerClient* client) {
+  FOR_EACH_OBSERVER(
+      RenderViewObserver, observers_, WillCreateMediaPlayer(frame, client));
+
+  scoped_ptr<media::MessageLoopFactory> message_loop_factory(
+      new media::MessageLoopFactoryImpl());
+  scoped_ptr<media::FilterCollection> collection(
+      new media::FilterCollection());
+
+  const CommandLine* cmd_line = CommandLine::ForCurrentProcess();
+  if (!cmd_line->HasSwitch(switches::kDisableAudio)) {
+    collection->AddAudioRenderer(new AudioRendererImpl());
+  }
+
+  scoped_refptr<webkit_glue::WebVideoRenderer> video_renderer;
+  bool pts_logging = cmd_line->HasSwitch(switches::kEnableVideoLogging);
+  scoped_refptr<webkit_glue::VideoRendererImpl> renderer(
+      new webkit_glue::VideoRendererImpl(pts_logging));
+  collection->AddVideoRenderer(renderer);
+  video_renderer = renderer;
+
+  scoped_ptr<webkit_glue::WebMediaPlayerImpl> result(
+      new webkit_glue::WebMediaPlayerImpl(client,
+                                          collection.release(),
+                                          message_loop_factory.release(),
+                                          media_stream_impl_.get()));
+  if (!result->Initialize(frame,
+                          cmd_line->HasSwitch(switches::kSimpleDataSource),
+                          video_renderer)) {
+    return NULL;
+  }
+  return result.release();
+}
+",0
+"static void PerWorldBindingsRuntimeEnabledVoidMethodMethod(const v8::FunctionCallbackInfo<v8::Value>& info) {
+  TestObject* impl = V8TestObject::ToImpl(info.Holder());
+
+  impl->perWorldBindingsRuntimeEnabledVoidMethod();
+}
+",0
+"static const wbxml_decoding *get_wbxml_decoding_from_content_type (
+								   const char *content_type, tvbuff_t *tvb, guint32 offset)
+{
+	const wbxml_decoding *map = NULL;
+
+	DebugLog((""get_wbxml_decoding_from_content_type: content_type = [%s]\n"",
+		  content_type));
+	if (content_type && content_type[0]) {
+		const wbxml_literal_list *item = content_type_list;
+
+		while (item && item->content_type) {
+			if (g_ascii_strcasecmp(content_type, item->content_type) == 0) {
+				/* Try the discriminator */
+				if (item->discriminator != NULL) {
+					map = item->discriminator(tvb, offset);
+				}
+				if (map == NULL) {
+					map = item->map;
+				}
+				break;
+			}
+			item++;
+		}
+	}
+	return map;
+}
+",0
+"void MediaControlsProgressView::HandleSeeking(
+    const gfx::Point& location_in_bar) {
+   double seek_to_progress =
+       static_cast<double>(location_in_bar.x()) / progress_bar_->width();
+   seek_callback_.Run(seek_to_progress);
+}
+",1
+"void iov_iter_pipe(struct iov_iter *i, int direction,
+			struct pipe_inode_info *pipe,
+ 			size_t count)
+ {
+ 	BUG_ON(direction != ITER_PIPE);
+ 	i->type = direction;
+ 	i->pipe = pipe;
+ 	i->idx = (pipe->curbuf + pipe->nrbufs) & (pipe->buffers - 1);
+	i->iov_offset = 0;
+	i->count = count;
+}
+",1
+"v8::Handle<v8::Value> V8WebGLRenderingContext::getAttachedShadersCallback(const v8::Arguments& args)
+{
+     INC_STATS(""DOM.WebGLRenderingContext.getAttachedShaders()"");
+ 
+     if (args.Length() < 1)
+        return V8Proxy::throwNotEnoughArgumentsError();
+ 
+     ExceptionCode ec = 0;
+     WebGLRenderingContext* context = V8WebGLRenderingContext::toNative(args.Holder());
+    if (args.Length() > 0 && !isUndefinedOrNull(args[0]) && !V8WebGLProgram::HasInstance(args[0])) {
+        V8Proxy::throwTypeError();
+        return notHandledByInterceptor();
+    }
+    WebGLProgram* program = V8WebGLProgram::HasInstance(args[0]) ? V8WebGLProgram::toNative(v8::Handle<v8::Object>::Cast(args[0])) : 0;
+    Vector<RefPtr<WebGLShader> > shaders;
+    bool succeed = context->getAttachedShaders(program, shaders, ec);
+    if (ec) {
+        V8Proxy::setDOMException(ec, args.GetIsolate());
+        return v8::Null();
+    }
+    if (!succeed)
+        return v8::Null();
+    v8::Local<v8::Array> array = v8::Array::New(shaders.size());
+    for (size_t ii = 0; ii < shaders.size(); ++ii)
+        array->Set(v8::Integer::New(ii), toV8(shaders[ii].get(), args.GetIsolate()));
+    return array;
+}
+",1
+"void WebGL2RenderingContextBase::texImage2D(GLenum target,
+                                            GLint level,
+                                            GLint internalformat,
+                                            GLsizei width,
+                                            GLsizei height,
+                                            GLint border,
+                                            GLenum format,
+                                            GLenum type,
+                                            GLintptr offset) {
+  if (isContextLost())
+    return;
+  if (!ValidateTexture2DBinding(""texImage2D"", target))
+    return;
+  if (!bound_pixel_unpack_buffer_) {
+    SynthesizeGLError(GL_INVALID_OPERATION, ""texImage2D"",
+                       ""no bound PIXEL_UNPACK_BUFFER"");
+     return;
+   }
+   if (!ValidateTexFunc(""texImage2D"", kTexImage, kSourceUnpackBuffer, target,
+                        level, internalformat, width, height, 1, border, format,
+                        type, 0, 0, 0))
+    return;
+  if (!ValidateValueFitNonNegInt32(""texImage2D"", ""offset"", offset))
+    return;
+
+  ContextGL()->TexImage2D(
+      target, level, ConvertTexInternalFormat(internalformat, type), width,
+      height, border, format, type, reinterpret_cast<const void*>(offset));
+}
+",1
+"void ReleaseProcessIfNeeded() {
+  content::UtilityThread::Get()->ReleaseProcessIfNeeded();
+}
+",0
+"Chapters::Chapters(
+    Segment* pSegment,
+    long long payload_start,
+    long long payload_size,
+    long long element_start,
+    long long element_size) :
+    m_pSegment(pSegment),
+    m_start(payload_start),
+    m_size(payload_size),
+    m_element_start(element_start),
+    m_element_size(element_size),
+    m_editions(NULL),
+    m_editions_size(0),
+    m_editions_count(0)
+{
+}
+",1
+" static void copyStereo8(
+         short *dst,
+        const int *const *src,
+         unsigned nSamples,
+         unsigned /* nChannels */) {
+     for (unsigned i = 0; i < nSamples; ++i) {
+ *dst++ = src[0][i] << 8;
+ *dst++ = src[1][i] << 8;
+
+     }
+ }
+",1
+"void AutocompleteProvider::AddProviderInfo(
+    ProvidersInfo* provider_info) const {
+}
+",1
+"  virtual void SetImePropertyActivated(const std::string& key,
+                                       bool activated) {
+    if (!initialized_successfully_)
+       return;
+ 
+     DCHECK(!key.empty());
+    chromeos::SetImePropertyActivated(
+        input_method_status_connection_, key.c_str(), activated);
+   }
+",1
+"static const char *func_id_name(int id)
+{
+	BUILD_BUG_ON(ARRAY_SIZE(func_id_str) != __BPF_FUNC_MAX_ID);
+
+	if (id >= 0 && id < __BPF_FUNC_MAX_ID && func_id_str[id])
+		return func_id_str[id];
+	else
+		return ""unknown"";
+}
+",0
+"static void tcp_v4_reqsk_destructor(struct request_sock *req)
+{
+	kfree(inet_rsk(req)->opt);
+}
+",0
+"static void kvm_update_dr0123(struct kvm_vcpu *vcpu)
+{
+	int i;
+
+	if (!(vcpu->guest_debug & KVM_GUESTDBG_USE_HW_BP)) {
+		for (i = 0; i < KVM_NR_DB_REGS; i++)
+			vcpu->arch.eff_db[i] = vcpu->arch.db[i];
+		vcpu->arch.switch_db_regs |= KVM_DEBUGREG_RELOAD;
+	}
+}
+",0
+"const base::Time& BaseNode::GetModificationTime() const {
+   return GetEntry()->Get(syncable::MTIME);
+ }
+",1
+"int32_t InputHandler::finishComposition()
+{
+    if (!isActiveTextEdit())
+        return -1;
+
+    if (!compositionActive())
+        return 0;
+
+    removeAttributedTextMarker();
+
+    InputLog(LogLevelInfo, ""InputHandler::finishComposition completed"");
+
+    return 0;
+}
+",0
+"vips_malloc( VipsObject *object, size_t size )
+ {
+ 	void *buf;
+ 
+	buf = g_malloc( size );
+ 
+         if( object ) {
+ 		g_signal_connect( object, ""postclose"", 
+			G_CALLBACK( vips_malloc_cb ), buf );
+		object->local_memory += size;
+	}
+
+	return( buf );
+}
+",1
+"bool GLES2DecoderImpl::DoIsProgram(GLuint client_id) {
+  const ProgramManager::ProgramInfo* program = GetProgramInfo(client_id);
+  return program != NULL && !program->IsDeleted();
+}
+",0
+" void TextTrack::addCue(TextTrackCue* cue) {
+   DCHECK(cue);
+ 
+  if (std::isnan(cue->startTime()) || std::isnan(cue->endTime()) ||
+      cue->startTime() < 0 || cue->endTime() < 0)
+     return;
+ 
+
+
+
+  if (TextTrack* cue_track = cue->track())
+    cue_track->removeCue(cue, ASSERT_NO_EXCEPTION);
+
+  cue->SetTrack(this);
+  EnsureTextTrackCueList()->Add(cue);
+
+  if (GetCueTimeline() && mode_ != DisabledKeyword())
+    GetCueTimeline()->AddCue(this, cue);
+}
+",1
+"n_tty_receive_buf_closing(struct tty_struct *tty, const unsigned char *cp,
+			  char *fp, int count)
+{
+	char flag = TTY_NORMAL;
+
+	while (count--) {
+		if (fp)
+			flag = *fp++;
+		if (likely(flag == TTY_NORMAL))
+			n_tty_receive_char_closing(tty, *cp++);
+		else
+			n_tty_receive_char_flagged(tty, *cp++, flag);
+	}
+}
+",0
+"void ApiTestEnvironment::RunPromisesAgain() {
+  env()->isolate()->RunMicrotasks();
+  base::MessageLoop::current()->PostTask(
+      FROM_HERE, base::Bind(&ApiTestEnvironment::RunPromisesAgain,
+                            base::Unretained(this)));
+}
+",0
+"GahpServer::RemoveGahpClient()
+{
+	m_reference_count--;
+
+	if ( m_reference_count <= 0 ) {
+		m_deleteMeTid = daemonCore->Register_Timer( 30,
+								(TimerHandlercpp)&GahpServer::DeleteMe,
+								""GahpServer::DeleteMe"", (Service*)this );
+	}
+}
+",0
+"void DevToolsWindow::Inspect(scoped_refptr<content::DevToolsAgentHost> host) {
+  DevToolsWindow::OpenDevToolsWindow(host, profile_);
+}
+",0
+"static struct block_device *ext3_blkdev_get(dev_t dev, struct super_block *sb)
+{
+	struct block_device *bdev;
+	char b[BDEVNAME_SIZE];
+
+	bdev = blkdev_get_by_dev(dev, FMODE_READ|FMODE_WRITE|FMODE_EXCL, sb);
+	if (IS_ERR(bdev))
+		goto fail;
+ 	return bdev;
+ 
+ fail:
+	ext3_msg(sb, ""error: failed to open journal device %s: %ld"",
+ 		__bdevname(dev, b), PTR_ERR(bdev));
+ 
+ 	return NULL;
+}
+",1
+" void WebPagePrivate::didComposite()
+ {
+     if (!m_page->settings()->developerExtrasEnabled())
+         return;
+    InspectorInstrumentation::didComposite(m_page);
+ }
+",1
+"   static void TearDownTestCase() {
+    vpx_free(source_data_);
+    source_data_ = NULL;
+    vpx_free(reference_data_);
+    reference_data_ = NULL;
+   }
+",1
+"void AXObject::tokenVectorFromAttribute(Vector<String>& tokens,
+                                        const QualifiedName& attribute) const {
+  Node* node = this->getNode();
+  if (!node || !node->isElementNode())
+    return;
+
+  String attributeValue = getAttribute(attribute).getString();
+  if (attributeValue.isEmpty())
+    return;
+
+  attributeValue.simplifyWhiteSpace();
+  attributeValue.split(' ', tokens);
+}
+",0
+"void InspectorOverlay::update()
+{
+    if (isEmpty()) {
+        m_client->hideHighlight();
+        return;
+    }
+
+    FrameView* view = m_page->mainFrame()->view();
+    if (!view)
+        return;
+    IntRect viewRect = view->visibleContentRect();
+    FrameView* overlayView = overlayPage()->mainFrame()->view();
+
+    IntSize frameViewFullSize = view->visibleContentRect(ScrollableArea::IncludeScrollbars).size();
+    IntSize size = m_size.isEmpty() ? frameViewFullSize : m_size;
+    size.scale(m_page->pageScaleFactor());
+    overlayView->resize(size);
+
+    reset(size, m_size.isEmpty() ? IntSize() : frameViewFullSize, viewRect.x(), viewRect.y());
+
+    drawGutter();
+    drawNodeHighlight();
+    drawQuadHighlight();
+     if (!m_inspectModeEnabled)
+         drawPausedInDebuggerMessage();
+     drawViewSize();
+    drawOverridesMessage();
+ 
+     overlayPage()->mainFrame()->document()->recalcStyle(Force);
+    if (overlayView->needsLayout())
+        overlayView->layout();
+
+    m_client->highlight();
+}
+",1
+"    DictionaryValue* ToValue() const {
+      DictionaryValue* value = new DictionaryValue();
+      value->SetInteger(""totalCount"", total_count);
+      value->SetString(""payload"", payload);
+      return value;
+    }
+",0
+"void DecoderTest::RunLoop(CompressedVideoSource *video) {
+  vpx_codec_dec_cfg_t dec_cfg = {0};
+  Decoder* const decoder = codec_->CreateDecoder(dec_cfg, 0);
+   ASSERT_TRUE(decoder != NULL);
+ 
+  for (video->Begin(); video->cxdata(); video->Next()) {
+     PreDecodeFrameHook(*video, decoder);
+    vpx_codec_err_t res_dec = decoder->DecodeFrame(video->cxdata(),
+                                                   video->frame_size());
+    ASSERT_EQ(VPX_CODEC_OK, res_dec) << decoder->DecodeError();
+ 
+     DxDataIterator dec_iter = decoder->GetDxData();
+     const vpx_image_t *img = NULL;
+
+
+     while ((img = dec_iter.Next()))
+       DecompressedFrameHook(*img, video->frame_number());
+   }
+   delete decoder;
+ }
+",1
+"static void reflectUnsignedShortAttributeAttributeSetterCallback(v8::Local<v8::String>, v8::Local<v8::Value> jsValue, const v8::PropertyCallbackInfo<void>& info)
+{
+    TRACE_EVENT_SET_SAMPLING_STATE(""Blink"", ""DOMSetter"");
+    CustomElementCallbackDispatcher::CallbackDeliveryScope deliveryScope;
+    TestObjectPythonV8Internal::reflectUnsignedShortAttributeAttributeSetter(jsValue, info);
+    TRACE_EVENT_SET_SAMPLING_STATE(""V8"", ""V8Execution"");
+}
+",0
+"static NetworkRoamingState ParseRoamingState(
+    const std::string& roaming_state) {
+    if (roaming_state == kRoamingStateHome)
+    return ROAMING_STATE_HOME;
+  if (roaming_state == kRoamingStateRoaming)
+    return ROAMING_STATE_ROAMING;
+  if (roaming_state == kRoamingStateUnknown)
+    return ROAMING_STATE_UNKNOWN;
+  return ROAMING_STATE_UNKNOWN;
+}
+",0
+" static void locationWithCallWithAttributeSetter(v8::Local<v8::Value> jsValue, const v8::PropertyCallbackInfo<void>& info)
+ {
+     TestObjectPython* proxyImp = V8TestObjectPython::toNative(info.Holder());
+    TestNode* imp = WTF::getPtr(proxyImp->locationWithCallWith());
+     if (!imp)
+         return;
+     V8TRYCATCH_FOR_V8STRINGRESOURCE_VOID(V8StringResource<>, cppValue, jsValue);
+    imp->setHrefCallWith(callingDOMWindow(info.GetIsolate()), enteredDOMWindow(info.GetIsolate()), cppValue);
+}
+",1
+"struct in6_addr *ndp_msg_opt_route_prefix(struct ndp_msg *msg, int offset)
+{
+	static struct in6_addr prefix;
+	struct __nd_opt_route_info *ri =
+			ndp_msg_payload_opts_offset(msg, offset);
+
+	memset(&prefix, 0, sizeof(prefix));
+	memcpy(&prefix, &ri->nd_opt_ri_prefix, (ri->nd_opt_ri_len - 1) << 3);
+	return &prefix;
+}
+",0
+"static int store_asoundrc(void) {
+	fs_build_mnt_dir();
+ 
+ 	char *src;
+ 	char *dest = RUN_ASOUNDRC_FILE;
+ 	FILE *fp = fopen(dest, ""w"");
+ 	if (fp) {
+ 		fprintf(fp, ""\n"");
+		SET_PERMS_STREAM(fp, getuid(), getgid(), 0644);
+		fclose(fp);
+	}
+	
+	if (asprintf(&src, ""%s/.asoundrc"", cfg.homedir) == -1)
+		errExit(""asprintf"");
+	
+	struct stat s;
+	if (stat(src, &s) == 0) {
+		if (is_link(src)) {
+			/* coverity[toctou] */
+			char* rp = realpath(src, NULL);
+			if (!rp) {
+				fprintf(stderr, ""Error: Cannot access %s\n"", src);
+				exit(1);
+			}
+			if (strncmp(rp, cfg.homedir, strlen(cfg.homedir)) != 0) {
+				fprintf(stderr, ""Error: .asoundrc is a symbolic link pointing to a file outside home directory\n"");
+				exit(1);
+			}
+			free(rp);
+		}
+
+		copy_file_as_user(src, dest, getuid(), getgid(), 0644);
+		fs_logger2(""clone"", dest);
+		return 1; // file copied
+	}
+	
+	return 0;
+}
+",1
+"ExtensionsGuestViewMessageFilter::FrameNavigationHelper::FrameNavigationHelper(
+    RenderFrameHost* plugin_rfh,
+    int32_t guest_instance_id,
+    int32_t element_instance_id,
+    bool is_full_page_plugin,
+    ExtensionsGuestViewMessageFilter* filter)
+    : content::WebContentsObserver(
+          content::WebContents::FromRenderFrameHost(plugin_rfh)),
+      frame_tree_node_id_(plugin_rfh->GetFrameTreeNodeId()),
+      guest_instance_id_(guest_instance_id),
+      element_instance_id_(element_instance_id),
+      is_full_page_plugin_(is_full_page_plugin),
+      filter_(filter),
+      parent_site_instance_(plugin_rfh->GetParent()->GetSiteInstance()),
+      weak_factory_(this) {
+  DCHECK(GetGuestView());
+  NavigateToAboutBlank();
+  base::PostDelayedTaskWithTraits(
+      FROM_HERE, {BrowserThread::UI},
+      base::BindOnce(&ExtensionsGuestViewMessageFilter::FrameNavigationHelper::
+                         CancelPendingTask,
+                     weak_factory_.GetWeakPtr()),
+      base::TimeDelta::FromMilliseconds(kAttachFailureDelayMS));
+}
+",1
+"png_set_tIME(png_structp png_ptr, png_infop info_ptr, png_timep mod_time)
+{
+   png_debug1(1, ""in %s storage function"", ""tIME"");
+
+   if (png_ptr == NULL || info_ptr == NULL ||
+        (png_ptr->mode & PNG_WROTE_tIME))
+       return;
+ 
+    png_memcpy(&(info_ptr->mod_time), mod_time, png_sizeof(png_time));
+    info_ptr->valid |= PNG_INFO_tIME;
+ }
+",1
+"static EncodedJSValue JSC_HOST_CALL jsTestObjPrototypeFunctionOverloadedMethod6(ExecState* exec)
+{
+    JSValue thisValue = exec->hostThisValue();
+    if (!thisValue.inherits(&JSTestObj::s_info))
+        return throwVMTypeError(exec);
+    JSTestObj* castedThis = jsCast<JSTestObj*>(asObject(thisValue));
+     ASSERT_GC_OBJECT_INHERITS(castedThis, &JSTestObj::s_info);
+     TestObj* impl = static_cast<TestObj*>(castedThis->impl());
+     if (exec->argumentCount() < 1)
+        return throwVMError(exec, createTypeError(exec, ""Not enough arguments""));
+     DOMStringList* listArg(toDOMStringList(MAYBE_MISSING_PARAMETER(exec, 0, DefaultIsUndefined)));
+     if (exec->hadException())
+         return JSValue::encode(jsUndefined());
+    impl->overloadedMethod(listArg);
+    return JSValue::encode(jsUndefined());
+}
+",1
+"dcputs(const char *s)
+{
+	int len=strlen(s);
+	dcchkstr(len);
+	strcat(dcptr,s);
+	dcptr+=len;
+	strsize+=len;
+}
+",0
+"static bool is_valid(const char *test_name) {
+ for (size_t i = 0; i < sanity_suite_size; ++i) {
+ if (!strcmp(test_name, sanity_suite[i].function_name)) {
+ return true;
+ }
+ }
+ for (size_t i = 0; i < test_suite_size; ++i) {
+ if (!strcmp(test_name, test_suite[i].function_name)) {
+ return true;
+ }
+ }
+ return false;
+}
+",0
+"ScreenLockLibrary* CrosLibrary::GetScreenLockLibrary() {
+  return screen_lock_lib_.GetDefaultImpl(use_stub_impl_);
+}
+",1
