@@ -1,0 +1,30 @@
+seed: 42
+device: "cuda"
+
+data:
+  train_csv: "data/ghsa_java_train.csv.gz"
+  test_csv:  "data/ghsa_java_test.csv.gz"
+  graph_col: "graphson"
+  label_col: "label"
+
+model:
+  h: 128
+  dropout: 0.1
+  token_vocab: 50000
+  label_vocab: 512
+  max_stmt_tokens: 64
+  max_var_tokens: 32
+  max_ctx_nei: 12
+  max_ast_nodes: 64
+  max_ast_depth: 8
+
+train:
+  epochs: 20
+  lr: 0.002
+  weight_decay: 0.0001
+  val_frac: 0.2
+
+output:
+  dir: "outputs/baselines/ivdetect"
+  metrics_json: "outputs/baselines/ivdetect/metrics.json"
+  ckpt_pt: "outputs/baselines/ivdetect/model.pt"

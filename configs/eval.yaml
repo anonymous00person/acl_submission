@@ -1,0 +1,25 @@
+model_name: "Qwen/Qwen2.5-Coder-1.5B"
+bf16: true
+max_len: 512
+batch_eval: 8
+dropout: 0.1
+
+data:
+  test_csv: "data/ghsa_java_test.csv.gz"
+  code_col: "function"
+  label_col: "label"
+  graph_col: "graphson"
+
+cache:
+  dir: "outputs/graph_cache"
+
+artifacts:
+  best_dir: "artifacts/qwen2p5_1p5b_qlora_cpg/best_model"
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+
+output:
+  metrics_json: "outputs/eval_metrics.json"

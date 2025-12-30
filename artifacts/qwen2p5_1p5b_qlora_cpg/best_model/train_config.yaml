@@ -1,0 +1,30 @@
+seed: 42
+model_name: Qwen/Qwen2.5-Coder-1.5B
+max_len: 512
+data:
+  train_csv: data/ghsa_java_train.csv.gz
+  test_csv: data/ghsa_java_test.csv.gz
+  code_col: function
+  label_col: label
+  graph_col: graphson
+cache:
+  dir: outputs/graph_cache
+output:
+  dir: artifacts/qwen2p5_1p5b_qlora_cpg
+train:
+  epochs: 5
+  lr: 2.0e-05
+  batch_train: 4
+  batch_eval: 8
+  weight_decay: 0.01
+  grad_ckpt: true
+  fp16: false
+  bf16: true
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+bnb:
+  load_in_4bit: true
+  double_quant: true
+  quant_type: nf4

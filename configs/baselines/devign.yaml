@@ -1,0 +1,34 @@
+seed: 42
+device: "cuda"
+
+data:
+  train_csv: "data/ghsa_java_train.csv.gz"
+  test_csv:  "data/ghsa_java_test.csv.gz"
+  code_col: "function"
+  label_col: "label"
+  graph_col: "graphson"
+  line_col: "line"
+
+model:
+  w2v_dim: 100
+  hid_dim: 200
+  time_steps: 6
+  max_nodes: 500
+  type_dim: 32
+
+train:
+  epochs: 200
+  batch_size: 128
+  lr: 0.0001
+  weight_decay: 0.0001
+  early_stop_patience: 100
+
+output:
+  dir: "outputs/baselines/devign"
+  w2v_path: "outputs/baselines/devign/w2v.model"
+  type_vocab_json: "outputs/baselines/devign/type_vocab.json"
+  train_cache_pt: "outputs/baselines/devign/train_samples.pt"
+  test_cache_pt:  "outputs/baselines/devign/test_samples.pt"
+  best_ckpt_pt:   "outputs/baselines/devign/best_devign.pt"
+  preds_csv:      "outputs/baselines/devign/devign_test_predictions.csv"
+  metrics_json:   "outputs/baselines/devign/metrics.json"
