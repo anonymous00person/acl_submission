@@ -27,9 +27,9 @@ All the datasets used in this work is provided under:
 We recommend using a clean virtual environment.
 
 ### 1) Install PyTorch (CUDA 11.8)
-
-'pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118'
-'pip install -r requirements.txt'
+            
+- 'pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118'
+- 'pip install -r requirements.txt'
 
 ### 2) Run the following command for execution (Qwen Coder2.5- 1.5B model- performed best)
 'python/python3 scripts/eval.py --config configs/eval.yaml'
